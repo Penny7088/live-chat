@@ -53,6 +53,8 @@ class NormalColorS {
   static const Color colff3a3a = Color(0xFFFF3A3A);
   static const Color colec275f = Color(0xFFec275f);
   static const Color cold9d9d9 = Color(0xFFd9d9d9);
+  static const Color  col89F1F5 = Color(0xFF89F1F5);
+  static const Color  col0ED221 = Color(0xFF0ED221);
 
 
 
