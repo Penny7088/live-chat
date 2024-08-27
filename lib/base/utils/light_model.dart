@@ -4,16 +4,15 @@ import 'package:live_chat/base/utils/extensions/list_extensions.dart';
 import 'package:mmkv/mmkv.dart';
 
 
-final lightKV = _LightModel();
+final storageKV = _LightModel();
 
 class _LightModel {
   MMKV? mmkv;
-  Future config() async{
-    await init();
-  }
-  init() async {
+
+  Future<MMKV?> init() async {
     final rootDir = await MMKV.initialize();
     mmkv ??= MMKV.defaultMMKV();
+    return mmkv;
   }
 
   void remove(String key) async {
@@ -94,19 +93,19 @@ class _LightModel {
 
 
    Future<bool> putModels<M>({required M model, required String key}) async {
-    List<String>? cache = await lightKV.getStringList(key);
+    List<String>? cache = await storageKV.getStringList(key);
     if(model == null){
       return false;
     }
     cache ??= <String>[];
     String m = json.encode(model);
     cache.add(m);
-    return await lightKV.setStringList(key,  cache.removeDuplicates()) ?? false;
+    return await storageKV.setStringList(key,  cache.removeDuplicates()) ?? false;
   }
 
 
   Future<List<String>?> getModels({required String key}) async {
-    List<String>? cache = await lightKV.getStringList(key);
+    List<String>? cache = await storageKV.getStringList(key);
     if(cache == null || cache.isEmpty == true ){
       return null;
     }

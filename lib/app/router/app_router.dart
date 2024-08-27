@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:live_chat/app/page/login/login_view.dart';
 
 /// FileName app_router
 ///
@@ -11,14 +12,18 @@ class AppRouter{
 
   static getAllRoutS() {
     return [
+      // GetPage(
+      //   name: RouterId.splash,
+      //   page: () => const SplashPage(),
+      // ),
       GetPage(
-        name: RouterId.splash,
-        page: () => const SplashPage(),
+        name: RouterId.login,
+        page: () => const LoginPage(),
       ),
-      GetPage(
-        name: RouterId.main,
-        page: () => const MainPage(),
-      ),
+      // GetPage(
+      //   name: RouterId.main,
+      //   page: () => const MainPage(),
+      // ),
       // ...ShopRouterS.routerS
     ];
   }
@@ -32,4 +37,5 @@ class AppRouter{
 class RouterId {
   static const String splash = '/app/splash';
   static const String main = '/app/main';
+  static const String login = '/app/login';
 }

@@ -27,4 +27,6 @@ abstract class BaseState {
   });
 
   void release();
+
+  void init();
 }

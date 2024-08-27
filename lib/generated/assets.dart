@@ -8,6 +8,8 @@ class Assets {
   static const String bgBgLightDefault = 'assets/images/bg/bg_light_default.webp';
   static const String bgBgLightFemale = 'assets/images/bg/bg_light_female.webp';
   static const String bgBgLightMale = 'assets/images/bg/bg_light_male.webp';
+  static const String fontsDreamHaSans = 'assets/fonts/Dream-Ha-Sans.ttf';
+  static const String fontsFonteditor = 'assets/fonts/fonteditor.ttf';
   static const String imagesNoDataStatus = 'assets/images/no_data_status.webp';
   static const String loadingListLoading = 'assets/loading/list_loading.json';
   static const String loadingSplashLoading = 'assets/loading/splash_loading.json';

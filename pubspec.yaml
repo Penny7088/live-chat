@@ -57,6 +57,7 @@ dependencies:
   image_editor: ^1.5.1
   infinite_carousel: ^1.1.1
   cupertino_icons: ^1.0.6
+  flex_color_scheme: ^7.1.2
 
 dev_dependencies:
   flutter_test:
@@ -68,3 +69,11 @@ flutter:
   assets:
     - assets/images/
     - assets/loading/
+
+  fonts:
+    - family: Dream
+      fonts:
+        - asset: assets/fonts/Dream-Ha-Sans.ttf
+    - family: editor
+      fonts:
+        - asset: assets/fonts/fonteditor.ttf

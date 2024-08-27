@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'app/local/i18_tr.dart';
 import 'app/router/app_router.dart';
+import 'app/theme/theme_service.dart';
 import 'base/config/init_config.dart';
 import 'base/utils/util.dart';
 
@@ -45,6 +46,9 @@ void init() async {
 Widget initGetMaterialApp({
   Widget Function(BuildContext, Widget?)? builder,
 }) {
+  ThemeService theme = ThemeService.obtain();
+
+
   return GetMaterialApp(
 
     initialRoute: AppRouter.configNormalRouts(),
@@ -58,6 +62,7 @@ Widget initGetMaterialApp({
     useInheritedMediaQuery: true,
     translations: I18TRMessages(),
     fallbackLocale: const Locale('zh', 'CN'),
+    theme: theme.currentTheme,
     /// 是否显示 导航栏右上角 debug 标识
     debugShowCheckedModeBanner: false,
     /// 国际化配置 代理

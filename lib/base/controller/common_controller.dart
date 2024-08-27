@@ -59,14 +59,13 @@ abstract class CommonController<S extends BaseState> extends GetxController
   // 配置界面是否显示 加载界面
   var isShowLoadWidget = false.obs;
 
-  String? controllerTag;
-
   late S state = createState();
 
   @override
   void onInit() {
     super.onInit();
     configUI();
+    state.init();
     WidgetsBinding.instance.addObserver(this);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       configWidgetRenderingCompleted();
@@ -144,7 +143,7 @@ abstract class CommonController<S extends BaseState> extends GetxController
   @override
   onClose() {
     WidgetsBinding.instance.removeObserver(this);
-    super.onClose();
     state.release();
+    super.onClose();
   }
 }

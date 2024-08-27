@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:live_chat/base/state/page_state.dart';
 import '../config/normal_colors.dart';
 import '../controller/common_controller.dart';
 import 'common_place_holder_widget.dart';
@@ -7,25 +8,29 @@ import 'loading_center_widget.dart';
 import 'mixin/appbar_mixin.dart';
 import 'mixin/view_mixin.dart';
 
-abstract class CommonBaseView<C extends CommonController>
-    extends GetView<C> with ViewMixin, AppBarMixin {
+abstract class CommonBaseView<C extends CommonController> extends GetView<C>
+    with ViewMixin, AppBarMixin {
   const CommonBaseView({super.key});
 
   @override
   String? get tag => controllerTag();
 
+  @override
+  C get controller => Get.put<C>(createController(), tag: tag);
+
   String controllerTag();
+
+  C createController();
 
   @override
   Widget build(BuildContext context) {
     return Obx(
-          () => createScaffoldWidget(context: context),
+      () => createScaffoldWidget(context: context),
     );
   }
 
   @override
-  Widget? createScaffoldBottomNavigationBar(
-      {required BuildContext context, BoxConstraints? constraints}) {
+  Widget? createScaffoldBottomNavigationBar({required BuildContext context, BoxConstraints? constraints}) {
     return Container();
   }
 
@@ -47,7 +52,6 @@ abstract class CommonBaseView<C extends CommonController>
       },
     );
   }
-
 
   /// UI配置项
   /// ---------------- 脚手架配置项 ---------------- ///

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
+import '../../app/theme/theme_service.dart';
 import '../../base/utils/light_model.dart';
 
 /// FileName init_config
@@ -18,9 +19,9 @@ configInit() async {
 
 initThirdParty() async {
   await fromPlatform();
-  await lightKV.config();
+  await storageKV.init();
+  Get.lazyPut<ThemeService>(() => ThemeService(), fenix: true);
 }
-
 
 fromPlatform() async {
   PackageInfo packageInfo = await PackageInfo.fromPlatform();
