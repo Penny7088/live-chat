@@ -28,6 +28,7 @@ class LoginPage extends CommonBaseView<LoginController> {
       assetImage(url: Assets.loginAppIcon,width: 100.w,height: 100.w),
       24.verticalSpaceFromWidth,
       themeText(themeMode: state.themeValue.value,text: LanguageKey.loginTitle.tr ),
+      18.verticalSpaceFromWidth,
       themeText(themeMode: state.themeValue.value,text: LanguageKey.loginSubTitle.tr)
     ]);
 
