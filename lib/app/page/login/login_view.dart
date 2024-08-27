@@ -24,13 +24,16 @@ class LoginPage extends CommonBaseView<LoginController> {
   Widget createChildBody({required BuildContext context, BoxConstraints?constraints}) {
     Widget body =  Column(children: [
       80.verticalSpaceFromWidth,
-      Container(margin:EdgeInsets.symmetric(horizontal: 16.w),child:assetImage(url: Assets.loginLoginIcons,height: 222.w,fit: BoxFit.fitWidth)),
+      assetImage(url: Assets.loginLoginIcons,height: 222.w,fit: BoxFit.fitWidth),
       assetImage(url: Assets.loginAppIcon,width: 100.w,height: 100.w),
-      themeText(themeMode: state.themeValue.value,text: LanguageKey.loginTitle.tr)
+      themeText(themeMode: state.themeValue.value,text: LanguageKey.loginTitle.tr),
+      themeText(themeMode: state.themeValue.value,text: LanguageKey.loginSubTitle.tr)
     ]);
 
 
-    return Container(decoration: BoxDecoration(
+    return Container(
+        padding: EdgeInsets.symmetric(horizontal: 20.w),
+        decoration: BoxDecoration(
         image: DecorationImage(image:themeBgImage(themeMode: state.themeValue.value), fit: BoxFit.cover)),child: body);
   }
 
