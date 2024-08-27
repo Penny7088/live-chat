@@ -61,6 +61,7 @@ Widget initGetMaterialApp({
     ],
     useInheritedMediaQuery: true,
     translations: I18TRMessages(),
+    locale: Get.deviceLocale,
     fallbackLocale: const Locale('zh', 'CN'),
     theme: theme.currentTheme,
     /// 是否显示 导航栏右上角 debug 标识

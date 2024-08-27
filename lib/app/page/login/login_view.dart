@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_common/get_reset.dart';
-import 'package:live_chat/base/config/font_config.dart';
+import 'package:get/get.dart';
 import 'package:live_chat/base/view/common_base_view.dart';
 
 import '../../../generated/assets.dart';
@@ -25,9 +24,9 @@ class LoginPage extends CommonBaseView<LoginController> {
   Widget createChildBody({required BuildContext context, BoxConstraints?constraints}) {
     Widget body =  Column(children: [
       80.verticalSpaceFromWidth,
-      assetImage(url: Assets.loginLoginIcons,width: double.infinity,height: 222.w),
+      Container(margin:EdgeInsets.symmetric(horizontal: 16.w),child:assetImage(url: Assets.loginLoginIcons,height: 222.w,fit: BoxFit.fitWidth)),
       assetImage(url: Assets.loginAppIcon,width: 100.w,height: 100.w),
-      themeText(themeMode: state.themeValue.value,text: LanguageKey.loginTitle)
+      themeText(themeMode: state.themeValue.value,text: LanguageKey.loginTitle.tr)
     ]);
 
 
