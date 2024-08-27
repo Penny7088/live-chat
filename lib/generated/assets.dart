@@ -13,7 +13,7 @@ class Assets {
   static const String imagesNoDataStatus = 'assets/images/no_data_status.webp';
   static const String loadingListLoading = 'assets/loading/list_loading.json';
   static const String loadingSplashLoading = 'assets/loading/splash_loading.json';
-  static const String loginAppIcon = 'assets/images/login/app_icon.png';
-  static const String loginLoginIcons = 'assets/images/login/login_icons.png';
+  static const String loginAppIcon = 'assets/images/login/app_icon.webp';
+  static const String loginLoginIcons = 'assets/images/login/login_icons.webp';
 
 }

@@ -30,7 +30,7 @@ class AppRouter{
 
   // 设置默认入口页
   static configNormalRouts() {
-    return RouterId.splash;
+    return RouterId.login;
   }
 }
 
