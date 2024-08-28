@@ -74,7 +74,7 @@ extension ContextExtensions on BuildContext {
 
   bool isPhone() => MediaQuery.of(this).size.width < tabletBreakpointGlobal;
 
-  bool isTablet() =>
+  bool isTabletP() =>
       MediaQuery.of(this).size.width < desktopBreakpointGlobal &&
       MediaQuery.of(this).size.width >= tabletBreakpointGlobal;
 
