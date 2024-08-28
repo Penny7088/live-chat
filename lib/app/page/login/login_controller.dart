@@ -10,9 +10,9 @@ class LoginController extends CommonController<LoginState> {
 
   @override
   configUI() {
-    safeAreaTop = false;
-    isNeedScaffold = true;
-    isShowLoadWidget.value = false;
-    isShowAppBar = false;
+    state.safeAreaTop = false;
+    state.isNeedScaffold = true;
+    state.isShowLoadWidget.value = false;
+    state.isShowAppBar = false;
   }
 }

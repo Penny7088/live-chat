@@ -18,6 +18,8 @@ abstract class CommonBaseView<C extends CommonController> extends GetView<C>
   @override
   C get controller => Get.put<C>(createController(), tag: tag);
 
+  BaseState get state => controller.state;
+
   String controllerTag();
 
   C createController();
@@ -42,12 +44,12 @@ abstract class CommonBaseView<C extends CommonController> extends GetView<C>
   @override
   Widget? createEmptyWidget() {
     return CommonPlaceHoldPage(
-      placeHoldType: controller.placeHoldType,
-      msg: controller.placeMsg,
-      btnMsg: controller.placeBtnMsg,
+      placeHoldType: state.placeHoldType,
+      msg: state.placeMsg,
+      btnMsg: state.placeBtnMsg,
       ontap: () {
         controller.tapPlaceHoldWidgetMethod(
-          placeHoldType: controller.placeHoldType,
+          placeHoldType: state.placeHoldType,
         );
       },
     );
@@ -58,24 +60,24 @@ abstract class CommonBaseView<C extends CommonController> extends GetView<C>
   /// 是否使用脚手架
   @override
   bool configIsNeedScaffold() {
-    return controller.isNeedScaffold;
+    return state.isNeedScaffold;
   }
 
   ///是否形变
   @override
   bool? configResizeToAvoidBottomInset() {
-    return controller.resizeToAvoidBottomInset;
+    return state.resizeToAvoidBottomInset;
   }
 
   /// 脚手架背景颜色
   @override
   Color? configScaffoldBackgroundColor() {
-    return controller.scaffoldBackGroundColor ?? transparent;
+    return state.scaffoldBackGroundColor ?? transparent;
   }
 
   @override
   bool configIsNeedBottomNavigation() {
-    return controller.isShowBottomBar;
+    return state.isShowBottomBar;
   }
 
   /// ---------------- AppBar配置项 ---------------- ///
@@ -83,7 +85,7 @@ abstract class CommonBaseView<C extends CommonController> extends GetView<C>
   /// 是否需要导航栏
   @override
   bool configIsShowAppBar() {
-    return controller.isShowAppBar;
+    return state.isShowAppBar;
   }
 
   @override
@@ -94,13 +96,13 @@ abstract class CommonBaseView<C extends CommonController> extends GetView<C>
   /// 配置导航栏标题
   @override
   String? createAppBarTitleStr() {
-    return controller.appBarTitle;
+    return state.appBarTitle;
   }
 
   /// 配置导航栏背景颜色
   @override
   Color? createAppBarNavBackColor() {
-    return controller.navBackgroundColor ?? transparent;
+    return state.navBackgroundColor ?? transparent;
   }
 
   /// 配置导航栏背景视图
@@ -113,31 +115,31 @@ abstract class CommonBaseView<C extends CommonController> extends GetView<C>
   /// 是否需要 安全区域 控件
   @override
   bool configIsNeedSafeArea() {
-    return controller.isNeedScaffold;
+    return state.isNeedScaffold;
   }
 
   /// 是否关闭顶部安全区域
   @override
   bool configSafeAreaTop() {
-    return controller.safeAreaTop;
+    return state.safeAreaTop;
   }
 
   /// 是否关闭底部安全区域
   @override
   bool configSafeAreaBottom() {
-    return controller.safeAreaBottom;
+    return state.safeAreaBottom;
   }
 
   /// ---------------- 界面通用配置项 ---------------- ///
   /// 是否显示加载动画
   @override
   bool isShowLoading() {
-    return controller.isShowLoadWidget.value;
+    return state.isShowLoadWidget.value;
   }
 
   /// 配置界面状态值
   @override
   configPageState() {
-    return controller.pageState.value;
+    return state.pageState.value;
   }
 }

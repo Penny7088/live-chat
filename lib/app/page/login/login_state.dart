@@ -14,8 +14,13 @@ class LoginState extends BaseState{
   }
 
   @override
-  void release() {
+  void onReady() {
+  }
+
+  @override
+  void onClose() {
 
   }
+
 
 }

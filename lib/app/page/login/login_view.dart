@@ -13,6 +13,7 @@ import 'login_state.dart';
 class LoginPage extends CommonBaseView<LoginController> {
   const LoginPage({Key? key}) : super(key: key);
 
+  @override
   LoginState get state  => controller.state;
 
   @override

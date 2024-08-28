@@ -17,59 +17,23 @@ import '../view/mixin/refresh_mixin.dart';
 abstract class CommonController<S extends BaseState> extends GetxController
     with AbstractNetWork, WidgetsBindingObserver, AppLifeCycleAbs {
 
-  CommonPlaceHoldType placeHoldType = CommonPlaceHoldType.nothing;
-
-  /// 缺省页 描述语
-  String? placeMsg;
-
-  /// 缺省页 按钮文字
-  String? placeBtnMsg;
-
-  /// 配置界面状态
-  /// PageState.initializedState 初始化中 默认状态
-  var pageState = PageState.initializedState.obs;
-
-  /// 是否显示导航栏
-  var isShowAppBar = true;
-
-  /// 导航栏标题
-  var appBarTitle = "";
-
-  /// 导航栏颜色
-  Color? navBackgroundColor;
-
-  /// 默认安全区顶部 忽略
-  var safeAreaTop = true;
-
-  /// 默认安全区底部 忽略
-  var safeAreaBottom = false;
-
-  /// 是否显示底部导航栏
-  var isShowBottomBar = false;
-
-  /// 背景颜色
-  Color? scaffoldBackGroundColor;
-
-  /// 是否显示Scaffold脚手架
-  var isNeedScaffold = true;
-
-  /// 滚动属性
-  bool? resizeToAvoidBottomInset;
-
-  // 配置界面是否显示 加载界面
-  var isShowLoadWidget = false.obs;
 
   late S state = createState();
 
   @override
   void onInit() {
     super.onInit();
-    configUI();
     state.init();
+    configUI();
     WidgetsBinding.instance.addObserver(this);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       configWidgetRenderingCompleted();
     });
+  }
+
+  @override
+  onReady(){
+    state.onReady();
   }
 
   S  createState();
@@ -143,7 +107,7 @@ abstract class CommonController<S extends BaseState> extends GetxController
   @override
   onClose() {
     WidgetsBinding.instance.removeObserver(this);
-    state.release();
+    state.onClose();
     super.onClose();
   }
 }

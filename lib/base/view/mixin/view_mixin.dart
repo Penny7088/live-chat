@@ -8,8 +8,8 @@ import '../place_holder_widget.dart';
 /// 脚手架 [ViewMixin]
 mixin ViewMixin {
   ///   创建流程
-  ///   基类 调用 [createScaffoldWidget] -> 是否使用脚手架 是 -> [Scaffold]->[body]->[createScaffoldBody]->[createSafeArea]->->[createSafeBody]->[createChildBody]
-  ///                                                  否 -> [createScaffoldBody]->[createSafeArea]->->[createSafeBody]->[createChildBody]
+  ///   基类 调用 [createScaffoldWidget] -> 是否使用脚手架 是 -> [Obx] -> [Scaffold]->[body]->[createScaffoldBody]->[createSafeArea]->->[createSafeBody]->[createChildBody]
+  ///                                                  否 -> [Obx] -> [createScaffoldBody]->[createSafeArea]->->[createSafeBody]->[createChildBody]
   ///
 
   createScaffoldWidget({
