@@ -41,7 +41,7 @@ class AppBarGenerator {
             TextStyle(
               color: textColor ??
                   themeData.appBarTheme.titleTextStyle?.color ??
-                  NormalColorS.colffffff,
+                  colffffff,
               fontSize: fontSize ??
                   themeData.appBarTheme.titleTextStyle?.fontSize ??
                   18,
@@ -112,7 +112,7 @@ class AppBarGenerator {
     bool canShowBack = parentRoute?.canPop ?? false;
     ThemeData themeData = Theme.of(context);
     leadingIconColor ??=
-        (themeData.appBarTheme.iconTheme?.color ?? NormalColorS.col101010);
+        (themeData.appBarTheme.iconTheme?.color ?? col101010);
 
     Widget backBtn = leading ??
         IconButton(
@@ -150,9 +150,9 @@ class AppBarGenerator {
     bool canShowBack = parentRoute?.canPop ?? false;
     ThemeData themeData = Theme.of(context);
     leadingIconColor ??=
-        (themeData.appBarTheme.iconTheme?.color ?? NormalColorS.col101010);
+        (themeData.appBarTheme.iconTheme?.color ?? col101010);
     backgroundColor ??=
-        (themeData.appBarTheme.backgroundColor ?? NormalColorS.colffffff);
+        (themeData.appBarTheme.backgroundColor ?? colffffff);
     textStyle ??= (textColor != null || fontSize != null)
         ? TextStyle(
             color: textColor,
@@ -164,7 +164,7 @@ class AppBarGenerator {
             TextStyle(
               color: textColor ??
                   themeData.appBarTheme.titleTextStyle?.color ??
-                  NormalColorS.col101010,
+                  col101010,
               fontSize: fontSize ??
                   themeData.appBarTheme.titleTextStyle?.fontSize ??
                   18,

@@ -9,60 +9,60 @@ class FontConfig {
 
   static TextStyle get fontBold10Black => fontBold(
         size: 10.sp,
-        color: NormalColorS.col333333,
+        color: col333333,
       decoration: TextDecoration.none
       );
 
   static TextStyle get fontBold12Black => fontBold(
     size: 12.sp,
-    color: NormalColorS.col333333,
+    color: col333333,
       decoration: TextDecoration.none
   );
 
   static TextStyle get fontBold14Black => fontBold(
         size: 14.sp,
-        color: NormalColorS.col333333,
+        color: col333333,
         decoration: TextDecoration.none
       );
 
   static TextStyle get fontMedium14Black => fontMedium(
     size: 14.sp,
-    color: NormalColorS.col333333,
+    color: col333333,
       decoration: TextDecoration.none
   );
 
   static TextStyle get fontBold16Black => fontBold(
     size: 16.sp,
-    color: NormalColorS.col333333,
+    color: col333333,
       decoration: TextDecoration.none
   );
 
   static TextStyle get fontBold18Black => fontBold(
     size: 18.sp,
-    color: NormalColorS.col333333,
+    color: col333333,
       decoration: TextDecoration.none
   );
   static TextStyle get fontBold24Black => fontBold(
     size: 24.sp,
-    color: NormalColorS.col333333,
+    color: col333333,
       decoration: TextDecoration.none
   );
 
   static TextStyle get fontMedium16lack => fontMedium(
     size:16.sp,
-    color: NormalColorS.col333333,
+    color: col333333,
       decoration: TextDecoration.none
   );
 
   static TextStyle get fontMedium12Black => fontMedium(
     size: 12.sp,
-    color: NormalColorS.col333333,
+    color: col333333,
       decoration: TextDecoration.none
   );
 
   static TextStyle get fontMedium10Black => fontMedium(
     size: 10.sp,
-    color: NormalColorS.col333333,
+    color: col333333,
       decoration: TextDecoration.none
   );
 
@@ -70,73 +70,73 @@ class FontConfig {
 
   static TextStyle get fontMedium10LightGrey => fontMedium(
         size: 10.sp,
-        color: NormalColorS.col666666,
+        color: col666666,
       decoration: TextDecoration.none
       );
   static TextStyle get fontMedium12LightGrey => fontMedium(
         size: 12.sp,
-        color: NormalColorS.col666666,
+        color: col666666,
       decoration: TextDecoration.none
       );
   static TextStyle get fontMedium14LightGrey => fontMedium(
         size: 14.sp,
-        color: NormalColorS.col666666,
+        color: col666666,
       decoration: TextDecoration.none
       );
 
   static TextStyle get fontMedium14BoldGrey => fontBold(
       size: 14.sp,
-      color: NormalColorS.col666666,
+      color: col666666,
       decoration: TextDecoration.none
   );
   static TextStyle get fontMedium16LightGrey => fontMedium(
         size: 16.sp,
-        color: NormalColorS.col666666,
+        color: col666666,
       decoration: TextDecoration.none
       );
   static TextStyle get fontMedium18LightGrey => fontMedium(
         size: 18.sp,
-        color: NormalColorS.col666666,
+        color: col666666,
       decoration: TextDecoration.none
       );
 
   static TextStyle get fontRegular14LightGrey => fontRegular(
     size: 14.sp,
-    color: NormalColorS.col666666,
+    color: col666666,
       decoration: TextDecoration.none
   );
 
   ////0xFFF25477
   static TextStyle get fontMedium14LightPink => fontMedium(
     size: 14.sp,
-    color: NormalColorS.cole25477,
+    color: cole25477,
       decoration: TextDecoration.none
   );
   static TextStyle get fontMedium12LightPink => fontMedium(
       size: 12.sp,
-      color: NormalColorS.cole25477,
+      color: cole25477,
       decoration: TextDecoration.none
   );
 
   ///white
   static TextStyle get fontMedium14LightWhite => fontMedium(
     size: 14.sp,
-    color: NormalColorS.colffffff,
+    color: colffffff,
       decoration: TextDecoration.none
   );
   static TextStyle get fontMedium16LightWhite => fontMedium(
     size: 16.sp,
-    color: NormalColorS.colffffff,
+    color: colffffff,
       decoration: TextDecoration.none
   );
   static TextStyle get fontMedium12LightWhite => fontMedium(
     size: 12.sp,
-    color: NormalColorS.colffffff,
+    color: colffffff,
       decoration: TextDecoration.none
   );
   static TextStyle get fontMedium10LightWhite => fontMedium(
     size: 10.sp,
-    color: NormalColorS.colffffff,
+    color: colffffff,
       decoration: TextDecoration.none
   );
 
@@ -144,57 +144,57 @@ class FontConfig {
   ///
   static TextStyle get fontMedium14Col999 => fontMedium(
     size: 14.sp,
-    color: NormalColorS.col999999,
+    color: col999999,
       decoration: TextDecoration.none
   );
   static TextStyle get fontMedium10Col999 => fontMedium(
     size: 10.sp,
-    color: NormalColorS.col999999,
+    color: col999999,
       decoration: TextDecoration.none
   );
 
   static TextStyle get fontMedium12Col999 => fontMedium(
       size: 12.sp,
-      color: NormalColorS.col999999,
+      color: col999999,
       decoration: TextDecoration.none
   );
   static TextStyle get fontMedium16Col999 => fontMedium(
       size: 16.sp,
-      color: NormalColorS.col999999,
+      color: col999999,
       decoration: TextDecoration.none
   );
 
   ///0xFF36B285
   static TextStyle get fontMedium12Col36b2b5 => fontMedium(
     size: 12.sp,
-    color: NormalColorS.col36b2b5,
+    color: col36b2b5,
       decoration: TextDecoration.none
   );
 
   /// 0xFFFF9100
   static TextStyle get fontMedium12Colff9100 => fontMedium(
     size: 12.sp,
-    color: NormalColorS.colff9100,
+    color: colff9100,
       decoration: TextDecoration.none
   );
 
   /// 535353
   static TextStyle get fontMedium12Col535353 => fontMedium(
     size: 12.sp,
-    color: NormalColorS.col535353,
+    color: col535353,
       decoration: TextDecoration.none
   );
 
   ///colf9518f
   static TextStyle get fontMedium10Colf9518f => fontMedium(
     size: 10.sp,
-    color: NormalColorS.colf9518f,
+    color: colf9518f,
       decoration: TextDecoration.none
   );
 
   static TextStyle get fontMedium14Colf9518f => fontMedium(
       size: 14.sp,
-      color: NormalColorS.colf9518f,
+      color: colf9518f,
       decoration: TextDecoration.none
   );
 
@@ -202,7 +202,7 @@ class FontConfig {
   ///
   static TextStyle get fontMedium12colf1f1f1 => fontMedium(
     size: 12.sp,
-    color: NormalColorS.colf1f1f1,
+    color: colf1f1f1,
       decoration: TextDecoration.none
   );
 
@@ -210,21 +210,21 @@ class FontConfig {
   ///
   static TextStyle get fontMedium12col9a9a9a => fontMedium(
     size: 12.sp,
-    color: NormalColorS.col9a9a9a,
+    color: col9a9a9a,
       decoration: TextDecoration.none
   );
 
   ///ff3a3a
   static TextStyle get fontBold12ff3a3a => fontBold(
       size: 12.sp,
-      color: NormalColorS.colff3a3a,
+      color: colff3a3a,
       decoration: TextDecoration.none
   );
 
   /// 7f7f7f
   static TextStyle get fontBold127f7f7f => fontBold(
       size: 12.sp,
-      color: NormalColorS.col7f7f7f,
+      color: col7f7f7f,
       decoration: TextDecoration.none
   );
 

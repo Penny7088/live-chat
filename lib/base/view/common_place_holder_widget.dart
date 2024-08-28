@@ -68,7 +68,7 @@ class _CommonPlaceHoldPageState extends State<CommonPlaceHoldPage> {
     title = widget.msg ?? title;
     return Text(
       title,
-      style: TextStyle(color: NormalColorS.col333333,fontSize: 14.sp),
+      style: TextStyle(color: col333333,fontSize: 14.sp),
     );
   }
 
@@ -93,7 +93,7 @@ class _CommonPlaceHoldPageState extends State<CommonPlaceHoldPage> {
           boxShadow: [
             configThemeShadow(),
           ],
-          color: NormalColorS.colffffff,
+          color: colffffff,
           borderRadius: BorderRadius.all(
             Radius.circular(20.w),
           ),
@@ -110,7 +110,7 @@ class _CommonPlaceHoldPageState extends State<CommonPlaceHoldPage> {
     double opacity = 0.8,
   }) {
     return BoxShadow(
-      color:NormalColorS.colffffff.withOpacity(
+      color:colffffff.withOpacity(
         opacity,
       ),
       offset: const Offset(0, 3),
@@ -149,7 +149,7 @@ class _CommonPlaceHoldPageState extends State<CommonPlaceHoldPage> {
     return Container(
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        color: NormalColorS.colffffff.withOpacity(0),
+        color: colffffff.withOpacity(0),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

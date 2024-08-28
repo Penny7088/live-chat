@@ -70,7 +70,7 @@ abstract class CommonBaseView<C extends CommonController> extends GetView<C>
   /// 脚手架背景颜色
   @override
   Color? configScaffoldBackgroundColor() {
-    return controller.scaffoldBackGroundColor ?? NormalColorS.transparent;
+    return controller.scaffoldBackGroundColor ?? transparent;
   }
 
   @override
@@ -100,7 +100,7 @@ abstract class CommonBaseView<C extends CommonController> extends GetView<C>
   /// 配置导航栏背景颜色
   @override
   Color? createAppBarNavBackColor() {
-    return controller.navBackgroundColor ?? NormalColorS.transparent;
+    return controller.navBackgroundColor ?? transparent;
   }
 
   /// 配置导航栏背景视图

@@ -24,22 +24,22 @@ Text themeText({required ThemeEnum themeMode, required String text,TextStyle? st
     case ThemeEnum.lightThemeE:
       return Text(
         text,
-        style: const TextStyle(color: NormalColorS.col000000),
+        style: const TextStyle(color: col000000),
       );
     case ThemeEnum.dartThemeE:
       return Text(
         text,
-        style: const TextStyle(color: NormalColorS.colffffff),
+        style: const TextStyle(color: colffffff),
       );
     default:
       return WidgetsBinding.instance.platformDispatcher.platformBrightness == Brightness.dark
           ? Text(
               text,
-              style: const TextStyle(color: NormalColorS.col000000),
+              style: const TextStyle(color: col000000),
             )
           : Text(
               text,
-              style: const TextStyle(color: NormalColorS.col000000),
+              style: const TextStyle(color: col000000),
             );
   }
 }

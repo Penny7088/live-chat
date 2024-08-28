@@ -39,7 +39,7 @@ class PlaceHolderWidget extends StatelessWidget {
       return errorWidget ?? Container();
     } else if (isShowLoading! && pageState == PageState.initializedState) {
       return Container(
-          color: NormalColorS.colffffff,
+          color: colffffff,
           child: Center(
         child: loadingWidget ?? (PlaceHolderConfig.loadWidget ?? Container()),
       ));
