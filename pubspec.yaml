@@ -59,6 +59,7 @@ dependencies:
   cupertino_icons: ^1.0.6
   flex_color_scheme: ^7.1.2
   connectivity_plus: ^6.0.5
+  flutter_svg: ^1.0.3
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -69,6 +70,7 @@ flutter:
   assets:
     - assets/images/bg/
     - assets/images/login/
+    - assets/images/svg/
     - assets/loading/
 
   fonts:

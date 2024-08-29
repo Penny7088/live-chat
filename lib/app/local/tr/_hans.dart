@@ -6,4 +6,5 @@ Map<String, String> hans = {
   LanguageKey.loginSubTitle:'通过一次对话，认识世界。\n 接触新声音，探索新词汇。',
   LanguageKey.loginButtonApple:'苹果ID 登录',
   LanguageKey.loginButtonGoogle:'Google 登录',
+  LanguageKey.loginButtonFb:'FaceBook 登录',
 };

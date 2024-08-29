@@ -8,11 +8,11 @@ Color textSecondaryColorGlobal = col000000;
 FontWeight fontWeightBoldGlobal = FontWeight.bold;
 FontWeight fontWeightPrimaryGlobal = FontWeight.normal;
 FontWeight fontWeightSecondaryGlobal = FontWeight.normal;
-String? fontFamilyBoldGlobal;
+String? fontFamilyBoldGlobal = 'Dream';
 double textBoldSizeGlobal = 16;
 double textPrimarySizeGlobal = 16;
 double textSecondarySizeGlobal = 14;
-String? fontFamilyPrimaryGlobal;
+String? fontFamilyPrimaryGlobal = 'editor';
 String? fontFamilySecondaryGlobal;
 /// Returns a TextStyle with bold weight.
 TextStyle boldTextStyle({

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:live_chat/app/extensions/bool_extensions.dart';
 import 'package:live_chat/app/extensions/string_extensions.dart';
 
@@ -20,7 +22,7 @@ ShapeBorder? defaultAppButtonShapeBorder;
 ///[leftIcon] left icon and right text [text  icon]
 ///[topIcon] top icon and bottom text
 ///[bottomIcon] bottom text and top icon
-enum AppButtonEnum{
+enum AppButtonEnum {
   onlyText,
   onlyIcon,
   rightIcon,
@@ -50,6 +52,8 @@ class AppButton extends StatefulWidget {
   final bool? enableScaleAnimation;
   final Color? disabledTextColor;
   final Size? iconSize;
+  final String? iconUrl;
+  final double? space;
   final AppButtonEnum appButtonEnum;
 
   AppButton({
@@ -73,7 +77,10 @@ class AppButton extends StatefulWidget {
     this.enableScaleAnimation,
     this.disabledTextColor,
     this.iconSize,
-    super.key, required this.appButtonEnum,
+    this.iconUrl,
+    this.space,
+    super.key,
+    required this.appButtonEnum,
   });
 
   @override
@@ -137,7 +144,8 @@ class _AppButtonState extends State<AppButton>
   Widget buildButton() {
     return Padding(
       padding: widget.margin ?? EdgeInsets.zero,
-      child: MaterialButton(
+      child:
+      MaterialButton(
         minWidth: widget.width,
         padding: widget.padding ?? dynamicAppButtonPadding(context),
         onPressed: widget.enabled
@@ -146,48 +154,81 @@ class _AppButtonState extends State<AppButton>
                 : null
             : null,
         color: widget.color ?? appButtonBackgroundColorGlobal,
-        /// 这块需要抽出来
-        child: widget.child ??
-            Text(
-              widget.text.validate(),
-              style: widget.textStyle ??
-                  boldTextStyle(
-                    color: widget.textColor ?? defaultAppButtonTextColorGlobal,
-                  ),
-            ),
         shape: widget.shapeBorder ?? defaultAppButtonShapeBorder,
         elevation: widget.elevation ?? defaultAppButtonElevation,
-        animationDuration: Duration(milliseconds: 300),
+        animationDuration: const Duration(milliseconds: 300),
         height: widget.height,
         disabledColor: widget.disabledColor,
         focusColor: widget.focusColor,
         hoverColor: widget.hoverColor,
         splashColor: widget.splashColor,
         disabledTextColor: widget.disabledTextColor,
+        child: widget.child ??appButtonChild(),
       ),
     );
   }
 
-  Widget appButtonChild(){
+  Widget appButtonChild() {
+    Widget body;
+    Widget? icon;
+    if (widget.iconUrl?.isNotEmpty == true) {
+      icon = SvgPicture.asset(
+        widget.iconUrl ?? '',
+        width: widget.iconSize?.width ?? 20.w,
+        height: widget.iconSize?.height ?? 20.w,
+      );
+    }
+    Widget text = Text(widget.text ?? '',style: widget.textStyle);
 
-    switch(widget.appButtonEnum){
+    switch (widget.appButtonEnum) {
       case AppButtonEnum.leftIcon:
+        body = Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            icon ?? const SizedBox(),
+            (widget.space ?? 10).horizontalSpace,
+            text
+          ],
+        );
         break;
       case AppButtonEnum.onlyText:
+        body = text;
         break;
-      case  AppButtonEnum.onlyIcon:
+      case AppButtonEnum.onlyIcon:
+        body = icon ?? const SizedBox();
         break;
-      case  AppButtonEnum.rightIcon:
+      case AppButtonEnum.rightIcon:
+        body = Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            text,
+            (widget.space ?? 10).horizontalSpace,
+            icon ?? const SizedBox()
+          ],
+        );
         break;
-      case  AppButtonEnum.topIcon:
+      case AppButtonEnum.topIcon:
+        body = Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            icon ?? const SizedBox(),
+            (widget.space ?? 10).horizontalSpace,
+            text
+          ],
+        );
         break;
-      case  AppButtonEnum.bottomIcon:
+      case AppButtonEnum.bottomIcon:
+        body = Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            text,
+            (widget.space ?? 10).horizontalSpace,
+            icon ?? const SizedBox(),
+          ],
+        );
         break;
     }
 
-    return Container();
+    return body;
   }
-
-
-
 }
