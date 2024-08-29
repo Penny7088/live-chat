@@ -14,6 +14,21 @@ double defaultAppButtonRadius = 8.0;
 double defaultAppButtonElevation = 4.0;
 ShapeBorder? defaultAppButtonShapeBorder;
 
+///[onlyText] single text
+///[onlyIcon] single icon
+///[rightIcon] right icon and left text [icon  text]
+///[leftIcon] left icon and right text [text  icon]
+///[topIcon] top icon and bottom text
+///[bottomIcon] bottom text and top icon
+enum AppButtonEnum{
+  onlyText,
+  onlyIcon,
+  rightIcon,
+  leftIcon,
+  topIcon,
+  bottomIcon,
+}
+
 class AppButton extends StatefulWidget {
   final Function? onTap;
   final String? text;
@@ -34,6 +49,8 @@ class AppButton extends StatefulWidget {
   final bool enabled;
   final bool? enableScaleAnimation;
   final Color? disabledTextColor;
+  final Size? iconSize;
+  final AppButtonEnum appButtonEnum;
 
   AppButton({
     this.onTap,
@@ -55,7 +72,8 @@ class AppButton extends StatefulWidget {
     this.splashColor,
     this.enableScaleAnimation,
     this.disabledTextColor,
-    super.key,
+    this.iconSize,
+    super.key, required this.appButtonEnum,
   });
 
   @override
@@ -149,6 +167,27 @@ class _AppButtonState extends State<AppButton>
       ),
     );
   }
+
+  Widget appButtonChild(){
+
+    switch(widget.appButtonEnum){
+      case AppButtonEnum.leftIcon:
+        break;
+      case AppButtonEnum.onlyText:
+        break;
+      case  AppButtonEnum.onlyIcon:
+        break;
+      case  AppButtonEnum.rightIcon:
+        break;
+      case  AppButtonEnum.topIcon:
+        break;
+      case  AppButtonEnum.bottomIcon:
+        break;
+    }
+
+    return Container();
+  }
+
 
 
 }

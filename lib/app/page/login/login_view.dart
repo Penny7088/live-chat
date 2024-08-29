@@ -22,22 +22,28 @@ class LoginPage extends CommonBaseView<LoginController> {
   }
 
   @override
-  Widget createChildBody({required BuildContext context, BoxConstraints?constraints}) {
-    Widget body =  Column(children: [
+  Widget createChildBody(
+      {required BuildContext context, BoxConstraints? constraints}) {
+    Widget body = Column(children: [
       80.verticalSpaceFromWidth,
-      assetImage(url: Assets.loginLoginIcons,height: 222.w,fit: BoxFit.fitWidth),
-      assetImage(url: Assets.loginAppIcon,width: 100.w,height: 100.w),
+      assetImage(
+          url: Assets.loginLoginIcons, height: 222.w, fit: BoxFit.fitWidth),
+      assetImage(url: Assets.loginAppIcon, width: 100.w, height: 100.w),
       24.verticalSpaceFromWidth,
-      themeText(themeMode: state.themeValue.value,text: LanguageKey.loginTitle.tr ),
+      themeText(
+          isDark: state.themeValue.value, text: LanguageKey.loginTitle.tr,size: 20),
       18.verticalSpaceFromWidth,
-      themeText(themeMode: state.themeValue.value,text: LanguageKey.loginSubTitle.tr)
+      themeText(
+          isDark: state.themeValue.value, text: LanguageKey.loginSubTitle.tr,size: 14)
     ]);
-
 
     return Container(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         decoration: BoxDecoration(
-        image: DecorationImage(image:themeBgImage(themeMode: state.themeValue.value), fit: BoxFit.cover)),child: body);
+            image: DecorationImage(
+                image: themeBgImage(isDark: state.themeValue.value),
+                fit: BoxFit.cover)),
+        child: body);
   }
 
   @override

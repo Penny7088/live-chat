@@ -6,11 +6,11 @@ import '../../theme/theme_enum.dart';
 
 class LoginState extends BaseState{
 
-  Rx<ThemeEnum> themeValue = Rx(ThemeEnum.defaultThemeE);
+  var themeValue = false.obs;
 
   @override
   void init() {
-    themeValue.value = ThemeService.obtain().currentThemeEnum;
+    themeValue = ThemeService.obtain().isDarkMode;
   }
 
   @override
