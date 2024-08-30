@@ -53,6 +53,7 @@ import 'package:flutter/material.dart';
    const Color cold9d9d9 = Color(0xFFd9d9d9);
    const Color  col89F1F5 = Color(0xFF89F1F5);
    const Color  col0ED221 = Color(0xFF0ED221);
+   const Color  col1877F2 = Color(0xff1877F2);
 
    Color shadowColorGlobal = Colors.grey.withOpacity(0.2);
 

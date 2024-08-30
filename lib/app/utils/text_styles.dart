@@ -44,6 +44,7 @@ TextStyle boldTextStyle({
     textBaseline: textBaseline,
     backgroundColor: backgroundColor,
     height: height,
+    inherit: true
   );
 }
 
@@ -76,7 +77,7 @@ TextStyle primaryTextStyle({
     wordSpacing: wordSpacing,
     textBaseline: textBaseline,
     backgroundColor: backgroundColor,
-    height: height,
+    height: height, inherit: true
   );
 }
 

@@ -38,20 +38,22 @@ class AppButton extends StatefulWidget {
   final Color? color;
   final Color? textColor;
   final Color? disabledColor;
-  final Color? focusColor;
+  final Color? shadowColor;
   final Color? hoverColor;
   final Color? splashColor;
   final EdgeInsetsGeometry? padding;
   final EdgeInsetsGeometry? margin;
   final TextStyle? textStyle;
-  final ShapeBorder? shapeBorder;
+  final OutlinedBorder? shapeBorder;
   final Widget? child;
   final double? elevation;
   final double? height;
   final bool enabled;
   final bool? enableScaleAnimation;
   final Color? disabledTextColor;
+  final Color? iconColor;
   final Size? iconSize;
+  final Size? buttonSize;
   final String? iconUrl;
   final double? space;
   final AppButtonEnum appButtonEnum;
@@ -71,13 +73,15 @@ class AppButton extends StatefulWidget {
     this.enabled = true,
     this.height,
     this.disabledColor,
-    this.focusColor,
+    this.shadowColor,
     this.hoverColor,
     this.splashColor,
     this.enableScaleAnimation,
     this.disabledTextColor,
     this.iconSize,
+    this.buttonSize,
     this.iconUrl,
+    this.iconColor,
     this.space,
     super.key,
     required this.appButtonEnum,
@@ -145,24 +149,25 @@ class _AppButtonState extends State<AppButton>
     return Padding(
       padding: widget.margin ?? EdgeInsets.zero,
       child:
-      MaterialButton(
-        minWidth: widget.width,
-        padding: widget.padding ?? dynamicAppButtonPadding(context),
+      ElevatedButton(
         onPressed: widget.enabled
             ? widget.onTap != null
                 ? widget.onTap as void Function()?
                 : null
             : null,
-        color: widget.color ?? appButtonBackgroundColorGlobal,
-        shape: widget.shapeBorder ?? defaultAppButtonShapeBorder,
-        elevation: widget.elevation ?? defaultAppButtonElevation,
-        animationDuration: const Duration(milliseconds: 300),
-        height: widget.height,
-        disabledColor: widget.disabledColor,
-        focusColor: widget.focusColor,
-        hoverColor: widget.hoverColor,
-        splashColor: widget.splashColor,
-        disabledTextColor: widget.disabledTextColor,
+        style: ElevatedButton.styleFrom(
+          minimumSize: widget.buttonSize??Size(50.w, 50.w),
+          backgroundColor: widget.color ?? appButtonBackgroundColorGlobal,
+          shape: widget.shapeBorder,
+          animationDuration: const Duration(milliseconds: 300),
+          disabledBackgroundColor:  widget.disabledColor ?? appButtonBackgroundColorGlobal,
+          elevation: widget.elevation ?? defaultAppButtonElevation,
+          shadowColor: widget.shadowColor,
+          padding: widget.padding ?? dynamicAppButtonPadding(context),
+          foregroundColor:  widget.color ?? appButtonBackgroundColorGlobal,
+           iconColor: widget.color,
+          // textStyle: widget.textStyle
+        ),
         child: widget.child ??appButtonChild(),
       ),
     );
@@ -173,6 +178,7 @@ class _AppButtonState extends State<AppButton>
     Widget? icon;
     if (widget.iconUrl?.isNotEmpty == true) {
       icon = SvgPicture.asset(
+        color: widget.iconColor,
         widget.iconUrl ?? '',
         width: widget.iconSize?.width ?? 20.w,
         height: widget.iconSize?.height ?? 20.w,
