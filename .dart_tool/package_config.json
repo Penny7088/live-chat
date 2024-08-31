@@ -242,6 +242,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "flutter_svg",
+      "rootUri": "file:///Users/pengye/.pub-cache/hosted/pub.flutter-io.cn/flutter_svg-1.1.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "flutter_test",
       "rootUri": "file:///Users/pengye/Documents/flutter-sdk/flutter3-22-1/packages/flutter_test",
       "packageUri": "lib/",
@@ -788,7 +794,7 @@
       "languageVersion": "3.3"
     }
   ],
-  "generated": "2024-08-28T05:29:36.481529Z",
+  "generated": "2024-08-29T15:30:31.518977Z",
   "generator": "pub",
   "generatorVersion": "3.4.1",
   "flutterRoot": "file:///Users/pengye/Documents/flutter-sdk/flutter3-22-1",

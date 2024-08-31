@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "141177238830",
+    "project_id": "livechat-24a83",
+    "storage_bucket": "livechat-24a83.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:141177238830:android:df72a6860b03e8a5fa76bf",
+        "android_client_info": {
+          "package_name": "cpm.penny.live_chat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBspDDEs6lenpTCWAjyyf4fpPoh2Ip0SMw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
