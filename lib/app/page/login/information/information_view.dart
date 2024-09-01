@@ -70,37 +70,40 @@ class InformationPage extends CommonBaseView<InformationController> {
                     return Text('avtar age birth day');
                   } else if (index == 1) {
                     return Text('母语 学习语');
-                  } else if (index == 2) {
+                  } else {
                     return Text('hobby ');
-                  }
-                })),
-        GetBuilder(
-            init: controller,
-            id: 'bt',
-            builder: (controller) {
-              return AppButton(
-                onTap: () {
-                  controller.clickStep();
-                },
-                margin: EdgeInsets.only(bottom: 50.w),
-                shapeBorder: RoundedRectangleBorder(
-                  borderRadius: radius(20),
-                ),
-                elevation: 8.0,
-                shadowColor: Colors.black.withOpacity(0.5),
-                buttonSize: Size(354.w, 44.w),
-                appButtonEnum: AppButtonEnum.onlyText,
-                text: state.stepIndex == 2
-                    ? LanguageKey.loginInfoDone.tr
-                    : LanguageKey.loginInfoNext.tr,
-                iconUrl: Assets.svgGoogleLogo,
-                color: colffffff,
-                disabledColor: colffffff,
-                textStyle: boldTextStyle(color: col000000),
-              ).center();
-            })
+                  }})),
+        bottomButton()
       ],
     );
+  }
+
+  Widget bottomButton() {
+    return GetBuilder(
+          init: controller,
+          id: 'bt',
+          builder: (controller) {
+            return AppButton(
+              onTap: () {
+                controller.clickStep();
+              },
+              margin: EdgeInsets.only(bottom: 50.w),
+              shapeBorder: RoundedRectangleBorder(
+                borderRadius: radius(20),
+              ),
+              elevation: 8.0,
+              shadowColor: Colors.black.withOpacity(0.5),
+              buttonSize: Size(354.w, 44.w),
+              appButtonEnum: AppButtonEnum.onlyText,
+              text: state.stepIndex == 2
+                  ? LanguageKey.loginInfoDone.tr
+                  : LanguageKey.loginInfoNext.tr,
+              iconUrl: Assets.svgGoogleLogo,
+              color: colffffff,
+              disabledColor: colffffff,
+              textStyle: boldTextStyle(color: col000000),
+            ).center();
+          });
   }
 
   /// 1 - 2 - 完成
