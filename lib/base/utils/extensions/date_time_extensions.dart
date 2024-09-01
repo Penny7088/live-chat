@@ -1,6 +1,11 @@
 
 // DateTime Extensions
+import '../time_formatter.dart';
+
 extension DateTimeExt on DateTime {
+  /// Returns Time Ago
+  String get timeAgo => formatTime(millisecondsSinceEpoch);
+
   /// Returns true if given date is today
   bool get isToday {
     final now = DateTime.now();

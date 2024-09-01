@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:live_chat/app/utils/decorations.dart';
+import 'package:live_chat/base/utils/decorations.dart';
 
-import '../utils/size_config.dart';
+import '../../base/utils/size_config.dart';
 
 // int Extensions
 extension IntExtensions on int? {

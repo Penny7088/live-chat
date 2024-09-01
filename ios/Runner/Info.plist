@@ -45,5 +45,7 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>GIDClientID</key>
+    <string>Copied from GoogleService-Info.plist key IOS CLIENT ID</string>
 </dict>
 </plist>

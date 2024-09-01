@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:live_chat/app/utils/text_styles.dart';
+import 'package:live_chat/base/utils/text_styles.dart';
 import 'package:live_chat/base/config/normal_colors.dart';
 
 int defaultElevation = 4;

@@ -1,6 +1,6 @@
 
 // DateTime Extensions
-import '../utils/time_formatter.dart';
+import '../../base/utils/time_formatter.dart';
 
 extension DateTimeExt on DateTime {
   /// Returns Time Ago

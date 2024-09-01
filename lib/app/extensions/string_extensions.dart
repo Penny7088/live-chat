@@ -1,8 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
-
-import '../utils/pattern.dart';
+import '../../base/utils/pattern.dart';
 
 RegExp alphaRegExp = RegExp(r'^[a-zA-Z]+$');
 bool hasMatch(String? s, String p) {

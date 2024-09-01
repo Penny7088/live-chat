@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../base/config/normal_colors.dart';
+import '../config/normal_colors.dart';
 
 /// Text Styles
 Color textPrimaryColorGlobal = col000000;

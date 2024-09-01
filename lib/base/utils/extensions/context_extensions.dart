@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 
-/// FileName context_extensions
-///
-/// @Author mac
-/// @Date 2024/5/28 19:32
-///
-/// @Description TODO
-
+double? maxScreenWidth;
+double tabletBreakpointGlobal = 600.0;
+double desktopBreakpointGlobal = 720.0;
+// Context Extensions
 extension ContextExtensions on BuildContext {
   /// return screen size
   Size size() => MediaQuery.of(this).size;
 
   /// return screen width
-  double width() =>  MediaQuery.of(this).size.width;
+  double width() => maxScreenWidth ?? MediaQuery.of(this).size.width;
 
   /// return screen height
   double height() => MediaQuery.of(this).size.height;
@@ -75,6 +72,14 @@ extension ContextExtensions on BuildContext {
     focus.unfocus();
   }
 
+  bool isPhone() => MediaQuery.of(this).size.width < tabletBreakpointGlobal;
+
+  bool isTabletP() =>
+      MediaQuery.of(this).size.width < desktopBreakpointGlobal &&
+      MediaQuery.of(this).size.width >= tabletBreakpointGlobal;
+
+  /// Return true if the platform is Desktop
+  bool isDesktop() => MediaQuery.of(this).size.width >= desktopBreakpointGlobal;
 
   Orientation get orientation => MediaQuery.of(this).orientation;
 
