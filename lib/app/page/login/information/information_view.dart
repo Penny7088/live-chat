@@ -31,7 +31,6 @@ class InformationPage extends CommonBaseView<InformationController> {
   Widget createChildBody(
       {required BuildContext context, BoxConstraints? constraints}) {
     Widget body = createInformationView(context.statusBarHeight);
-
     return Stack(
       alignment: Alignment.center,
       children: [
@@ -59,23 +58,26 @@ class InformationPage extends CommonBaseView<InformationController> {
         statusBarHeight.verticalSpaceFromWidth,
         appBar(),
         stepView(),
-        Expanded(
-            child: PageView.builder(
-                controller: state.pageController,
-                physics: const NeverScrollableScrollPhysics(),
-                onPageChanged: controller.onPageChanged,
-                itemCount: state.stepLength,
-                itemBuilder: (context, index) {
-                  if (index == 0) {
-                    return Text('avtar age birth day');
-                  } else if (index == 1) {
-                    return Text('母语 学习语');
-                  } else {
-                    return Text('hobby ');
-                  }})),
+        Expanded( child: exBody()),
         bottomButton()
       ],
     );
+  }
+
+  PageView exBody() {
+    return PageView.builder(
+              controller: state.pageController,
+              physics: const NeverScrollableScrollPhysics(),
+              onPageChanged: controller.onPageChanged,
+              itemCount: state.stepLength,
+              itemBuilder: (context, index) {
+                if (index == 0) {
+                  return Text('avtar age birth day');
+                } else if (index == 1) {
+                  return Text('母语 学习语');
+                } else {
+                  return Text('hobby ');
+                }});
   }
 
   Widget bottomButton() {
@@ -106,7 +108,6 @@ class InformationPage extends CommonBaseView<InformationController> {
           });
   }
 
-  /// 1 - 2 - 完成
   Widget stepView() {
     return GetBuilder(
         id: 'step',
