@@ -2,10 +2,24 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart' as service;
 
+import '../pattern.dart';
+import '../util.dart';
+
 RegExp alphaRegExp = RegExp(r'^[a-zA-Z]+$');
 
 // String Extensions
 extension StringExtension on String? {
+  /// Check email validation
+  bool validateEmail() => hasMatch(this, Patterns.email);
+
+  /// Check email validation
+  bool validateEmailEnhanced() => hasMatch(this, Patterns.emailEnhanced);
+
+  /// Check phone validation
+  bool validatePhone() => hasMatch(this, Patterns.phone);
+
+  /// Check URL validation
+  bool validateURL() => hasMatch(this, Patterns.url);
 
   /// Returns true if given String is null or isEmpty
   bool get isEmptyOrNull =>

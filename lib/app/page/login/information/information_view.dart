@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:live_chat/base/config/normal_colors.dart';
 import 'package:live_chat/base/utils/extensions/context_extensions.dart';
+import 'package:live_chat/base/utils/extensions/widget_extensions.dart';
 
 import '../../../../base/utils/decorations.dart';
 import '../../../../base/utils/text_styles.dart';
@@ -53,29 +54,34 @@ class InformationPage extends CommonBaseView<InformationController> {
 
   Widget createInformationView(double statusBarHeight) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         statusBarHeight.verticalSpaceFromWidth,
+        appBar(),
         stepView(),
-        Expanded(child: PageView.builder(
-            controller: state.pageController,
-            physics:const NeverScrollableScrollPhysics(),
-            onPageChanged: controller.onPageChanged,
-            itemCount: state.stepLength, itemBuilder: (context, index) {
-          if (index == 0) {
-            return Text('avtar age birth day');
-          } else if (index == 1) {
-            return Text('母语 学习语');
-          } else if (index == 2) {
-            return Text('hobby ');
-          }
-        })),
+        Expanded(
+            child: PageView.builder(
+                controller: state.pageController,
+                physics: const NeverScrollableScrollPhysics(),
+                onPageChanged: controller.onPageChanged,
+                itemCount: state.stepLength,
+                itemBuilder: (context, index) {
+                  if (index == 0) {
+                    return Text('avtar age birth day');
+                  } else if (index == 1) {
+                    return Text('母语 学习语');
+                  } else if (index == 2) {
+                    return Text('hobby ');
+                  }
+                })),
         GetBuilder(
             init: controller,
             id: 'bt',
             builder: (controller) {
               return AppButton(
-                onTap:(){controller.clickStep();} ,
+                onTap: () {
+                  controller.clickStep();
+                },
                 margin: EdgeInsets.only(bottom: 50.w),
                 shapeBorder: RoundedRectangleBorder(
                   borderRadius: radius(20),
@@ -91,9 +97,8 @@ class InformationPage extends CommonBaseView<InformationController> {
                 color: colffffff,
                 disabledColor: colffffff,
                 textStyle: boldTextStyle(color: col000000),
-              );
+              ).center();
             })
-
       ],
     );
   }
@@ -118,33 +123,66 @@ class InformationPage extends CommonBaseView<InformationController> {
                 ),
                 10.horizontalSpace,
                 HorizontalLine(
-                    lineColor: state.stepIndex >= 1 ? col000000 : col333333
-                        .withAlpha(50),
+                    lineColor: state.stepIndex >= 1
+                        ? col000000
+                        : col333333.withAlpha(50),
                     width: 90.w,
                     height: 2.w,
                     strokeWidth: 2),
                 10.horizontalSpace,
                 Text(
                   ' 2 ',
-                  style: boldTextStyle(color: state.stepIndex >= 1 ? col000000 : col333333
-                      .withAlpha(50)),
+                  style: boldTextStyle(
+                      color: state.stepIndex >= 1
+                          ? col000000
+                          : col333333.withAlpha(50)),
                 ),
                 10.horizontalSpace,
                 HorizontalLine(
-                    lineColor: state.stepIndex == 2 ? col000000 : col333333
-                        .withAlpha(50),
+                    lineColor: state.stepIndex == 2
+                        ? col000000
+                        : col333333.withAlpha(50),
                     width: 90.w,
                     height: 2.w,
                     strokeWidth: 2),
                 8.horizontalSpace,
                 Text(
                   'Done',
-                  style: boldTextStyle(color: state.stepIndex == 2 ? col000000 : col333333
-                      .withAlpha(50)),
+                  style: boldTextStyle(
+                      color: state.stepIndex == 2
+                          ? col000000
+                          : col333333.withAlpha(50)),
                 ),
               ],
             ),
           );
         });
+  }
+
+  Widget appBar() {
+    return GetBuilder(
+      id: 'back',
+      builder: (InformationController controller) {
+        return Container(
+          margin: EdgeInsets.only(left: 16.w, bottom: 20.w),
+          child: AppButton(
+            onTap: () {
+              controller.preStep();
+            },
+            shapeBorder: RoundedRectangleBorder(
+              borderRadius: radius(16),
+            ),
+            elevation: 8.0,
+            shadowColor: Colors.black.withOpacity(0.5),
+            buttonSize: Size(40.w, 40.w),
+            appButtonEnum: AppButtonEnum.onlyIcon,
+            iconUrl: Assets.svgAppBack,
+            color: colffffff,
+            disabledColor: colffffff,
+            iconSize: Size(17.w, 22.w),
+          ),
+        ).visible(state.stepIndex > 0, defaultWidget: SizedBox(height: 63.w));
+      },
+    );
   }
 }

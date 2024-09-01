@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:live_chat/base/utils/decorations.dart';
 
+
+double? defaultInkWellRadius;
+Color? defaultInkWellSplashColor;
+Color? defaultInkWellHoverColor;
+Color? defaultInkWellHighlightColor;
 // Widget Extensions
 extension WidgetExtension on Widget? {
   /// With custom height and width
@@ -80,6 +86,28 @@ extension WidgetExtension on Widget? {
       ),
       clipBehavior: Clip.antiAliasWithSaveLayer,
       child: this,
+    );
+  }
+
+  Widget onTap(
+      Function? function, {
+        BorderRadius? borderRadius,
+        Color? splashColor,
+        Color? hoverColor,
+        Color? highlightColor,
+        Color? focusColor,
+        WidgetStateProperty<Color?>? overlayColor,
+      }) {
+    return InkWell(
+      onTap: function as void Function()?,
+      borderRadius: borderRadius ??
+          (defaultInkWellRadius != null ? radius(defaultInkWellRadius) : null),
+      child: this,
+      splashColor: splashColor ?? defaultInkWellSplashColor,
+      hoverColor: hoverColor ?? defaultInkWellHoverColor,
+      highlightColor: highlightColor ?? defaultInkWellHighlightColor,
+      focusColor: focusColor,
+      overlayColor: overlayColor,
     );
   }
 
