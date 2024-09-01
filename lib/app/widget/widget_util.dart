@@ -1,8 +1,10 @@
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:live_chat/app/extensions/context_extensions.dart';
+import 'package:live_chat/base/utils/extensions/context_extensions.dart';
+import 'package:live_chat/base/utils/text_styles.dart';
 
 assetImage({required String url,double? width,double? height,BoxFit? fit = BoxFit.cover}){
   return Image.asset(url,width: width,height: height,fit: fit);
@@ -20,4 +22,14 @@ EdgeInsets dynamicAppButtonPadding(BuildContext context) {
   } else {
     return EdgeInsets.symmetric(vertical: 14.w, horizontal: 16.w);
   }
+}
+
+
+Widget columnTextAndAny({required Widget any,required String text,TextStyle? style}){
+  return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+    Text(text,style: style?? secondaryTextStyle()),
+    any
+  ]);
 }

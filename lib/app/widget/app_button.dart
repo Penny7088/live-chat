@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:live_chat/app/extensions/bool_extensions.dart';
+import 'package:live_chat/base/utils/extensions/bool_extensions.dart';
 
 import '../../base/utils/text_styles.dart';
 import 'widget_util.dart';

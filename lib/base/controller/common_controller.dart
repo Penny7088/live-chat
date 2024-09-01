@@ -22,8 +22,8 @@ abstract class CommonController<S extends BaseState> extends GetxController
 
   @override
   void onInit() {
-    super.onInit();
     state.init();
+    super.onInit();
     configUI();
     WidgetsBinding.instance.addObserver(this);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {

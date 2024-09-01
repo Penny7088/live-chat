@@ -1,5 +1,5 @@
 import 'package:http/http.dart';
-import 'package:live_chat/app/extensions/int_extensions.dart';
+import 'package:live_chat/base/utils/extensions/int_extension.dart';
 
 /// Enum representing the format in which the IP address should be retrieved.
 enum IPAddressFormat {

@@ -14,6 +14,7 @@ double textPrimarySizeGlobal = 16;
 double textSecondarySizeGlobal = 14;
 String? fontFamilyPrimaryGlobal = 'editor';
 String? fontFamilySecondaryGlobal;
+
 /// Returns a TextStyle with bold weight.
 TextStyle boldTextStyle({
   int? size,
@@ -31,21 +32,20 @@ TextStyle boldTextStyle({
   double? height,
 }) {
   return TextStyle(
-    fontSize: size != null ? size.toDouble() : textBoldSizeGlobal,
-    color: color ?? textPrimaryColorGlobal,
-    fontWeight: weight ?? fontWeightBoldGlobal,
-    fontFamily: fontFamily ?? fontFamilyBoldGlobal,
-    letterSpacing: letterSpacing,
-    fontStyle: fontStyle,
-    decoration: decoration,
-    decorationStyle: textDecorationStyle,
-    decorationColor: decorationColor,
-    wordSpacing: wordSpacing,
-    textBaseline: textBaseline,
-    backgroundColor: backgroundColor,
-    height: height,
-    inherit: true
-  );
+      fontSize: size != null ? size.toDouble() : textBoldSizeGlobal,
+      color: color ?? textPrimaryColorGlobal,
+      fontWeight: weight ?? fontWeightBoldGlobal,
+      fontFamily: fontFamily ?? fontFamilyBoldGlobal,
+      letterSpacing: letterSpacing,
+      fontStyle: fontStyle,
+      decoration: decoration ?? TextDecoration.none,
+      decorationStyle: textDecorationStyle,
+      decorationColor: decorationColor,
+      wordSpacing: wordSpacing,
+      textBaseline: textBaseline,
+      backgroundColor: backgroundColor,
+      height: height,
+      inherit: true);
 }
 
 /// Returns a TextStyle with primary color and default settings.
@@ -65,20 +65,20 @@ TextStyle primaryTextStyle({
   double? height,
 }) {
   return TextStyle(
-    fontSize: size != null ? size.toDouble() : textPrimarySizeGlobal,
-    color: color ?? textPrimaryColorGlobal,
-    fontWeight: weight ?? fontWeightPrimaryGlobal,
-    fontFamily: fontFamily ?? fontFamilyPrimaryGlobal,
-    letterSpacing: letterSpacing,
-    fontStyle: fontStyle,
-    decoration: decoration,
-    decorationStyle: textDecorationStyle,
-    decorationColor: decorationColor,
-    wordSpacing: wordSpacing,
-    textBaseline: textBaseline,
-    backgroundColor: backgroundColor,
-    height: height, inherit: true
-  );
+      fontSize: size != null ? size.toDouble() : textPrimarySizeGlobal,
+      color: color ?? textPrimaryColorGlobal,
+      fontWeight: weight ?? fontWeightPrimaryGlobal,
+      fontFamily: fontFamily ?? fontFamilyPrimaryGlobal,
+      letterSpacing: letterSpacing,
+      fontStyle: fontStyle,
+      decoration: decoration ?? TextDecoration.none,
+      decorationStyle: textDecorationStyle,
+      decorationColor: decorationColor,
+      wordSpacing: wordSpacing,
+      textBaseline: textBaseline,
+      backgroundColor: backgroundColor,
+      height: height,
+      inherit: true);
 }
 
 /// Returns a TextStyle with secondary color and default settings.
@@ -104,7 +104,7 @@ TextStyle secondaryTextStyle({
     fontFamily: fontFamily ?? fontFamilySecondaryGlobal,
     letterSpacing: letterSpacing,
     fontStyle: fontStyle,
-    decoration: decoration,
+    decoration: decoration?? TextDecoration.none,
     decorationStyle: textDecorationStyle,
     decorationColor: decorationColor,
     wordSpacing: wordSpacing,

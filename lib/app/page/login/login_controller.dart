@@ -1,4 +1,6 @@
+import 'package:live_chat/app/page/login/login_router.dart';
 import 'package:live_chat/base/controller/common_controller.dart';
+import 'package:live_chat/base/utils/getx_util_tool.dart';
 import 'package:live_chat/base/utils/log_util.dart';
 
 import '../../service/auth/auth_index.dart';
@@ -28,6 +30,7 @@ class LoginController extends CommonController<LoginState> {
     //   logD(onUserData.toString());
     // });
 
+    currentToPage(name: LoginRouter.LOGIN_INFORMATION,arguments: {'user':'information'});
 
   }
 

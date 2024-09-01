@@ -15,6 +15,7 @@ class Assets {
   static const String loadingSplashLoading = 'assets/loading/splash_loading.json';
   static const String loginAppIcon = 'assets/images/login/app_icon.webp';
   static const String loginLoginIcons = 'assets/images/login/login_icons.webp';
+  static const String svgAppBack = 'assets/images/svg/app_back.svg';
   static const String svgAppleLogo = 'assets/images/svg/apple_logo.svg';
   static const String svgFbLogo = 'assets/images/svg/fb_logo.svg';
   static const String svgGoogleLogo = 'assets/images/svg/google_logo.svg';
