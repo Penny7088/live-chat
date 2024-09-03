@@ -18,6 +18,7 @@ class UserAvatarView extends StatelessWidget {
   final String? nationality;
   final Function(bool)? clickAvatar;
 
+
   const UserAvatarView(
       {super.key,
       required this.url,
