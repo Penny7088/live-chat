@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
@@ -44,26 +45,32 @@ withHeroNetImageWidget({
   String? url,
   double? width,
   double? height,
+  Uint8List? bytes,
+  String? assetPath,
+  File? imageFile,
   int index = -1,
 }) {
   String heroStr = index != -1 ? "ImageHero$index" : (url ?? "tag");
-  Widget body = createNetWorkImage(
+  Widget body = createImage(
     url: url,
+    bytes: bytes,
+    assetPath: assetPath,
+    imageFile: imageFile,
     fit: BoxFit.cover,
     width: width,
     height: height,
     loadRadius: 15,
     heroStr: heroStr
   );
-
   return body;
 }
 
 
-Widget createNetWorkImage({
+Widget createImage({
   String? url,
   Uint8List? bytes,
   String? assetPath,
+  File? imageFile,
   double? width,
   double? height,
   BorderRadius? borderRadius = BorderRadius.zero,
@@ -76,6 +83,7 @@ Widget createNetWorkImage({
     imageUrl: url,
     bytes: bytes,
     assetPath: assetPath,
+    imageFile: imageFile,
     width: width,
     height: height,
     borderRadius: borderRadius,
