@@ -49,6 +49,7 @@ withHeroNetImageWidget({
   String? assetPath,
   File? imageFile,
   int index = -1,
+  double? radius
 }) {
   String heroStr = index != -1 ? "ImageHero$index" : (url ?? "tag");
   Widget body = createImage(
@@ -59,7 +60,7 @@ withHeroNetImageWidget({
     fit: BoxFit.cover,
     width: width,
     height: height,
-    loadRadius: 15,
+    loadRadius: radius,
     heroStr: heroStr
   );
   return body;

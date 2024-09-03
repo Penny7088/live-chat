@@ -9,4 +9,6 @@ Map<String, String> hans = {
   LanguageKey.loginButtonFb:'FaceBook 登录',
   LanguageKey.loginInfoNext:'下一步',
   LanguageKey.loginInfoDone:'完成',
+  LanguageKey.loginInfoComplete:'完善个人信息',
+  LanguageKey.loginInfoRecommendPartner:'为您推荐更好的语伴',
 };

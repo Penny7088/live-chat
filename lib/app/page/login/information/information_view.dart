@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:live_chat/app/widget/app_text_field.dart';
+import 'package:live_chat/app/widget/user_avatar_view.dart';
 import 'package:live_chat/base/config/normal_colors.dart';
 import 'package:live_chat/base/utils/extensions/context_extensions.dart';
 import 'package:live_chat/base/utils/extensions/widget_extensions.dart';
@@ -31,7 +33,7 @@ class InformationPage extends CommonBaseView<InformationController> {
   Widget createChildBody(
       {required BuildContext context, BoxConstraints? constraints}) {
     Widget body = createInformationView(context.statusBarHeight);
-    return Stack(
+    body = Stack(
       alignment: Alignment.center,
       children: [
         Container(
@@ -44,6 +46,7 @@ class InformationPage extends CommonBaseView<InformationController> {
         body
       ],
     );
+    return Material(child: body);
   }
 
   @override
@@ -72,7 +75,7 @@ class InformationPage extends CommonBaseView<InformationController> {
               itemCount: state.stepLength,
               itemBuilder: (context, index) {
                 if (index == 0) {
-                  return Text('avtar age birth day');
+                  return _userInfo();
                 } else if (index == 1) {
                   return Text('母语 学习语');
                 } else {
@@ -188,5 +191,25 @@ class InformationPage extends CommonBaseView<InformationController> {
         ).visible(state.stepIndex > 0, defaultWidget: SizedBox(height: 63.w));
       },
     );
+  }
+
+  Widget _userInfo(){
+    Widget body =Column(children: [
+      40.verticalSpaceFromWidth,
+      Text(LanguageKey.loginInfoComplete.tr,style: boldTextStyle(size: 20)),
+      Text(LanguageKey.loginInfoRecommendPartner.tr,style: boldTextStyle(size: 20)),
+      UserAvatarView(
+        url:
+            'https://cdn.pixabay.com/photo/2024/01/25/10/50/mosque-8531576_1280.jpg',
+        width: 80.w,
+        height: 80.w,
+        type: ImageType.netWork,
+        radius: 50.w,
+      ),
+      AppTextField(textFieldType: TextFieldType.NAME),
+
+    ]);
+    return Container(child: body);
+
   }
 }

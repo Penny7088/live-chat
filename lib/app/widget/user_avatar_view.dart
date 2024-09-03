@@ -34,11 +34,11 @@ class UserAvatarView extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget avatar;
     if (type == ImageType.netWork) {
-      avatar = withHeroNetImageWidget(url: url, width: width ?? 50.w, height: height ?? 50.w);
+      avatar = withHeroNetImageWidget(url: url, width: width ?? 50.w, height: height ?? 50.w,radius: 50.w);
     } else if (type == ImageType.asset) {
-      avatar = withHeroNetImageWidget(imageFile: File(url), width: width ?? 50.w, height: height ?? 50.w);
+      avatar = withHeroNetImageWidget(imageFile: File(url), width: width ?? 50.w, height: height ?? 50.w,radius: 50.w);
     } else {
-      avatar = withHeroNetImageWidget(assetPath: url, width: width ?? 50.w, height: height ?? 50.w);
+      avatar = withHeroNetImageWidget(assetPath: url, width: width ?? 50.w, height: height ?? 50.w,radius: 50.w);
     }
     Widget body;
 

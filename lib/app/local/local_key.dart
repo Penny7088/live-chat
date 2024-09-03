@@ -6,4 +6,6 @@ class LanguageKey {
   static const String loginButtonFb = 'loginButtonFb';
   static const String loginInfoNext = 'loginInfoNext';
   static const String loginInfoDone = 'loginInfoDone';
+  static const String loginInfoComplete = 'loginInfoComplete';
+  static const String loginInfoRecommendPartner = 'loginInfoRecommendPartner';
 }
