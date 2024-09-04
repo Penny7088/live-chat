@@ -11,4 +11,5 @@ Map<String, String> hans = {
   LanguageKey.loginInfoDone:'完成',
   LanguageKey.loginInfoComplete:'完善个人信息',
   LanguageKey.loginInfoRecommendPartner:'为您推荐更好的语伴',
+  LanguageKey.loginInfoBirthday:'生日',
 };

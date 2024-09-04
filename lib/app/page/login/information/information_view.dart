@@ -14,6 +14,7 @@ import '../../../../generated/assets.dart';
 import '../../../local/local_key.dart';
 import '../../../widget/app_button.dart';
 import '../../../widget/horizontal_line.dart';
+import '../../../widget/setting_item_widget.dart';
 import '../../../widget/theme_widget_util.dart';
 import 'information_logic.dart';
 import 'information_state.dart';
@@ -61,7 +62,7 @@ class InformationPage extends CommonBaseView<InformationController> {
         statusBarHeight.verticalSpaceFromWidth,
         appBar(),
         stepView(),
-        Expanded( child: exBody()),
+        Expanded(child: exBody()),
         bottomButton()
       ],
     );
@@ -69,46 +70,47 @@ class InformationPage extends CommonBaseView<InformationController> {
 
   PageView exBody() {
     return PageView.builder(
-              controller: state.pageController,
-              physics: const NeverScrollableScrollPhysics(),
-              onPageChanged: controller.onPageChanged,
-              itemCount: state.stepLength,
-              itemBuilder: (context, index) {
-                if (index == 0) {
-                  return _userInfo();
-                } else if (index == 1) {
-                  return Text('母语 学习语');
-                } else {
-                  return Text('hobby ');
-                }});
+        controller: state.pageController,
+        physics: const NeverScrollableScrollPhysics(),
+        onPageChanged: controller.onPageChanged,
+        itemCount: state.stepLength,
+        itemBuilder: (context, index) {
+          if (index == 0) {
+            return _userInfo();
+          } else if (index == 1) {
+            return Text('母语 学习语');
+          } else {
+            return Text('hobby ');
+          }
+        });
   }
 
   Widget bottomButton() {
     return GetBuilder(
-          init: controller,
-          id: 'bt',
-          builder: (controller) {
-            return AppButton(
-              onTap: () {
-                controller.clickStep();
-              },
-              margin: EdgeInsets.only(bottom: 50.w),
-              shapeBorder: RoundedRectangleBorder(
-                borderRadius: radius(20),
-              ),
-              elevation: 8.0,
-              shadowColor: Colors.black.withOpacity(0.5),
-              buttonSize: Size(354.w, 44.w),
-              appButtonEnum: AppButtonEnum.onlyText,
-              text: state.stepIndex == 2
-                  ? LanguageKey.loginInfoDone.tr
-                  : LanguageKey.loginInfoNext.tr,
-              iconUrl: Assets.svgGoogleLogo,
-              color: colffffff,
-              disabledColor: colffffff,
-              textStyle: boldTextStyle(color: col000000),
-            ).center();
-          });
+        init: controller,
+        id: 'bt',
+        builder: (controller) {
+          return AppButton(
+            onTap: () {
+              controller.clickStep();
+            },
+            margin: EdgeInsets.only(bottom: 50.w),
+            shapeBorder: RoundedRectangleBorder(
+              borderRadius: radius(20),
+            ),
+            elevation: 8.0,
+            shadowColor: Colors.black.withOpacity(0.5),
+            buttonSize: Size(354.w, 44.w),
+            appButtonEnum: AppButtonEnum.onlyText,
+            text: state.stepIndex == 2
+                ? LanguageKey.loginInfoDone.tr
+                : LanguageKey.loginInfoNext.tr,
+            iconUrl: Assets.svgGoogleLogo,
+            color: colffffff,
+            disabledColor: colffffff,
+            textStyle: boldTextStyle(color: col000000),
+          ).center();
+        });
   }
 
   Widget stepView() {
@@ -193,23 +195,48 @@ class InformationPage extends CommonBaseView<InformationController> {
     );
   }
 
-  Widget _userInfo(){
-    Widget body =Column(children: [
+  Widget _userInfo() {
+    Widget body = Column(children: [
       40.verticalSpaceFromWidth,
-      Text(LanguageKey.loginInfoComplete.tr,style: boldTextStyle(size: 20)),
-      Text(LanguageKey.loginInfoRecommendPartner.tr,style: boldTextStyle(size: 20)),
+      Text(LanguageKey.loginInfoComplete.tr, style: boldTextStyle(size: 20)),
+      Text(LanguageKey.loginInfoRecommendPartner.tr,
+          style: boldTextStyle(size: 20)),
+      30.verticalSpaceFromWidth,
       UserAvatarView(
         url:
             'https://cdn.pixabay.com/photo/2024/01/25/10/50/mosque-8531576_1280.jpg',
         width: 80.w,
         height: 80.w,
         type: ImageType.netWork,
-        radius: 50.w,
+        ifEdit: true,
       ),
-      AppTextField(textFieldType: TextFieldType.NAME),
-
+      28.verticalSpaceFromWidth,
+      Container(
+          padding: EdgeInsets.symmetric(horizontal: 30.w),
+          child: AppTextField(
+            textFieldType: TextFieldType.NAME,
+            decoration: defaultInputDecoration(),
+          )),
+      15.verticalSpaceFromWidth,
+      Container(
+          decoration: boxDecorationDefault(
+              borderRadius: BorderRadius.circular(30.0),
+              border: Border.all(
+                color: col89F1F5,
+                width: 1.5.w,
+              )),
+          margin: EdgeInsets.symmetric(horizontal: 30.w),
+          child: SettingItemWidget(
+            title: LanguageKey.loginInfoBirthday.tr,
+            decoration: BoxDecoration(borderRadius: radius()),
+            trailing: const Icon(Icons.keyboard_arrow_right_rounded,
+                color: col333333),
+            onTap: () {},
+          )),
     ]);
-    return Container(child: body);
-
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 16.w),
+      child: body,
+    );
   }
 }

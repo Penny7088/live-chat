@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:live_chat/base/config/normal_colors.dart';
 
 import '../../generated/assets.dart';
 import 'widget_util.dart';
@@ -40,6 +42,8 @@ class UserAvatarView extends StatelessWidget {
     } else {
       avatar = withHeroNetImageWidget(assetPath: url, width: width ?? 50.w, height: height ?? 50.w,radius: 50.w);
     }
+    avatar = ClipOval(child: avatar);
+
     Widget body;
 
     if (nationality?.isEmpty == true && ifEdit == false) {
@@ -51,7 +55,22 @@ class UserAvatarView extends StatelessWidget {
           Positioned(
               bottom: 0,
               right: 0,
-              child: assetImage(url: Assets.loginLoginIcons, width: 20.w, height: 20.w, fit: BoxFit.cover)),
+              child: Container(
+                  width: 25.w,
+                  height: 25.w,
+                  padding: EdgeInsets.all(5.w),
+                  decoration: BoxDecoration(
+                    color: col89F1F5, // 设置背景颜色
+                    shape: BoxShape.circle, // 设置形状为圆形
+                    border: Border.all(
+                      color: Colors.white,
+                      width: 2.0.w,
+                    ),
+                  ),
+                  child: SvgPicture.asset(
+                      Assets.svgTakePhoto,
+                      color: colffffff,
+                      ))),
         ],
         if (nationality?.isNotEmpty == true) ...[
           Positioned(

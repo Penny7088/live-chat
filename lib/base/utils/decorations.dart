@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:live_chat/base/utils/text_styles.dart';
 import 'package:live_chat/base/config/normal_colors.dart';
 
@@ -9,14 +10,43 @@ double defaultSpreadRadius = 1.0;
 double defaultAppBarElevation = 4.0;
 /// returns default InputDecoration for AppTextField widget
 InputDecoration defaultInputDecoration(
-    {String? hint, String? label, TextStyle? textStyle}) {
+    {String? hint,
+    String? label,
+    TextStyle? textStyle,
+    InputBorder? inputBorder,
+    InputBorder? enabledBorder,
+    InputBorder? focusedBorder,
+    }) {
   return InputDecoration(
     labelText: label,
     hintText: hint,
+    fillColor: colffffff,
     hintStyle: textStyle ?? primaryTextStyle(),
     labelStyle: textStyle ?? secondaryTextStyle(),
-    border: OutlineInputBorder(),
+    border: inputBorder?? defaultInputBorder(),
     alignLabelWithHint: true,
+    enabledBorder: enabledBorder??defaultBorder(),
+    focusedBorder: focusedBorder??defaultBorder(),
+  );
+}
+
+InputBorder defaultInputBorder(){
+  return  OutlineInputBorder(
+    borderRadius: BorderRadius.circular(20.0), // 设置圆角边框
+    borderSide: BorderSide(
+      color: colffffff, // 边框颜色
+      width: 2.0.w,
+    ),
+  );
+}
+
+InputBorder defaultBorder(){
+  return  OutlineInputBorder(
+    borderRadius: BorderRadius.circular(30.0),
+    borderSide: BorderSide(
+      color: col89F1F5, // 启用时的边框颜色
+      width: 2.0.w,
+    ),
   );
 }
 

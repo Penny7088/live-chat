@@ -8,4 +8,5 @@ class LanguageKey {
   static const String loginInfoDone = 'loginInfoDone';
   static const String loginInfoComplete = 'loginInfoComplete';
   static const String loginInfoRecommendPartner = 'loginInfoRecommendPartner';
+  static const String loginInfoBirthday = 'loginInfoBirthday';
 }
