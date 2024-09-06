@@ -1,5 +1,7 @@
 
 // DateTime Extensions
+import 'package:intl/intl.dart';
+
 import '../time_formatter.dart';
 
 extension DateTimeExt on DateTime {
@@ -28,6 +30,10 @@ extension DateTimeExt on DateTime {
     final tomorrow = DateTime(now.year, now.month, now.day + 1);
 
     return DateTime(year, month, day) == tomorrow;
+  }
+
+  String get formatYMD {
+  return  DateFormat('yyyy-MM-dd').format(this);
   }
 }
 

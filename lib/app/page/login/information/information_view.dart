@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:live_chat/app/widget/app_text_field.dart';
+import 'package:live_chat/app/widget/date_picker/date_picker_theme.dart';
 import 'package:live_chat/app/widget/user_avatar_view.dart';
 import 'package:live_chat/base/config/normal_colors.dart';
 import 'package:live_chat/base/utils/extensions/context_extensions.dart';
@@ -13,9 +14,11 @@ import '../../../../base/view/common_base_view.dart';
 import '../../../../generated/assets.dart';
 import '../../../local/local_key.dart';
 import '../../../widget/app_button.dart';
+import '../../../widget/date_picker/date_picker.dart';
 import '../../../widget/horizontal_line.dart';
 import '../../../widget/setting_item_widget.dart';
 import '../../../widget/theme_widget_util.dart';
+import '../../../widget/widget_util.dart';
 import 'information_logic.dart';
 import 'information_state.dart';
 
@@ -218,21 +221,30 @@ class InformationPage extends CommonBaseView<InformationController> {
             decoration: defaultInputDecoration(),
           )),
       15.verticalSpaceFromWidth,
-      Container(
-          decoration: boxDecorationDefault(
-              borderRadius: BorderRadius.circular(30.0),
-              border: Border.all(
-                color: col89F1F5,
-                width: 1.5.w,
-              )),
-          margin: EdgeInsets.symmetric(horizontal: 30.w),
-          child: SettingItemWidget(
-            title: LanguageKey.loginInfoBirthday.tr,
-            decoration: BoxDecoration(borderRadius: radius()),
-            trailing: const Icon(Icons.keyboard_arrow_right_rounded,
-                color: col333333),
-            onTap: () {},
-          )),
+      GetBuilder(
+          init: controller,
+          id: 'birthday',
+          builder: (controller){
+        return Container(
+            decoration: boxDecorationDefault(
+                borderRadius: BorderRadius.circular(30.0),
+                border: Border.all(
+                  color: col89F1F5,
+                  width: 1.5.w,
+                )),
+            margin: EdgeInsets.symmetric(horizontal: 30.w),
+            child: SettingItemWidget(
+              title: state.birthday??LanguageKey.loginInfoBirthday.tr,
+              decoration: BoxDecoration(borderRadius: radius()),
+              trailing: const Icon(Icons.keyboard_arrow_right_rounded,
+                  color: col333333),
+              onTap: () {
+                showDatePikerDialog((dateTime, List<int> index){
+                  controller.onBirthdayCallback(dateTime,index);
+                });
+              },
+            ));
+      })
     ]);
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 16.w),

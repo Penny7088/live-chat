@@ -11,6 +11,7 @@ dependencies:
   # 国际化库
   flutter_localizations:
     sdk: flutter
+  intl: ^0.19.0
   #getx
   get: ^4.6.6
   flutter_screenutil: ^5.9.1
@@ -67,6 +68,7 @@ dependencies:
   sign_in_with_apple: ^6.1.2
   flutter_facebook_auth: ^7.1.0
   logger: ^2.4.0
+  country_picker: ^2.0.26
 dev_dependencies:
   flutter_test:
     sdk: flutter

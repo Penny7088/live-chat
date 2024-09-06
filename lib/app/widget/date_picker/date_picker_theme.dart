@@ -11,7 +11,7 @@ const dateTimePickerSelectionOverlayColor = Colors.black26;
 const dateTimePickerShowTitleDefault = true;
 
 /// Default value of DatePicker's height.
-const double dateTimePickerHeight = 210.0;
+const double dateTimePickerHeight = 260.0;
 
 /// Default value of DatePickerHeader's divider height.
 const double headerDividerHeight = 0.3;

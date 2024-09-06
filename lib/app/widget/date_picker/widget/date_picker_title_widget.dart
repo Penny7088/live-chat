@@ -37,8 +37,8 @@ class DatePickerTitleWidget extends StatelessWidget {
           decoration: BoxDecoration(
             color: pickerTheme.backgroundColor,
             borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(8),
-              topRight: Radius.circular(8),
+              topLeft: Radius.circular(12),
+              topRight: Radius.circular(12),
             ),
           ),
           child: Row(

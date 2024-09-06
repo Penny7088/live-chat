@@ -11,6 +11,10 @@ class InformationState extends BaseState{
   //长度
   int stepLength = 3;
 
+  String? birthday;
+  String? nickName;
+
+
   late PageController pageController;
 
   @override

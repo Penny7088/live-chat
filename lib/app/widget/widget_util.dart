@@ -8,8 +8,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:live_chat/base/config/normal_colors.dart';
 import 'package:live_chat/base/utils/extensions/context_extensions.dart';
+import 'package:live_chat/base/utils/log_util.dart';
 import 'package:live_chat/base/utils/text_styles.dart';
 
+import 'date_picker/date_picker.dart';
+import 'date_picker/date_picker_constants.dart';
+import 'date_picker/date_picker_theme.dart';
+import 'date_picker/i18n/date_picker_i18n.dart';
 import 'image/extended_image_widget.dart';
 
 assetImage({required String url,double? width,double? height,BoxFit? fit = BoxFit.cover}){
@@ -123,4 +128,29 @@ createImageLoadWidget({
     child: body,
   );
   return body;
+}
+
+const String MIN_DATETIME = '1940-01-30';
+const String MAX_DATETIME = '2030-12-31';
+const String INIT_DATETIME = '2007-05-17';
+showDatePikerDialog(DateValueCallback onConfirm){
+  DatePicker.showDatePicker(
+    Get.context!,
+    onMonthChangeStartWithFirstDate: true,
+    pickerTheme: DateTimePickerTheme(
+      showTitle: true,
+      confirm: Text('Done', style: boldTextStyle()),
+    ),
+    minDateTime: DateTime.parse(MIN_DATETIME),
+    maxDateTime: DateTime.parse(MAX_DATETIME),
+    dateFormat: 'yyyy-MMMM-dd',
+    locale: DateTimePickerLocale.en_us,
+    onClose: () => logD("----- onClose -----"),
+    onCancel: () => logD('onCancel'),
+    onChange: (dateTime, List<int> index) {
+    },
+    onConfirm: (dateTime, List<int> index) {
+      onConfirm(dateTime,index);
+    },
+  );
 }
