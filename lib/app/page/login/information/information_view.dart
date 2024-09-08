@@ -81,7 +81,7 @@ class InformationPage extends CommonBaseView<InformationController> {
           if (index == 0) {
             return _userInfo();
           } else if (index == 1) {
-            return Text('母语 学习语');
+            return _languagePage();
           } else {
             return Text('hobby ');
           }
@@ -198,6 +198,7 @@ class InformationPage extends CommonBaseView<InformationController> {
     );
   }
 
+  /// 个人信息
   Widget _userInfo() {
     Widget body = Column(children: [
       40.verticalSpaceFromWidth,
@@ -217,38 +218,94 @@ class InformationPage extends CommonBaseView<InformationController> {
       Container(
           padding: EdgeInsets.symmetric(horizontal: 30.w),
           child: AppTextField(
+            controller: state.textEditingController,
             textFieldType: TextFieldType.NAME,
             decoration: defaultInputDecoration(),
+            onChanged: (value){
+              controller.setNickName(value);
+            },
           )),
       15.verticalSpaceFromWidth,
       GetBuilder(
           init: controller,
           id: 'birthday',
-          builder: (controller){
-        return Container(
-            decoration: boxDecorationDefault(
-                borderRadius: BorderRadius.circular(30.0),
-                border: Border.all(
-                  color: col89F1F5,
-                  width: 1.5.w,
-                )),
-            margin: EdgeInsets.symmetric(horizontal: 30.w),
-            child: SettingItemWidget(
-              title: state.birthday??LanguageKey.loginInfoBirthday.tr,
-              decoration: BoxDecoration(borderRadius: radius()),
-              trailing: const Icon(Icons.keyboard_arrow_right_rounded,
-                  color: col333333),
-              onTap: () {
-                showDatePikerDialog((dateTime, List<int> index){
-                  controller.onBirthdayCallback(dateTime,index);
-                });
-              },
-            ));
-      })
+          builder: (controller) {
+            return Container(
+                decoration: boxDecorationDefault(
+                    borderRadius: BorderRadius.circular(30.0),
+                    border: Border.all(
+                      color: col89F1F5,
+                      width: 1.5.w,
+                    )),
+                margin: EdgeInsets.symmetric(horizontal: 30.w),
+                child: SettingItemWidget(
+                  title: state.birthday ?? LanguageKey.loginInfoBirthday.tr,
+                  decoration: BoxDecoration(borderRadius: radius()),
+                  trailing: const Icon(Icons.keyboard_arrow_right_rounded,
+                      color: col333333),
+                  onTap: () {
+                    showDatePikerDialog((dateTime, List<int> index) {
+                      controller.onBirthdayCallback(dateTime, index);
+                    });
+                  },
+                ));
+          }),
+      15.verticalSpaceFromWidth,
+      GetBuilder(
+          init: controller,
+          id: 'sex',
+          builder: (controller) {
+            return Container(
+                width: 1.sw,
+                height: 40.w,
+                margin: EdgeInsets.symmetric(horizontal: 30.w),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                  Container(
+                    height: 40.w,
+                    alignment: Alignment.center,
+                    decoration:
+                        BoxDecoration(
+                            color: state.ifFemale ?? false ? col89F1F5 : colF7F7F7,
+                            borderRadius: BorderRadius.circular(30.0)),
+                    child: Text(LanguageKey.loginInfoFeMale.tr,
+                        style: boldTextStyle(color: (state.ifFemale ?? false)?col333333:col7f7f7f)),
+                  ).onTap((){
+                    controller.selectSex(true);
+                  },borderRadius:  BorderRadius.circular(30.0),).expand(),
+                  10.horizontalSpace,
+                  Container(
+                    height: 40.w,
+                    alignment: Alignment.center,
+                    decoration:
+                    BoxDecoration(
+                        color: (state.ifMale ?? false) ? col89F1F5 : colF7F7F7,
+                        borderRadius: BorderRadius.circular(30.0)),
+                    child: Text(LanguageKey.loginInfoMale.tr,
+                        style: boldTextStyle(color:  (state.ifMale ?? false)?col333333:col7f7f7f)),
+                  ).onTap((){
+                    controller.selectSex(false);
+                  },borderRadius:  BorderRadius.circular(30.0),).expand()
+                ]));
+          }),
+      Container(
+          margin: EdgeInsets.symmetric(horizontal: 30.w).copyWith(top: 15.w),
+          child: Text(LanguageKey.loginInfoAgeAndSex.tr,
+              style: primaryTextStyle(color: col333333, size: 14)))
     ]);
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 16.w),
       child: body,
     );
+  }
+
+  ///母语/学习语言
+  Widget _languagePage() {
+
+
+
+
+    return Container();
   }
 }

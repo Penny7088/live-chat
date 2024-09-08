@@ -22,23 +22,21 @@ class InformationController extends CommonController<InformationState> {
 
   void onPageChanged(int value) {
     state.stepIndex = value;
-    update(['bt', 'step','back']);
+    update(['bt', 'step', 'back']);
   }
 
   clickStep() {
-
     if (state.stepIndex == state.stepLength - 1) {
       logD('跳转到主页');
       return;
     }
 
-    if(state.stepIndex == 0){
-      if(!judgeFirstPageField()){
+    if (state.stepIndex == 0) {
+      if (!judgeFirstPageField()) {
         return;
       }
-
     }
-    
+
     state.pageController.nextPage(
         duration: const Duration(milliseconds: 200), curve: Curves.ease);
   }
@@ -55,17 +53,37 @@ class InformationController extends CommonController<InformationState> {
     update(['birthday']);
   }
 
-  bool judgeFirstPageField(){
-    if(state.nickName?.isEmpty == true){
+  bool judgeFirstPageField() {
+    if (state.nickName == null) {
       logD('nick name is null...');
       return false;
     }
 
-    if(state.birthday?.isEmpty == true){
+    if (state.birthday == null) {
       logD('birthday is null...');
       return false;
     }
 
+    if (state.ifFemale == null || state.ifMale == null) {
+      logD('sex is null...');
+      return false;
+    }
     return true;
+  }
+
+  void selectSex(bool value) {
+    if (value) {
+      state.ifFemale = value;
+      state.ifMale = false;
+    } else {
+      state.ifFemale = false;
+      state.ifMale = !value;
+    }
+    update(['sex']);
+  }
+
+  void setNickName(String value) {
+    state.nickName = value;
+    logD('nick name = $value');
   }
 }

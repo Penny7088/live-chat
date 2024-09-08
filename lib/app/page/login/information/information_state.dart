@@ -13,9 +13,13 @@ class InformationState extends BaseState{
 
   String? birthday;
   String? nickName;
+  bool? ifFemale;
+  bool? ifMale;
 
+  late TextEditingController textEditingController  = TextEditingController();
 
   late PageController pageController;
+
 
   @override
   void init() {
@@ -25,6 +29,8 @@ class InformationState extends BaseState{
 
   @override
   void onClose() {
+    pageController.dispose();
+    textEditingController.dispose();
   }
 
   @override

@@ -12,4 +12,13 @@ Map<String, String> hans = {
   LanguageKey.loginInfoComplete:'完善个人信息',
   LanguageKey.loginInfoRecommendPartner:'为您推荐更好的语伴',
   LanguageKey.loginInfoBirthday:'生日',
+  LanguageKey.loginInfoMale:'男',
+  LanguageKey.loginInfoFeMale:'女',
+  LanguageKey.loginInfoAgeAndSex:'年龄和性别填写后将不可更改哦~',
+  LanguageKey.loginInfoIComeFrom:'我来自',
+  LanguageKey.loginInfoNativeLan:'母语',
+  LanguageKey.loginInfoLearnLan:'学习语言',
+  LanguageKey.choose:'选择',
+  LanguageKey.noteLan:'你来自的地区和母语填写后将不可更改~',
+  LanguageKey.startStudy:'开始学习~',
 };

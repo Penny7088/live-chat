@@ -20,6 +20,7 @@ import 'package:flutter/material.dart';
 
    const Color cole3e3e3 = Color(0xFFe3e3e3);
    const Color col7f7f7f = Color(0xFF7f7f7f);
+   const Color colF7F7F7 = Color(0xFFF7F7F7);
    const Color col101010= Color(0xFF101010);
    const Color colffffff = Colors.white;
    const Color colf1f1f1 = Color(0xFFF1F1F1);

@@ -102,12 +102,12 @@ extension WidgetExtension on Widget? {
       onTap: function as void Function()?,
       borderRadius: borderRadius ??
           (defaultInkWellRadius != null ? radius(defaultInkWellRadius) : null),
-      child: this,
       splashColor: splashColor ?? defaultInkWellSplashColor,
       hoverColor: hoverColor ?? defaultInkWellHoverColor,
       highlightColor: highlightColor ?? defaultInkWellHighlightColor,
       focusColor: focusColor,
       overlayColor: overlayColor,
+      child: this,
     );
   }
 

@@ -68,6 +68,12 @@
       "languageVersion": "2.18"
     },
     {
+      "name": "country_picker",
+      "rootUri": "file:///Users/pengye/.pub-cache/hosted/pub.flutter-io.cn/country_picker-2.0.26",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "cross_file",
       "rootUri": "file:///Users/pengye/.pub-cache/hosted/pub.flutter-io.cn/cross_file-0.3.4+2",
       "packageUri": "lib/",
@@ -860,6 +866,12 @@
       "languageVersion": "2.17"
     },
     {
+      "name": "universal_io",
+      "rootUri": "file:///Users/pengye/.pub-cache/hosted/pub.flutter-io.cn/universal_io-2.2.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "url_launcher_linux",
       "rootUri": "file:///Users/pengye/.pub-cache/hosted/pub.flutter-io.cn/url_launcher_linux-3.2.0",
       "packageUri": "lib/",
@@ -956,7 +968,7 @@
       "languageVersion": "3.3"
     }
   ],
-  "generated": "2024-09-01T08:00:29.610878Z",
+  "generated": "2024-09-06T15:58:35.859753Z",
   "generator": "pub",
   "generatorVersion": "3.4.1",
   "flutterRoot": "file:///Users/pengye/Documents/flutter-sdk/flutter3-22-1",
