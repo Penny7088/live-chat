@@ -1,4 +1,4 @@
-/// 葡萄牙语
+/// 西班牙语
 Map<String, String> pt = {
   'gexArchitecture':'Arquitetura gex',
   'loginTitle':'Troca de Idiomas, em Qualquer Lugar, a Qualquer Momento.',

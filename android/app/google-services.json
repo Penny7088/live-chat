@@ -1,13 +1,32 @@
 {
   "project_info": {
-    "project_number": "141177238830",
-    "project_id": "livechat-24a83",
-    "storage_bucket": "livechat-24a83.appspot.com"
+    "project_number": "639803509344",
+    "project_id": "linguaexchange-7398f",
+    "storage_bucket": "linguaexchange-7398f.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:141177238830:android:df72a6860b03e8a5fa76bf",
+        "mobilesdk_app_id": "1:639803509344:android:21a57b1895634c63335105",
+        "android_client_info": {
+          "package_name": "com.penny.live_chat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdFPZs9FyUHQuqtuKAbIMgfZhPjnZX_qo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:639803509344:android:453e9769b829cdb7335105",
         "android_client_info": {
           "package_name": "cpm.penny.live_chat"
         }
@@ -15,7 +34,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBspDDEs6lenpTCWAjyyf4fpPoh2Ip0SMw"
+          "current_key": "AIzaSyCdFPZs9FyUHQuqtuKAbIMgfZhPjnZX_qo"
         }
       ],
       "services": {

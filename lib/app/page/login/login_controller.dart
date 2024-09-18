@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:live_chat/app/page/login/login_router.dart';
 import 'package:live_chat/base/controller/common_controller.dart';
 import 'package:live_chat/base/utils/getx_util_tool.dart';
@@ -25,12 +26,19 @@ class LoginController extends CommonController<LoginState> {
 
   login(LoginProvider provider) async {
     /// 需要购买域名
-    // await _authService.login(provider, (onUserData){
-    //   /// todo send to data server
-    //   logD(onUserData.toString());
-    // });
+    try {
+      await _authService.login(provider, (onUserData) {
+        logD(onUserData.toString());
+      });
+    } on FirebaseAuthException catch(e) {
+      if(e.code == 'INVALID_LOGIN_CREDENTIALS'){
+        logD('INVALID_LOGIN_CREDENTIALS');
+      }else{
+        logD(e.code);
+      }
+    }
 
-    currentToPage(name: LoginRouter.LOGIN_INFORMATION,arguments: {'user':'information'});
+    // currentToPage(name: LoginRouter.LOGIN_INFORMATION,arguments: {'user':'information'});
 
   }
 

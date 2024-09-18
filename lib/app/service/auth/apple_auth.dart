@@ -5,8 +5,8 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 class AppleAuthImpl extends IAuth with AuthUserData {
 
   @override
-  Map<String, dynamic> getUserData(User? user) {
-    return getUser(LoginProvider.facebook, user);
+  Future<Map<String, dynamic>> getUserData(User? user) async {
+    return await getUser(LoginProvider.facebook, user);
   }
 
   @override

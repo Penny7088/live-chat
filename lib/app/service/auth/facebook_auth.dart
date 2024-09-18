@@ -5,7 +5,7 @@ import 'package:live_chat/app/service/auth/auth_service.dart';
 class FacebookAuthImpl extends IAuth with AuthUserData {
 
   @override
-  Map<String, dynamic> getUserData(User? user) {
+  Future<Map<String, dynamic>> getUserData(User? user) {
     return getUser(LoginProvider.facebook, user);
   }
 

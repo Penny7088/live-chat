@@ -1,4 +1,4 @@
-/// 德语
+/// 泰国语
 Map<String, String> de = {
 'gexArchitecture':'gex Architektur',
   'loginTitle':'แลกเปลี่ยนภาษาได้ทุกที่ทุกเวลา。',

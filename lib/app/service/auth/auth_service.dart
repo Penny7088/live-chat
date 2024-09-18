@@ -15,10 +15,12 @@ abstract class IAuth {
 
   Future<dynamic> login();
 
-  Map<String, dynamic> getUserData(User? user);
+  Future<Map<String, dynamic>> getUserData(User? user);
 }
 
 class AuthService {
+
+
   IAuth getAuth(LoginProvider provider) {
     switch (provider) {
       case LoginProvider.google:
@@ -37,7 +39,7 @@ class AuthService {
     IAuth auth = getAuth(provider);
     User? user = await auth.login();
     if (user != null) {
-      Map<String, dynamic> userData = auth.getUserData(user);
+      Map<String, dynamic> userData = await auth.getUserData(user);
       onUserData(userData);
     }
   }
@@ -45,7 +47,8 @@ class AuthService {
 
 
 mixin AuthUserData {
-  Map<String, dynamic> getUser(LoginProvider provider, User? user) {
+  Future<Map<String, dynamic>> getUser(LoginProvider provider, User? user) async {
+    var idToken = await user?.getIdToken();
     return {
       'provider': provider,
       'name': user?.displayName,
@@ -54,6 +57,7 @@ mixin AuthUserData {
       'photoURL': user?.photoURL,
       'refreshToken': user?.refreshToken,
       'uid': user?.uid,
+      'token':idToken
     };
   }
 }

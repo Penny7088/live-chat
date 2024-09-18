@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -25,4 +26,5 @@ initThirdParty() async {
 
 fromPlatform() async {
   PackageInfo packageInfo = await PackageInfo.fromPlatform();
+  await Firebase.initializeApp();
 }
