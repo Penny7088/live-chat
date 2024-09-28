@@ -1,0 +1,268 @@
+/*
+ * @Descripttion: 
+ * @version: 
+ * @Author: TT
+ * @Date: 2022-11-08 10:12:39
+ * @LastEditors: TT
+ * @LastEditTime: 2023-10-09 14:13:24
+ */
+
+import 'dart:developer';
+
+import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
+
+import 'transformer.dart';
+import 'http_config.dart';
+import 'http_parse.dart';
+import 'http_response.dart';
+
+class HttpClient {
+  static const defaultClientTag = "network";
+  final HttpConfig? _normalHttpConfig;
+  late final Dio _normalDio;
+  Dio get dio => _normalDio;
+  HttpClient({
+    BaseOptions? options,
+    HttpConfig? normalHttpConfig,
+  })  : _normalHttpConfig = normalHttpConfig,
+        _normalDio = createDio(
+          options: options,
+          normalHttpConfig: normalHttpConfig,
+        );
+
+  static Dio createDio({
+    BaseOptions? options,
+    HttpConfig? normalHttpConfig,
+  }) {
+    options ??= BaseOptions(
+      baseUrl: normalHttpConfig?.baseUrl ?? "",
+      contentType: 'application/json',
+      sendTimeout: Duration(seconds: normalHttpConfig?.sendTimeout ?? 30),
+      receiveTimeout: Duration(seconds: normalHttpConfig?.receiveTimeout ?? 30),
+      headers: normalHttpConfig?.headers,
+    );
+    Dio dio = Dio(options);
+
+    if (normalHttpConfig?.interceptors?.isNotEmpty ?? false) {
+      dio.interceptors.addAll(normalHttpConfig!.interceptors!);
+    }
+    if (kDebugMode && normalHttpConfig?.isNeedLog == true) {
+      dio.interceptors.add(LogInterceptor(
+        responseBody: true,
+        error: true,
+        requestHeader: true,
+        responseHeader: false,
+        request: true,
+        requestBody: true,
+        logPrint: (object) {
+          log(object.toString());
+        },
+      ));
+    }
+    return dio;
+  }
+
+  Future<ApiResponse> get({
+    required String url,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onReceiveProgress,
+    AbsTransformer? httpTransformer,
+  }) async {
+    try {
+      var response = await _normalDio.get(
+        url,
+        queryParameters: queryParameters,
+        options: options,
+        cancelToken: cancelToken,
+        onReceiveProgress: onReceiveProgress,
+      );
+      return handleResponse(
+        response: response,
+        hzyNormalTransFormer: httpTransformer,
+        caCheStatusCode: _normalHttpConfig?.caCheStatusCode ?? 304,
+      );
+    } on Exception catch (e) {
+      return ApiResponse.fail(
+        data: e,
+        errorMsg: e.toString(),
+        errorCode: -1,
+      );
+    }
+  }
+
+  Future<ApiResponse> post(
+    String uri, {
+    data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+    AbsTransformer? httpTransformer,
+  }) async {
+    try {
+      var response = await _normalDio.post(
+        uri,
+        data: data,
+        queryParameters: queryParameters,
+        options: options,
+        cancelToken: cancelToken,
+        onSendProgress: onSendProgress,
+        onReceiveProgress: onReceiveProgress,
+      );
+      return handleResponse(
+        response: response,
+        hzyNormalTransFormer: httpTransformer,
+        caCheStatusCode: _normalHttpConfig?.caCheStatusCode ?? 304,
+      );
+    } on Exception catch (e) {
+      return handleException(e);
+    }
+  }
+
+  Future<ApiResponse> patch(
+    String uri, {
+    data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+    AbsTransformer? httpTransformer,
+  }) async {
+    try {
+      var response = await _normalDio.patch(
+        uri,
+        data: data,
+        queryParameters: queryParameters,
+        options: options,
+        cancelToken: cancelToken,
+        onSendProgress: onSendProgress,
+        onReceiveProgress: onReceiveProgress,
+      );
+      return handleResponse(
+        response: response,
+        hzyNormalTransFormer: httpTransformer,
+        caCheStatusCode: _normalHttpConfig?.caCheStatusCode ?? 304,
+      );
+    } on Exception catch (e) {
+      return handleException(e);
+    }
+  }
+
+  Future<ApiResponse> delete(
+    String uri, {
+    data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    AbsTransformer? httpTransformer,
+  }) async {
+    try {
+      var response = await _normalDio.delete(
+        uri,
+        data: data,
+        queryParameters: queryParameters,
+        options: options,
+        cancelToken: cancelToken,
+      );
+      return handleResponse(
+        response: response,
+        hzyNormalTransFormer: httpTransformer,
+        caCheStatusCode: _normalHttpConfig?.caCheStatusCode ?? 304,
+      );
+    } on Exception catch (e) {
+      return handleException(e);
+    }
+  }
+
+  Future<ApiResponse> put(
+    String uri, {
+    data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    AbsTransformer? httpTransformer,
+  }) async {
+    try {
+      var response = await _normalDio.put(
+        uri,
+        data: data,
+        queryParameters: queryParameters,
+        options: options,
+        cancelToken: cancelToken,
+      );
+      return handleResponse(
+        response: response,
+        hzyNormalTransFormer: httpTransformer,
+        caCheStatusCode: _normalHttpConfig?.caCheStatusCode ?? 304,
+      );
+    } on Exception catch (e) {
+      return handleException(e);
+    }
+  }
+
+  Future<Response> download(
+    String urlPath,
+    savePath, {
+    ProgressCallback? onReceiveProgress,
+    Map<String, dynamic>? queryParameters,
+    CancelToken? cancelToken,
+    bool deleteOnError = true,
+    String lengthHeader = Headers.contentLengthHeader,
+    data,
+    Options? options,
+    AbsTransformer? httpTransformer,
+  }) async {
+    try {
+      var response = await _normalDio.download(
+        urlPath,
+        savePath,
+        onReceiveProgress: onReceiveProgress,
+        queryParameters: queryParameters,
+        cancelToken: cancelToken,
+        deleteOnError: deleteOnError,
+        lengthHeader: lengthHeader,
+        data: data,
+        options: data,
+      );
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<ApiResponse> uploadImage(
+    String uri,
+    Uint8List image, {
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    AbsTransformer? httpTransformer,
+  }) async {
+    Map<String, dynamic> map = {};
+    if (queryParameters != null) {
+      map.addAll(queryParameters);
+    }
+    map["file"] = MultipartFile.fromBytes(image, filename: "image.png");
+    FormData formData = FormData.fromMap(map);
+    try {
+      var response = await _normalDio.post(
+        uri,
+        data: formData,
+        options: options,
+        cancelToken: cancelToken,
+      );
+      return handleResponse(
+        response: response,
+        hzyNormalTransFormer: httpTransformer,
+        caCheStatusCode: _normalHttpConfig?.caCheStatusCode ?? 304,
+      );
+    } on Exception catch (e) {
+      return handleException(e);
+    }
+  }
+}
