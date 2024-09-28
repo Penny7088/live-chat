@@ -11,6 +11,7 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import 'transformer.dart';
 import 'http_config.dart';
@@ -26,20 +27,20 @@ class HttpClient {
     BaseOptions? options,
     HttpConfig? normalHttpConfig,
   })  : _normalHttpConfig = normalHttpConfig,
-        _normalDio = createDio(
+        _normalDio = _createDio(
           options: options,
           normalHttpConfig: normalHttpConfig,
         );
 
-  static Dio createDio({
+  static Dio _createDio({
     BaseOptions? options,
     HttpConfig? normalHttpConfig,
   }) {
     options ??= BaseOptions(
       baseUrl: normalHttpConfig?.baseUrl ?? "",
       contentType: 'application/json',
-      sendTimeout: Duration(seconds: normalHttpConfig?.sendTimeout ?? 30),
-      receiveTimeout: Duration(seconds: normalHttpConfig?.receiveTimeout ?? 30),
+      sendTimeout: normalHttpConfig?.sendTimeout ?? const Duration(seconds:  30),
+      receiveTimeout:  normalHttpConfig?.receiveTimeout ??const Duration(seconds: 30),
       headers: normalHttpConfig?.headers,
     );
     Dio dio = Dio(options);
@@ -47,8 +48,13 @@ class HttpClient {
     if (normalHttpConfig?.interceptors?.isNotEmpty ?? false) {
       dio.interceptors.addAll(normalHttpConfig!.interceptors!);
     }
+
+    if(normalHttpConfig?.httpClientAdapter != null){
+      dio.httpClientAdapter = normalHttpConfig!.httpClientAdapter!;
+    }
+
     if (kDebugMode && normalHttpConfig?.isNeedLog == true) {
-      dio.interceptors.add(LogInterceptor(
+      dio.interceptors.add(PrettyDioLogger(
         responseBody: true,
         error: true,
         requestHeader: true,
@@ -82,7 +88,7 @@ class HttpClient {
       return handleResponse(
         response: response,
         hzyNormalTransFormer: httpTransformer,
-        caCheStatusCode: _normalHttpConfig?.caCheStatusCode ?? 304,
+        caCheStatusCode: _normalHttpConfig?.cacheStatusCode ?? 304,
       );
     } on Exception catch (e) {
       return ApiResponse.fail(
@@ -116,7 +122,7 @@ class HttpClient {
       return handleResponse(
         response: response,
         hzyNormalTransFormer: httpTransformer,
-        caCheStatusCode: _normalHttpConfig?.caCheStatusCode ?? 304,
+        caCheStatusCode: _normalHttpConfig?.cacheStatusCode ?? 304,
       );
     } on Exception catch (e) {
       return handleException(e);
@@ -146,7 +152,7 @@ class HttpClient {
       return handleResponse(
         response: response,
         hzyNormalTransFormer: httpTransformer,
-        caCheStatusCode: _normalHttpConfig?.caCheStatusCode ?? 304,
+        caCheStatusCode: _normalHttpConfig?.cacheStatusCode ?? 304,
       );
     } on Exception catch (e) {
       return handleException(e);
@@ -172,7 +178,7 @@ class HttpClient {
       return handleResponse(
         response: response,
         hzyNormalTransFormer: httpTransformer,
-        caCheStatusCode: _normalHttpConfig?.caCheStatusCode ?? 304,
+        caCheStatusCode: _normalHttpConfig?.cacheStatusCode ?? 304,
       );
     } on Exception catch (e) {
       return handleException(e);
@@ -198,7 +204,7 @@ class HttpClient {
       return handleResponse(
         response: response,
         hzyNormalTransFormer: httpTransformer,
-        caCheStatusCode: _normalHttpConfig?.caCheStatusCode ?? 304,
+        caCheStatusCode: _normalHttpConfig?.cacheStatusCode ?? 304,
       );
     } on Exception catch (e) {
       return handleException(e);
@@ -259,7 +265,7 @@ class HttpClient {
       return handleResponse(
         response: response,
         hzyNormalTransFormer: httpTransformer,
-        caCheStatusCode: _normalHttpConfig?.caCheStatusCode ?? 304,
+        caCheStatusCode: _normalHttpConfig?.cacheStatusCode ?? 304,
       );
     } on Exception catch (e) {
       return handleException(e);

@@ -7,6 +7,7 @@ import '../../app/local/env/EnvConfig.dart';
 import '../../app/net/client.dart';
 import '../../app/net/dio_cache_tool.dart';
 import '../../app/net/http_config.dart';
+import '../../app/net/http_options.dart';
 import '../../app/net/transformer.dart';
 import '../../app/theme/theme_service.dart';
 import '../../base/utils/light_model.dart';
@@ -47,4 +48,6 @@ initNetWork() async {
       successcode: 200,
     ),
   );
+  String baseUrl = await EnvConfig().obtainBaseUrl();
+  HttpOptions.instance.setBaseUrl(baseUrl);
 }

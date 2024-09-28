@@ -1,11 +1,3 @@
-/*
- * @Descripttion: 
- * @version: 
- * @Author: TT
- * @Date: 2022-11-08 10:28:04
- * @LastEditors: TT
- * @LastEditTime: 2022-11-08 15:58:39
- */
 
 class NetException {
   final String? _errmsg;

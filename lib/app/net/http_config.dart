@@ -1,19 +1,3 @@
-/*
- * @Descripttion: 
- * @version: 
- * @Author: TT
- * @Date: 2022-11-08 10:08:29
- * @LastEditors: TT
- * @LastEditTime: 2023-10-09 14:11:27
- */
-/*
- * @Descripttion: 
- * @version: 
- * @Author: TT
- * @Date: 2022-11-02 16:17:29
- * @LastEditors: TT
- * @LastEditTime: 2022-11-02 16:18:35
- */
 
 import 'package:dio/dio.dart';
 
@@ -23,24 +7,125 @@ class HttpConfig {
   final String? proxy;
   final String? cookiesPath;
   final List<Interceptor>? interceptors;
-  final int connectTimeout;
-  final int sendTimeout;
-  final int receiveTimeout;
-  final bool isNeedLog;
+  final Duration? connectTimeout;
+  final Duration? sendTimeout;
+  final Duration? receiveTimeout;
+  final bool? isNeedLog;
   final Map<String, dynamic>? headers;
+  HttpClientAdapter? httpClientAdapter;
 
   /// 网络缓存 状态值
-  final int caCheStatusCode;
-  HttpConfig({
-    this.baseUrl,
-    this.proxy,
-    this.headers,
-    this.cookiesPath,
-    this.interceptors,
-    this.isNeedLog = true,
-    this.caCheStatusCode = 304,
-    this.connectTimeout = 30,
-    this.sendTimeout = 30,
-    this.receiveTimeout = 30,
-  });
+  final int cacheStatusCode;
+
+  HttpConfig._internal(
+      {this.baseUrl,
+      this.proxy,
+      this.headers,
+      this.cookiesPath,
+      this.interceptors,
+      this.isNeedLog = true,
+      this.cacheStatusCode = 304,
+      this.connectTimeout,
+      this.sendTimeout,
+      this.receiveTimeout,
+      this.httpClientAdapter});
+
+  HttpConfig.build(HttpConfigBuilder build)
+      : this._internal(
+            baseUrl: build.baseUrl,
+            proxy: build.proxy,
+            httpClientAdapter: build.httpClientAdapter,
+            interceptors: build.interceptors,
+            connectTimeout: build.connectTimeout,
+            sendTimeout: build.sendTimeout,
+            receiveTimeout: build.receiveTimeout,
+            headers: build.headers,
+            isNeedLog: build.isPrintLog);
+}
+
+class HttpConfigBuilder {
+  String? _baseUrl;
+  String? _proxy;
+  HttpClientAdapter? _httpClientAdapter;
+  List<Interceptor>? _interceptors;
+  Duration? _connectTimeout;
+  Duration? _sendTimeout;
+  Duration? _receiveTimeout;
+  Map<String, dynamic>? _headers;
+  bool? _isNeedLog;
+
+  HttpConfigBuilder setBaseUrl(String baseUrl) {
+    _baseUrl = baseUrl;
+    return this;
+  }
+
+  HttpConfigBuilder setConnectTimeout(Duration connectTimeout) {
+    _connectTimeout = connectTimeout;
+    return this;
+  }
+
+  HttpConfigBuilder setHttpClientAdapter(HttpClientAdapter httpClientAdapter) {
+    _httpClientAdapter = httpClientAdapter;
+    return this;
+  }
+
+  HttpConfigBuilder addHeaders(Map<String, dynamic> headers) {
+    _headers = headers;
+    return this;
+  }
+
+  HttpConfigBuilder addInterceptor(Interceptor interceptors) {
+    _interceptors ??= [];
+    _interceptors!.add(interceptors);
+    return this;
+  }
+
+  HttpConfigBuilder addAllInterceptors(List<Interceptor> interceptors) {
+    _interceptors ??= [];
+    _interceptors!.addAll(interceptors);
+    return this;
+  }
+
+  HttpConfigBuilder setProxy(String proxy) {
+    _proxy = proxy;
+    return this;
+  }
+
+  HttpConfigBuilder setReceiveTimeout(Duration receiveTimeout) {
+    _receiveTimeout = receiveTimeout;
+    return this;
+  }
+
+  HttpConfigBuilder setSendTimeout(Duration sendTimeout) {
+    _sendTimeout = sendTimeout;
+    return this;
+  }
+
+  HttpConfigBuilder isNeedLog(bool isNeedLog) {
+    _isNeedLog = isNeedLog;
+    return this;
+  }
+
+  HttpConfig create() {
+    return HttpConfig.build(this);
+  }
+
+  String? get baseUrl => _baseUrl;
+
+  String? get proxy => _proxy;
+
+  bool? get isPrintLog => _isNeedLog;
+
+  HttpClientAdapter? get httpClientAdapter => _httpClientAdapter;
+
+  List<Interceptor>? get interceptors => _interceptors;
+
+  Duration? get connectTimeout => _connectTimeout;
+
+  Duration? get sendTimeout => _sendTimeout;
+
+  Duration? get receiveTimeout => _receiveTimeout;
+
+  Map<String, dynamic>? get headers => _headers;
+
 }
