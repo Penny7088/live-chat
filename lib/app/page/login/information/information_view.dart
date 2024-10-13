@@ -7,6 +7,8 @@ import 'package:live_chat/app/widget/user_avatar_view.dart';
 import 'package:live_chat/base/config/normal_colors.dart';
 import 'package:live_chat/base/utils/extensions/context_extensions.dart';
 import 'package:live_chat/base/utils/extensions/widget_extensions.dart';
+import 'package:live_chat/base/utils/log_util.dart';
+import 'package:live_chat/main.dart';
 
 import '../../../../base/utils/decorations.dart';
 import '../../../../base/utils/text_styles.dart';
@@ -55,7 +57,7 @@ class InformationPage extends CommonBaseView<InformationController> {
 
   @override
   InformationController createController() {
-    return Get.put(InformationController());
+    return Get.put(InformationController(),tag: controllerTag());
   }
 
   Widget createInformationView(double statusBarHeight) {
@@ -221,7 +223,7 @@ class InformationPage extends CommonBaseView<InformationController> {
             controller: state.textEditingController,
             textFieldType: TextFieldType.NAME,
             decoration: defaultInputDecoration(),
-            onChanged: (value){
+            onChanged: (value) {
               controller.setNickName(value);
             },
           )),
@@ -262,32 +264,44 @@ class InformationPage extends CommonBaseView<InformationController> {
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                  Container(
-                    height: 40.w,
-                    alignment: Alignment.center,
-                    decoration:
-                        BoxDecoration(
-                            color: state.ifFemale ?? false ? col89F1F5 : colF7F7F7,
+                      Container(
+                        height: 40.w,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            color:
+                                state.ifFemale ?? false ? col89F1F5 : colF7F7F7,
                             borderRadius: BorderRadius.circular(30.0)),
-                    child: Text(LanguageKey.loginInfoFeMale.tr,
-                        style: boldTextStyle(color: (state.ifFemale ?? false)?col333333:col7f7f7f)),
-                  ).onTap((){
-                    controller.selectSex(true);
-                  },borderRadius:  BorderRadius.circular(30.0),).expand(),
-                  10.horizontalSpace,
-                  Container(
-                    height: 40.w,
-                    alignment: Alignment.center,
-                    decoration:
-                    BoxDecoration(
-                        color: (state.ifMale ?? false) ? col89F1F5 : colF7F7F7,
-                        borderRadius: BorderRadius.circular(30.0)),
-                    child: Text(LanguageKey.loginInfoMale.tr,
-                        style: boldTextStyle(color:  (state.ifMale ?? false)?col333333:col7f7f7f)),
-                  ).onTap((){
-                    controller.selectSex(false);
-                  },borderRadius:  BorderRadius.circular(30.0),).expand()
-                ]));
+                        child: Text(LanguageKey.loginInfoFeMale.tr,
+                            style: boldTextStyle(
+                                color: (state.ifFemale ?? false)
+                                    ? col333333
+                                    : col7f7f7f)),
+                      ).onTap(
+                        () {
+                          controller.selectSex(true);
+                        },
+                        borderRadius: BorderRadius.circular(30.0),
+                      ).expand(),
+                      10.horizontalSpace,
+                      Container(
+                        height: 40.w,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            color:
+                                (state.ifMale ?? false) ? col89F1F5 : colF7F7F7,
+                            borderRadius: BorderRadius.circular(30.0)),
+                        child: Text(LanguageKey.loginInfoMale.tr,
+                            style: boldTextStyle(
+                                color: (state.ifMale ?? false)
+                                    ? col333333
+                                    : col7f7f7f)),
+                      ).onTap(
+                        () {
+                          controller.selectSex(false);
+                        },
+                        borderRadius: BorderRadius.circular(30.0),
+                      ).expand()
+                    ]));
           }),
       Container(
           margin: EdgeInsets.symmetric(horizontal: 30.w).copyWith(top: 15.w),
@@ -302,10 +316,65 @@ class InformationPage extends CommonBaseView<InformationController> {
 
   ///母语/学习语言
   Widget _languagePage() {
+    return GetBuilder(
+      init: controller,
+      id: 'languagePage',
+      builder: (controller) {
+        return Container(
+            padding: EdgeInsets.symmetric(horizontal: 18.w).copyWith(top: 50.w),
+            width: 1.sw,
+            child: Column(children: [
+              GestureDetector(
+                  child: columnText(
+                      LanguageKey.iComeFrom.tr,
+                      (state.country?.isEmpty == true || state.country == null)
+                          ? LanguageKey.choose.tr
+                          : state.country ?? '')),
+              20.verticalSpaceFromWidth,
+              HorizontalLine(
+                  lineColor: cole3e3e3.withAlpha(100),
+                  width: 1.sw * 0.8,
+                  height: 1.w,
+                  strokeWidth: 2),
+              20.verticalSpaceFromWidth,
+              GestureDetector(
+                  child: columnText(
+                      LanguageKey.nativeLan.tr,
+                      (state.nativeLan?.isEmpty == true ||
+                              state.nativeLan == null)
+                          ? LanguageKey.choose.tr
+                          : state.nativeLan ?? "")),
+              20.verticalSpaceFromWidth,
+              HorizontalLine(
+                  lineColor: cole3e3e3.withAlpha(100),
+                  width: 1.sw * 0.8,
+                  height: 1.w,
+                  strokeWidth: 2),
+              20.verticalSpaceFromWidth,
+              GestureDetector(
+                  child: columnText(
+                      LanguageKey.learnLan.tr,
+                      (state.learnLan?.isEmpty == true ||
+                              state.learnLan == null)
+                          ? LanguageKey.choose.tr
+                          : state.learnLan ?? '')),
+              20.verticalSpaceFromWidth,
+              HorizontalLine(
+                  lineColor: cole3e3e3.withAlpha(100),
+                  width: 1.sw * 0.8,
+                  height: 1.w,
+                  strokeWidth: 2),
+            ]));
+      },
+    );
+  }
 
-
-
-
-    return Container();
+  Widget columnText(String title, String subTitle) {
+    logD(subTitle);
+    return Column(children: [
+      Text(title, style: primaryTextStyle(color: col333333, size: 18)),
+      10.verticalSpaceFromWidth,
+      Text(subTitle, style: secondaryTextStyle(color: col979797, size: 14))
+    ]);
   }
 }

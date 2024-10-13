@@ -56,7 +56,7 @@ class EnvConfig {
   }
 
   Future<String> obtainBaseUrl() async {
-    bool isDebug = await debugMode;
+    bool isDebug = debugMode;
     if (isDebug) {
       return devUrl;
     } else {
@@ -65,7 +65,7 @@ class EnvConfig {
   }
 
   Future<String> obtainWSBaseUrl() async {
-    bool isDebug = await debugMode;
+    bool isDebug = debugMode;
     if (isDebug) {
       return devWSUrl;
     } else {

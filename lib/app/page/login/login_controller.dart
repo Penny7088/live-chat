@@ -29,6 +29,10 @@ class LoginController extends CommonController<LoginState> {
     try {
       await _authService.login(provider, (onUserData) {
         logD(onUserData.toString());
+        if(onUserData.isNotEmpty){
+          /// todo 请求服务端接口
+          currentToPage(name: LoginRouter.LOGIN_INFORMATION,arguments: {'user':onUserData});
+        }
       });
     } on FirebaseAuthException catch(e) {
       if(e.code == 'INVALID_LOGIN_CREDENTIALS'){

@@ -15,6 +15,9 @@ class LanguageKey {
   static const String loginInfoIComeFrom = 'loginInfoIComeFrom';
   static const String loginInfoNativeLan= 'loginInfoNativeLan';
   static const String loginInfoLearnLan= 'loginInfoLearnLan';
+  static const String iComeFrom= 'iComeFrom';
+  static const String nativeLan= 'nativeLan';
+  static const String learnLan= 'learnLan';
   static const String choose= 'choose';
   static const String startStudy= 'startStudy';
   static const String noteLan= 'noteLan';

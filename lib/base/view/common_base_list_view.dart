@@ -19,10 +19,6 @@ import 'mixin/refresh_mixin.dart';
 abstract class CommonBaseListView<C extends CommonListController<BaseState>> extends CommonBaseView<C> with AbstractRefreshWidget {
   const CommonBaseListView({super.key});
 
-  @override
-  String controllerTag() {
-    throw UnimplementedError();
-  }
 
   @override
   Widget createChildBody({required BuildContext context, BoxConstraints? constraints}) {

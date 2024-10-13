@@ -15,6 +15,9 @@ class InformationState extends BaseState{
   String? nickName;
   bool? ifFemale;
   bool? ifMale;
+  String? country;
+  String? nativeLan;
+  String? learnLan;
 
   late TextEditingController textEditingController  = TextEditingController();
 
@@ -23,7 +26,7 @@ class InformationState extends BaseState{
 
   @override
   void init() {
-    logD(Get.arguments['user']);
+    logD(Get.arguments['user'].toString());
     pageController = PageController();
   }
 
