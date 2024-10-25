@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import '../../../../../base/view/common_base_list_view.dart';
 import 'country_page_controller.dart';
 
-class CountryPagePage extends CommonBaseListView<CountryPageController> {
-  CountryPagePage({Key? key}) : super(key: key);
+class CountryPage extends CommonBaseListView<CountryPageController> {
+  CountryPage({Key? key}) : super(key: key);
 
   @override
   CountryPageController createController() {
