@@ -27,9 +27,9 @@ configInit() async {
 initThirdParty() async {
   await fromPlatform();
   await storageKV.init();
-  await EnvConfig().init();
-  await initNetWork();
-  await DioCacheTool.initCacheStore();
+  // await EnvConfig().init();
+  // await initNetWork();
+  // await DioCacheTool.initCacheStore();
   Get.lazyPut<ThemeService>(() => ThemeService(), fenix: true);
 }
 
@@ -45,7 +45,7 @@ initNetWork() async {
       code: "code",
       msg: "msg",
       data: "data",
-      successcode: 200,
+      successcode: 0,
     ),
   );
   String baseUrl = await EnvConfig().obtainBaseUrl();

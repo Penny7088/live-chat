@@ -14,16 +14,17 @@ class ApiResponse {
   late bool ok;
   dynamic data;
   String? msg;
+  int? code;
   NetException? error;
   Map<String, dynamic>? response;
 
   ApiResponse.success({
     required dynamic netData,
     Map<String, dynamic>? response,
-    String? reqmsg,
+    String? reqMsg,
   }) {
     data = netData;
-    msg = reqmsg;
+    msg = reqMsg;
     ok = true;
     if (response != null) {
       this.response = response;

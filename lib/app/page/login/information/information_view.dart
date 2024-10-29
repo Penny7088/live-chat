@@ -98,6 +98,7 @@ class InformationPage extends CommonBaseView<InformationController> {
           return AppButton(
             onTap: () {
               controller.clickStep();
+              return true;
             },
             margin: EdgeInsets.only(bottom: 50.w),
             shapeBorder: RoundedRectangleBorder(
@@ -182,6 +183,7 @@ class InformationPage extends CommonBaseView<InformationController> {
           child: AppButton(
             onTap: () {
               controller.preStep();
+              return true;
             },
             shapeBorder: RoundedRectangleBorder(
               borderRadius: radius(16),

@@ -2,6 +2,7 @@
 class Assets {
   Assets._();
 
+  static const String assets = 'assets/.env';
   static const String bgBgDarkDefault = 'assets/images/bg/bg_dark_default.webp';
   static const String bgBgDarkFemale = 'assets/images/bg/bg_dark_female.webp';
   static const String bgBgDarkMale = 'assets/images/bg/bg_dark_male.webp';
@@ -11,6 +12,8 @@ class Assets {
   static const String fontsDreamHaSans = 'assets/fonts/Dream-Ha-Sans.ttf';
   static const String fontsFonteditor = 'assets/fonts/fonteditor.ttf';
   static const String imagesNoDataStatus = 'assets/images/no_data_status.webp';
+  static const String jsonCountry = 'assets/json/country.json';
+  static const String jsonLanguage = 'assets/json/language.json';
   static const String loadingListLoading = 'assets/loading/list_loading.json';
   static const String loadingSplashLoading = 'assets/loading/splash_loading.json';
   static const String loginAppIcon = 'assets/images/login/app_icon.webp';

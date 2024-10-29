@@ -88,7 +88,10 @@ class LoginPage extends CommonBaseView<LoginController> {
       // ),
       10.verticalSpaceFromWidth,
       AppButton(
-        onTap: (){controller.login(LoginProvider.google);},
+        onTap: () {
+           controller.login(LoginProvider.google);
+           return true;
+          },
         shapeBorder: RoundedRectangleBorder(
           borderRadius: radius(10),
         ),

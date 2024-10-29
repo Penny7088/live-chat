@@ -27,13 +27,15 @@ class LoginController extends CommonController<LoginState> {
   login(LoginProvider provider) async {
     /// 需要购买域名
     try {
-      await _authService.login(provider, (onUserData) {
-        logD(onUserData.toString());
-        if(onUserData.isNotEmpty){
-          /// todo 请求服务端接口
-          currentToPage(name: LoginRouter.LOGIN_INFORMATION,arguments: {'user':onUserData});
-        }
-      });
+      // await _authService.login(provider, (onUserData) {
+      //   logD(onUserData.toString());
+      //   if(onUserData.isNotEmpty){
+      //     /// todo 请求服务端接口
+      //     currentToPage(name: LoginRouter.LOGIN_INFORMATION,arguments: {'user':onUserData});
+      //   }
+      // });
+      await Future.delayed(Duration(seconds: 1));
+      currentToPage(name: LoginRouter.LOGIN_INFORMATION);
     } on FirebaseAuthException catch(e) {
       if(e.code == 'INVALID_LOGIN_CREDENTIALS'){
         logD('INVALID_LOGIN_CREDENTIALS');

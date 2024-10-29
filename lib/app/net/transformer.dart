@@ -67,7 +67,7 @@ class NormalDefaultTransformer extends AbsTransformer {
       return ApiResponse.success(
         netData: json[_dataKey],
         response: json,
-        reqmsg: json[_msgKey],
+        reqMsg: json[_msgKey],
       );
     }
     return ApiResponse.fail(

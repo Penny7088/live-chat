@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:live_chat/base/config/normal_colors.dart';
 import 'package:live_chat/base/utils/extensions/bool_extensions.dart';
 
 import '../../base/utils/text_styles.dart';
@@ -31,7 +33,7 @@ enum AppButtonEnum {
 }
 
 class AppButton extends StatefulWidget {
-  final Function? onTap;
+  final bool Function()? onTap;
   final String? text;
   final double? width;
   final Color? color;
@@ -55,6 +57,7 @@ class AppButton extends StatefulWidget {
   final Size? buttonSize;
   final String? iconUrl;
   final double? space;
+  final bool? enabledLoading;
   final AppButtonEnum appButtonEnum;
 
   AppButton({
@@ -70,6 +73,7 @@ class AppButton extends StatefulWidget {
     this.child,
     this.elevation,
     this.enabled = true,
+    this.enabledLoading = false,
     this.height,
     this.disabledColor,
     this.shadowColor,
@@ -94,9 +98,11 @@ class _AppButtonState extends State<AppButton>
     with SingleTickerProviderStateMixin {
   double _scale = 1.0;
   AnimationController? _controller;
+  bool? loading;
 
   @override
   void initState() {
+    loading = false;
     if (widget.enableScaleAnimation
         .validate(value: enableAppButtonScaleAnimationGlobal)) {
       _controller = AnimationController(
@@ -147,13 +153,26 @@ class _AppButtonState extends State<AppButton>
   Widget buildButton() {
     return Padding(
       padding: widget.margin ?? EdgeInsets.zero,
-      child:
-      ElevatedButton(
-        onPressed: widget.enabled
-            ? widget.onTap != null
-                ? widget.onTap as void Function()?
-                : null
-            : null,
+      child: ElevatedButton(
+        onPressed: () async {
+          if (!widget.enabled) {
+            return;
+          }
+          if (widget.onTap == null) {
+            return;
+          }
+          if (widget.enabledLoading == true) {
+            setState(() {
+              loading = true;
+            });
+          }
+          bool complete = await widget.onTap!.call();
+          if (complete) {
+            setState(() {
+              loading = false;
+            });
+          }
+        },
         style: ElevatedButton.styleFrom(
           minimumSize: widget.buttonSize??Size(50.w, 50.w),
           backgroundColor: widget.color ?? appButtonBackgroundColorGlobal,
@@ -171,6 +190,14 @@ class _AppButtonState extends State<AppButton>
       ),
     );
   }
+
+  Widget get loadingWidget {
+    return CupertinoActivityIndicator(
+      color: col000000,
+      radius: 8.r,
+    );
+  }
+
 
   Widget appButtonChild() {
     Widget body;
@@ -232,6 +259,10 @@ class _AppButtonState extends State<AppButton>
           ],
         );
         break;
+    }
+
+    if(widget.enabledLoading == true && loading == true){
+      return loadingWidget;
     }
 
     return body;
