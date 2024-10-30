@@ -25,5 +25,10 @@ Map<String, String> hans = {
   LanguageKey.learnLan:'学习语言',
   LanguageKey.iComeFrom:'我来自',
   LanguageKey.countryChoose:'选择国家',
-  LanguageKey.languageChoose:'选择语言',
+  LanguageKey.languageChoose:'学习语言',
+  LanguageKey.started:'入门',
+  LanguageKey.beginner:'初级',
+  LanguageKey.intermediate:'中级',
+  LanguageKey.advanced:'高级',
+  LanguageKey.master:'精通',
 };

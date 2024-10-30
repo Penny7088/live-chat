@@ -8,11 +8,11 @@ class LanguageModel {
     if (json['languagess'] != null) {
       languagess = [];
       json['languagess'].forEach((v) {
-        languagess?.add(Languagess.fromJson(v));
+        languagess?.add(Languages.fromJson(v));
       });
     }
   }
-  List<Languagess>? languagess;
+  List<Languages>? languagess;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -30,14 +30,14 @@ class LanguageModel {
 /// nativeName : "العربية"
 /// isoCode : "ar"
 
-class Languagess {
-  Languagess({
+class Languages {
+  Languages({
       this.id, 
       this.name, 
       this.nativeName, 
       this.isoCode,});
 
-  Languagess.fromJson(dynamic json) {
+  Languages.fromJson(dynamic json) {
     id = json['id'];
     name = json['name'];
     nativeName = json['nativeName'];

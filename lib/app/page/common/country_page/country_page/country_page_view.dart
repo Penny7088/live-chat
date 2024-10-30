@@ -53,7 +53,6 @@ class CountryPage extends CommonBaseView<CountryPageController> {
                       return _buildSliver(index: i, model: e);
                     })),
               ).paddingSymmetric(vertical: 20.h),
-              // _buildCursor(),
               Positioned(
                 top: 0,
                 bottom: 0,
