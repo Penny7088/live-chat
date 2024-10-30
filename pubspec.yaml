@@ -68,7 +68,7 @@ dependencies:
   sign_in_with_apple: ^6.1.2
   flutter_facebook_auth: ^7.1.0
   logger: ^2.4.0
-  country_picker: ^2.0.26
+  scrollview_observer: ^1.22.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -80,6 +80,8 @@ flutter:
     - assets/.env
     - assets/json/
     - assets/images/bg/
+    - assets/images/svg/
+    - assets/images/svg/flags/
     - assets/images/login/
     - assets/images/svg/
     - assets/loading/

@@ -24,4 +24,6 @@ Map<String, String> hans = {
   LanguageKey.nativeLan:'母语',
   LanguageKey.learnLan:'学习语言',
   LanguageKey.iComeFrom:'我来自',
+  LanguageKey.countryChoose:'选择国家',
+  LanguageKey.languageChoose:'选择语言',
 };

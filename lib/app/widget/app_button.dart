@@ -33,7 +33,7 @@ enum AppButtonEnum {
 }
 
 class AppButton extends StatefulWidget {
-  final bool Function()? onTap;
+  final Function()? onTap;
   final String? text;
   final double? width;
   final Color? color;
@@ -91,10 +91,10 @@ class AppButton extends StatefulWidget {
   });
 
   @override
-  _AppButtonState createState() => _AppButtonState();
+  AppButtonState createState() => AppButtonState();
 }
 
-class _AppButtonState extends State<AppButton>
+class AppButtonState extends State<AppButton>
     with SingleTickerProviderStateMixin {
   double _scale = 1.0;
   AnimationController? _controller;
@@ -166,12 +166,13 @@ class _AppButtonState extends State<AppButton>
               loading = true;
             });
           }
-          bool complete = await widget.onTap!.call();
-          if (complete) {
-            setState(() {
-              loading = false;
-            });
+          if(widget.enabledLoading == true){
+            await Future.delayed(const Duration(seconds: 2));
           }
+          widget.onTap!.call();
+          setState(() {
+            loading = false;
+          });
         },
         style: ElevatedButton.styleFrom(
           minimumSize: widget.buttonSize??Size(50.w, 50.w),

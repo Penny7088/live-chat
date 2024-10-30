@@ -8,11 +8,11 @@ class CountryEntity {
     if (json['countriess'] != null) {
       countriess = [];
       json['countriess'].forEach((v) {
-        countriess?.add(Countriess.fromJson(v));
+        countriess?.add(Countries.fromJson(v));
       });
     }
   }
-  List<Countriess>? countriess;
+  List<Countries>? countriess;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -29,26 +29,34 @@ class CountryEntity {
 /// name : "Australia"
 /// isoCode : "AU"
 
-class Countriess {
-  Countriess({
+class Countries {
+  Countries({
       this.id, 
       this.name, 
-      this.isoCode,});
+      this.isoCode,
+      this.flagIcon,
+      });
 
-  Countriess.fromJson(dynamic json) {
+  Countries.fromJson(dynamic json) {
     id = json['id'];
     name = json['name'];
     isoCode = json['isoCode'];
   }
   num? id;
   String? name;
+  String? flagIcon;
   String? isoCode;
+
+  bool? isChoose;
+
+
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['id'] = id;
     map['name'] = name;
     map['isoCode'] = isoCode;
+    map['flagIcon'] = flagIcon;
     return map;
   }
 

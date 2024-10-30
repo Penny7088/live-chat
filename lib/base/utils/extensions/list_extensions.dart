@@ -61,12 +61,13 @@ extension IterableExtensions<T> on Iterable<T>? {
 
 
 extension ListExtensions<T> on List<T>? {
-  List<M> transformMapToList<int,M>(Function(int index, T value) convert ) {
+  List<M> mapIndexed<M>(Function(int index, T value) convert ) {
     if(this == null){
       return <M>[];
     }
     Iterable<M> iterable = this!.asMap().map(
-            (index, value) => MapEntry<int, M>(index as int,convert(index as int,value))).values;
+            (index, value) => MapEntry<int, M>(index,convert(index,value))).values;
     return iterable.toList();
   }
+
 }

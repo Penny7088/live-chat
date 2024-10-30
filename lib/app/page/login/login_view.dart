@@ -64,7 +64,6 @@ class LoginPage extends CommonBaseView<LoginController> {
   }
 
   Widget loginButton(){
-
    return Column(
      mainAxisSize: MainAxisSize.min,
      crossAxisAlignment: CrossAxisAlignment.center,
@@ -87,26 +86,34 @@ class LoginPage extends CommonBaseView<LoginController> {
       //   textStyle: boldTextStyle(color: colffffff),
       // ),
       10.verticalSpaceFromWidth,
-      AppButton(
-        onTap: () {
-           controller.login(LoginProvider.google);
-           return true;
+      GetBuilder(
+          init: controller,
+          id: 'login_google',
+          builder: (controller){
+        return AppButton(
+          onTap: ()  async {
+            var isLogin = await controller.login(LoginProvider.google);
+            if(isLogin){
+              controller.jumpToDiffPage();
+            }
           },
-        shapeBorder: RoundedRectangleBorder(
-          borderRadius: radius(10),
-        ),
-        elevation: 8.0,
-        shadowColor: Colors.black.withOpacity(0.5),
-        buttonSize: Size(354.w, 44.w),
-        space: 20.w,
-        appButtonEnum: AppButtonEnum.leftIcon,
-        text: LanguageKey.loginButtonGoogle.tr,
-        iconUrl: Assets.svgGoogleLogo,
-        color: colffffff,
-        disabledColor: colffffff,
-        iconSize: Size(22.w, 22.w),
-        textStyle: boldTextStyle(color: col000000.withAlpha(54)),
-      ),
+          shapeBorder: RoundedRectangleBorder(
+            borderRadius: radius(10),
+          ),
+          enabledLoading: true,
+          elevation: 8.0,
+          shadowColor: Colors.black.withOpacity(0.5),
+          buttonSize: Size(354.w, 44.w),
+          space: 20.w,
+          appButtonEnum: AppButtonEnum.leftIcon,
+          text: LanguageKey.loginButtonGoogle.tr,
+          iconUrl: Assets.svgGoogleLogo,
+          color: colffffff,
+          disabledColor: colffffff,
+          iconSize: Size(22.w, 22.w),
+          textStyle: boldTextStyle(color: col000000.withAlpha(54)),
+        );
+      }),
       10.verticalSpaceFromWidth,
       // AppButton(
       //   shapeBorder: RoundedRectangleBorder(

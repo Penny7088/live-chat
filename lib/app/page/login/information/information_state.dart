@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:live_chat/base/state/page_state.dart';
 import 'package:live_chat/base/utils/log_util.dart';
 
+import '../../../model/country_entity.dart';
+
 class InformationState extends BaseState{
 
   var themeValue = false.obs;
@@ -15,7 +17,7 @@ class InformationState extends BaseState{
   String? nickName;
   bool? ifFemale;
   bool? ifMale;
-  String? country;
+  Countries? country;
   String? nativeLan;
   String? learnLan;
 
@@ -26,7 +28,7 @@ class InformationState extends BaseState{
 
   @override
   void init() {
-    logD(Get.arguments['user'].toString());
+    logD(Get.arguments?.toString()??'');
     pageController = PageController();
   }
 

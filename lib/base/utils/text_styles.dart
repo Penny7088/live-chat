@@ -114,22 +114,3 @@ TextStyle secondaryTextStyle({
   );
 }
 
-// Create Rich Text
-@Deprecated('Use RichTextWidget instead')
-RichText createRichText({
-  required List<TextSpan> list,
-  TextOverflow overflow = TextOverflow.clip,
-  int? maxLines,
-  TextAlign textAlign = TextAlign.left,
-  TextDirection? textDirection,
-  StrutStyle? strutStyle,
-}) {
-  return RichText(
-    text: TextSpan(children: list),
-    overflow: overflow,
-    maxLines: maxLines,
-    textAlign: textAlign,
-    textDirection: textDirection,
-    strutStyle: strutStyle,
-  );
-}

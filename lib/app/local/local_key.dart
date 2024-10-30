@@ -21,4 +21,6 @@ class LanguageKey {
   static const String choose= 'choose';
   static const String startStudy= 'startStudy';
   static const String noteLan= 'noteLan';
+  static const String countryChoose= 'countryChoose';
+  static const String languageChoose= 'languageChoose';
 }

@@ -168,6 +168,7 @@ class AppBarGenerator {
               fontSize: fontSize ??
                   themeData.appBarTheme.titleTextStyle?.fontSize ??
                   18,
+              fontWeight: FontWeight.w600,
             ));
     return AppBar(
       backgroundColor: backgroundColor,

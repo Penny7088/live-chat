@@ -12,6 +12,7 @@ import 'package:live_chat/main.dart';
 
 import '../../../../base/utils/decorations.dart';
 import '../../../../base/utils/text_styles.dart';
+import '../../../../base/utils/util.dart';
 import '../../../../base/view/common_base_view.dart';
 import '../../../../generated/assets.dart';
 import '../../../local/local_key.dart';
@@ -176,6 +177,7 @@ class InformationPage extends CommonBaseView<InformationController> {
 
   Widget appBar() {
     return GetBuilder(
+      init: controller,
       id: 'back',
       builder: (InformationController controller) {
         return Container(
@@ -327,17 +329,17 @@ class InformationPage extends CommonBaseView<InformationController> {
             width: 1.sw,
             child: Column(children: [
               GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                  onTap: (){
+                    controller.jumpToCountryPage();
+                  },
                   child: columnText(
                       LanguageKey.iComeFrom.tr,
-                      (state.country?.isEmpty == true || state.country == null)
+                      (state.country == null)
                           ? LanguageKey.choose.tr
-                          : state.country ?? '')),
+                          : state.country?.name ?? '',(state.country != null))),
               20.verticalSpaceFromWidth,
-              HorizontalLine(
-                  lineColor: cole3e3e3.withAlpha(100),
-                  width: 1.sw * 0.8,
-                  height: 1.w,
-                  strokeWidth: 2),
+              dividingLine(),
               20.verticalSpaceFromWidth,
               GestureDetector(
                   child: columnText(
@@ -345,13 +347,9 @@ class InformationPage extends CommonBaseView<InformationController> {
                       (state.nativeLan?.isEmpty == true ||
                               state.nativeLan == null)
                           ? LanguageKey.choose.tr
-                          : state.nativeLan ?? "")),
+                          : state.nativeLan ?? "",false)),
               20.verticalSpaceFromWidth,
-              HorizontalLine(
-                  lineColor: cole3e3e3.withAlpha(100),
-                  width: 1.sw * 0.8,
-                  height: 1.w,
-                  strokeWidth: 2),
+              dividingLine(),
               20.verticalSpaceFromWidth,
               GestureDetector(
                   child: columnText(
@@ -359,24 +357,23 @@ class InformationPage extends CommonBaseView<InformationController> {
                       (state.learnLan?.isEmpty == true ||
                               state.learnLan == null)
                           ? LanguageKey.choose.tr
-                          : state.learnLan ?? '')),
+                          : state.learnLan ?? '',false)),
               20.verticalSpaceFromWidth,
-              HorizontalLine(
-                  lineColor: cole3e3e3.withAlpha(100),
-                  width: 1.sw * 0.8,
-                  height: 1.w,
-                  strokeWidth: 2),
+              dividingLine(),
             ]));
       },
     );
   }
 
-  Widget columnText(String title, String subTitle) {
+  Widget columnText(String title, String subTitle,bool changeTextStyle) {
     logD(subTitle);
     return Column(children: [
       Text(title, style: primaryTextStyle(color: col333333, size: 18)),
       10.verticalSpaceFromWidth,
-      Text(subTitle, style: secondaryTextStyle(color: col979797, size: 14))
+      Text(subTitle,
+          style: changeTextStyle
+              ? boldTextStyle(color: col000000, size: 14)
+              : secondaryTextStyle(color: col979797, size: 14))
     ]);
   }
 }

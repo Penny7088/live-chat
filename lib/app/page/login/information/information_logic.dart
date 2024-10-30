@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:live_chat/base/controller/common_controller.dart';
 import 'package:live_chat/base/utils/extensions/date_time_extensions.dart';
+import 'package:live_chat/base/utils/getx_util_tool.dart';
 import 'package:live_chat/base/utils/log_util.dart';
 
+import '../../../model/country_entity.dart';
+import '../login_router.dart';
 import 'information_state.dart';
 
 class InformationController extends CommonController<InformationState> {
@@ -85,5 +88,14 @@ class InformationController extends CommonController<InformationState> {
   void setNickName(String value) {
     state.nickName = value;
     logD('nick name = $value');
+  }
+
+  void jumpToCountryPage() {
+    currentToPage(name: LoginRouter.LOGIN_COUNTRY)?.then((value){
+      if(value != null){
+        state.country = value['countries'];
+        update(['languagePage']);
+      }
+    });
   }
 }

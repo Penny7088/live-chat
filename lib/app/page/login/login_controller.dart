@@ -24,7 +24,7 @@ class LoginController extends CommonController<LoginState> {
     state.isShowAppBar = false;
   }
 
-  login(LoginProvider provider) async {
+  Future<bool> login(LoginProvider provider) async {
     /// 需要购买域名
     try {
       // await _authService.login(provider, (onUserData) {
@@ -34,18 +34,23 @@ class LoginController extends CommonController<LoginState> {
       //     currentToPage(name: LoginRouter.LOGIN_INFORMATION,arguments: {'user':onUserData});
       //   }
       // });
-      await Future.delayed(Duration(seconds: 1));
-      currentToPage(name: LoginRouter.LOGIN_INFORMATION);
+      await Future.delayed(Duration(seconds: 2));
+      return true;
     } on FirebaseAuthException catch(e) {
       if(e.code == 'INVALID_LOGIN_CREDENTIALS'){
         logD('INVALID_LOGIN_CREDENTIALS');
       }else{
         logD(e.code);
       }
+      return false;
     }
 
     // currentToPage(name: LoginRouter.LOGIN_INFORMATION,arguments: {'user':'information'});
 
+  }
+
+  void jumpToDiffPage() {
+    currentToPage(name: LoginRouter.LOGIN_INFORMATION);
   }
 
 
