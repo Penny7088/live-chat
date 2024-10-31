@@ -47,6 +47,7 @@ class Languages {
   String? name;
   String? nativeName;
   String? isoCode;
+  int? learnLevel = -1;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -57,4 +58,8 @@ class Languages {
     return map;
   }
 
+  @override
+  String toString() {
+    return 'Languages{id: $id, name: $name, nativeName: $nativeName, isoCode: $isoCode, learnLevel: $learnLevel}';
+  }
 }

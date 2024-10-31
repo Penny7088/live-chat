@@ -6,7 +6,7 @@ class LoginState extends BaseState{
 
   var themeValue = false.obs;
 
-
+  bool googleButtonLoading = false;
 
   @override
   void init() {

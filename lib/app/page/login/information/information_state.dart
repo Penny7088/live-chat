@@ -4,6 +4,7 @@ import 'package:live_chat/base/state/page_state.dart';
 import 'package:live_chat/base/utils/log_util.dart';
 
 import '../../../model/country_entity.dart';
+import '../../../model/language_model.dart';
 
 class InformationState extends BaseState{
 
@@ -18,8 +19,8 @@ class InformationState extends BaseState{
   bool? ifFemale;
   bool? ifMale;
   Countries? country;
-  String? nativeLan;
-  String? learnLan;
+  Languages? nativeLan;
+  Languages? learnLan;
 
   late TextEditingController textEditingController  = TextEditingController();
 

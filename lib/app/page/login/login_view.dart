@@ -100,7 +100,7 @@ class LoginPage extends CommonBaseView<LoginController> {
           shapeBorder: RoundedRectangleBorder(
             borderRadius: radius(10),
           ),
-          enabledLoading: true,
+          enabledLoading: state.googleButtonLoading,
           elevation: 8.0,
           shadowColor: Colors.black.withOpacity(0.5),
           buttonSize: Size(354.w, 44.w),

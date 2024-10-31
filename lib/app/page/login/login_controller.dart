@@ -25,6 +25,7 @@ class LoginController extends CommonController<LoginState> {
   }
 
   Future<bool> login(LoginProvider provider) async {
+    loadingBtStatus(true);
     /// 需要购买域名
     try {
       // await _authService.login(provider, (onUserData) {
@@ -35,6 +36,7 @@ class LoginController extends CommonController<LoginState> {
       //   }
       // });
       await Future.delayed(Duration(seconds: 2));
+      loadingBtStatus(false);
       return true;
     } on FirebaseAuthException catch(e) {
       if(e.code == 'INVALID_LOGIN_CREDENTIALS'){
@@ -42,11 +44,18 @@ class LoginController extends CommonController<LoginState> {
       }else{
         logD(e.code);
       }
+      state.googleButtonLoading = false;
+      loadingBtStatus(false);
       return false;
     }
 
     // currentToPage(name: LoginRouter.LOGIN_INFORMATION,arguments: {'user':'information'});
 
+  }
+
+  void loadingBtStatus(bool status) {
+     state.googleButtonLoading = status;
+    update(['login_google']);
   }
 
   void jumpToDiffPage() {

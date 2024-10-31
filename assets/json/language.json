@@ -1,98 +1,94 @@
 {
-  "code": 0,
-  "msg": "ok",
-  "data": {
-    "languagess": [
-      {
-        "id": 1,
-        "name": "Arabic",
-        "nativeName": "العربية",
-        "isoCode": "ar"
-      },
-      {
-        "id": 2,
-        "name": "German",
-        "nativeName": "Deutsch",
-        "isoCode": "de"
-      },
-      {
-        "id": 3,
-        "name": "English",
-        "nativeName": "English",
-        "isoCode": "en"
-      },
-      {
-        "id": 4,
-        "name": "Portuguese",
-        "nativeName": "Português",
-        "isoCode": "pt"
-      },
-      {
-        "id": 5,
-        "name": "French",
-        "nativeName": "Français",
-        "isoCode": "fr"
-      },
-      {
-        "id": 6,
-        "name": "Chinese Simplified",
-        "nativeName": "简体中文",
-        "isoCode": "zh-Hans"
-      },
-      {
-        "id": 7,
-        "name": "Chinese Traditional",
-        "nativeName": "繁體中文",
-        "isoCode": "zh-Hant"
-      },
-      {
-        "id": 8,
-        "name": "Italian",
-        "nativeName": "Italiano",
-        "isoCode": "it"
-      },
-      {
-        "id": 9,
-        "name": "Japanese",
-        "nativeName": "日本語",
-        "isoCode": "ja"
-      },
-      {
-        "id": 10,
-        "name": "Korean",
-        "nativeName": "한국어",
-        "isoCode": "ko"
-      },
-      {
-        "id": 11,
-        "name": "Spanish",
-        "nativeName": "Español",
-        "isoCode": "es"
-      },
-      {
-        "id": 12,
-        "name": "Russian",
-        "nativeName": "Русский",
-        "isoCode": "ru"
-      },
-      {
-        "id": 13,
-        "name": "Thai",
-        "nativeName": "ไทย",
-        "isoCode": "th"
-      },
-      {
-        "id": 14,
-        "name": "Vietnamese",
-        "nativeName": "Tiếng Việt",
-        "isoCode": "vi"
-      },
-      {
-        "id": 15,
-        "name": "Ukrainian",
-        "nativeName": "Українська",
-        "isoCode": "uk"
-      }
-    ]
-  }
+  "languagess": [
+    {
+      "id": 1,
+      "name": "Arabic",
+      "nativeName": "العربية",
+      "isoCode": "ar"
+    },
+    {
+      "id": 2,
+      "name": "German",
+      "nativeName": "Deutsch",
+      "isoCode": "de"
+    },
+    {
+      "id": 3,
+      "name": "English",
+      "nativeName": "English",
+      "isoCode": "en"
+    },
+    {
+      "id": 4,
+      "name": "Portuguese",
+      "nativeName": "Português",
+      "isoCode": "pt"
+    },
+    {
+      "id": 5,
+      "name": "French",
+      "nativeName": "Français",
+      "isoCode": "fr"
+    },
+    {
+      "id": 6,
+      "name": "Chinese Simplified",
+      "nativeName": "简体中文",
+      "isoCode": "zh-Hans"
+    },
+    {
+      "id": 7,
+      "name": "Chinese Traditional",
+      "nativeName": "繁體中文",
+      "isoCode": "zh-Hant"
+    },
+    {
+      "id": 8,
+      "name": "Italian",
+      "nativeName": "Italiano",
+      "isoCode": "it"
+    },
+    {
+      "id": 9,
+      "name": "Japanese",
+      "nativeName": "日本語",
+      "isoCode": "ja"
+    },
+    {
+      "id": 10,
+      "name": "Korean",
+      "nativeName": "한국어",
+      "isoCode": "ko"
+    },
+    {
+      "id": 11,
+      "name": "Spanish",
+      "nativeName": "Español",
+      "isoCode": "es"
+    },
+    {
+      "id": 12,
+      "name": "Russian",
+      "nativeName": "Русский",
+      "isoCode": "ru"
+    },
+    {
+      "id": 13,
+      "name": "Thai",
+      "nativeName": "ไทย",
+      "isoCode": "th"
+    },
+    {
+      "id": 14,
+      "name": "Vietnamese",
+      "nativeName": "Tiếng Việt",
+      "isoCode": "vi"
+    },
+    {
+      "id": 15,
+      "name": "Ukrainian",
+      "nativeName": "Українська",
+      "isoCode": "uk"
+    }
+  ]
 }

@@ -99,7 +99,6 @@ class InformationPage extends CommonBaseView<InformationController> {
           return AppButton(
             onTap: () {
               controller.clickStep();
-              return true;
             },
             margin: EdgeInsets.only(bottom: 50.w),
             shapeBorder: RoundedRectangleBorder(
@@ -342,22 +341,28 @@ class InformationPage extends CommonBaseView<InformationController> {
               dividingLine(),
               20.verticalSpaceFromWidth,
               GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: (){
+                    controller.jumpToNativeLanguagePage();
+                  },
                   child: columnText(
                       LanguageKey.nativeLan.tr,
-                      (state.nativeLan?.isEmpty == true ||
-                              state.nativeLan == null)
+                      (state.nativeLan == null)
                           ? LanguageKey.choose.tr
-                          : state.nativeLan ?? "",false)),
+                          : state.nativeLan?.name ?? "",(state.nativeLan != null))),
               20.verticalSpaceFromWidth,
               dividingLine(),
               20.verticalSpaceFromWidth,
               GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: (){
+                    controller.jumpToLanguagePage();
+                  },
                   child: columnText(
                       LanguageKey.learnLan.tr,
-                      (state.learnLan?.isEmpty == true ||
-                              state.learnLan == null)
+                      (state.learnLan == null)
                           ? LanguageKey.choose.tr
-                          : state.learnLan ?? '',false)),
+                          : state.learnLan?.name ?? '',(state.learnLan != null))),
               20.verticalSpaceFromWidth,
               dividingLine(),
             ]));

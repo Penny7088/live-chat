@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:live_chat/app/model/language_model.dart';
+import 'package:live_chat/app/widget/language_item_view.dart';
 import 'package:live_chat/base/utils/extensions/list_extensions.dart';
 import 'package:live_chat/base/view/common_base_view.dart';
 import 'package:scrollview_observer/scrollview_observer.dart';
@@ -13,8 +14,7 @@ import 'language_page_state.dart';
 
 class LanguagePage extends CommonBaseView<LanguageController> {
 
-  String title;
-  LanguagePage({super.key,required this.title});
+  const LanguagePage({super.key});
 
   @override
   LanguageState get state => controller.state;
@@ -26,7 +26,7 @@ class LanguagePage extends CommonBaseView<LanguageController> {
 
 @override
   String? createAppBarTitleStr() {
-    return title;
+    return state.title;
   }
 
   @override
@@ -76,12 +76,13 @@ class LanguagePage extends CommonBaseView<LanguageController> {
           if (state.sliverContextMap[index] == null) {
             state.sliverContextMap[index] = context;
           }
-          return GestureDetector(
-              onTap: (){
-                Map<String,Languages> info = {'language':names[itemIndex]};
-                // currentGoBack(info: info);
-              },
-              child:Container());
+          return LanguageItemView(
+                languages: names[itemIndex],
+                isNative: state.isNative,
+                callback: (Languages languages) {
+                  controller.callbackResult(languages);
+                },
+              );
         },
         childCount: names.length,
       ),

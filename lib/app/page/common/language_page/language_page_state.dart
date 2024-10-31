@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:live_chat/app/model/az_list_model.dart';
 import 'package:live_chat/app/model/language_model.dart';
 import 'package:live_chat/base/state/page_state.dart';
+import 'package:live_chat/base/utils/getx_util_tool.dart';
 import 'package:scrollview_observer/scrollview_observer.dart';
 
 import '../../../../base/config/normal_colors.dart';
@@ -20,6 +21,12 @@ class LanguageState extends BaseState{
 
   Map<int, BuildContext> sliverContextMap = {};
 
+  String? title;
+
+  Languages? language;
+
+  bool? isNative;
+
   LanguageState() {
     ///Initialize variables
   }
@@ -32,7 +39,12 @@ class LanguageState extends BaseState{
     scaffoldBackGroundColor = colf8f8f8;
     navBackgroundColor = colffffff;
     observerController = SliverObserverController(controller: scrollController);
-  }
+    language = currentGetArguments();
+    var params = currentGetParams();
+    title = params['title'];
+    String? native = params['isNative'];
+    isNative = (native != null);
+    }
 
   @override
   void onClose() {

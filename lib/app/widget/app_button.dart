@@ -161,18 +161,13 @@ class AppButtonState extends State<AppButton>
           if (widget.onTap == null) {
             return;
           }
+
           if (widget.enabledLoading == true) {
             setState(() {
               loading = true;
             });
           }
-          if(widget.enabledLoading == true){
-            await Future.delayed(const Duration(seconds: 2));
-          }
           widget.onTap!.call();
-          setState(() {
-            loading = false;
-          });
         },
         style: ElevatedButton.styleFrom(
           minimumSize: widget.buttonSize??Size(50.w, 50.w),
@@ -262,7 +257,7 @@ class AppButtonState extends State<AppButton>
         break;
     }
 
-    if(widget.enabledLoading == true && loading == true){
+    if(widget.enabledLoading == true){
       return loadingWidget;
     }
 
