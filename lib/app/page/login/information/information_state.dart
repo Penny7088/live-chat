@@ -4,6 +4,7 @@ import 'package:live_chat/base/state/page_state.dart';
 import 'package:live_chat/base/utils/log_util.dart';
 
 import '../../../model/country_entity.dart';
+import '../../../model/interests_model.dart';
 import '../../../model/language_model.dart';
 
 class InformationState extends BaseState{
@@ -25,6 +26,8 @@ class InformationState extends BaseState{
   late TextEditingController textEditingController  = TextEditingController();
 
   late PageController pageController;
+
+  List<Interestss> interests = [];
 
 
   @override

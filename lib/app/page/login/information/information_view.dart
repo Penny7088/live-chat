@@ -16,6 +16,7 @@ import '../../../../base/utils/util.dart';
 import '../../../../base/view/common_base_view.dart';
 import '../../../../generated/assets.dart';
 import '../../../local/local_key.dart';
+import '../../../model/interests_model.dart';
 import '../../../widget/app_button.dart';
 import '../../../widget/date_picker/date_picker.dart';
 import '../../../widget/horizontal_line.dart';
@@ -37,8 +38,7 @@ class InformationPage extends CommonBaseView<InformationController> {
   }
 
   @override
-  Widget createChildBody(
-      {required BuildContext context, BoxConstraints? constraints}) {
+  Widget createChildBody({required BuildContext context, BoxConstraints? constraints}) {
     Widget body = createInformationView(context.statusBarHeight);
     body = Stack(
       alignment: Alignment.center,
@@ -47,9 +47,7 @@ class InformationPage extends CommonBaseView<InformationController> {
             width: 1.sw,
             height: 1.sh,
             decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: themeBgImage(isDark: state.themeValue.value),
-                    fit: BoxFit.cover))),
+                image: DecorationImage(image: themeBgImage(isDark: state.themeValue.value), fit: BoxFit.cover))),
         body
       ],
     );
@@ -58,7 +56,7 @@ class InformationPage extends CommonBaseView<InformationController> {
 
   @override
   InformationController createController() {
-    return Get.put(InformationController(),tag: controllerTag());
+    return Get.put(InformationController(), tag: controllerTag());
   }
 
   Widget createInformationView(double statusBarHeight) {
@@ -86,7 +84,7 @@ class InformationPage extends CommonBaseView<InformationController> {
           } else if (index == 1) {
             return _languagePage();
           } else {
-            return Text('hobby ');
+            return _interestsPage();
           }
         });
   }
@@ -108,9 +106,7 @@ class InformationPage extends CommonBaseView<InformationController> {
             shadowColor: Colors.black.withOpacity(0.5),
             buttonSize: Size(354.w, 44.w),
             appButtonEnum: AppButtonEnum.onlyText,
-            text: state.stepIndex == 2
-                ? LanguageKey.loginInfoDone.tr
-                : LanguageKey.loginInfoNext.tr,
+            text: state.stepIndex == 2 ? LanguageKey.loginInfoDone.tr : LanguageKey.loginInfoNext.tr,
             iconUrl: Assets.svgGoogleLogo,
             color: colffffff,
             disabledColor: colffffff,
@@ -138,35 +134,25 @@ class InformationPage extends CommonBaseView<InformationController> {
                 ),
                 10.horizontalSpace,
                 HorizontalLine(
-                    lineColor: state.stepIndex >= 1
-                        ? col000000
-                        : col333333.withAlpha(50),
+                    lineColor: state.stepIndex >= 1 ? col000000 : col333333.withAlpha(50),
                     width: 90.w,
                     height: 2.w,
                     strokeWidth: 2),
                 10.horizontalSpace,
                 Text(
                   ' 2 ',
-                  style: boldTextStyle(
-                      color: state.stepIndex >= 1
-                          ? col000000
-                          : col333333.withAlpha(50)),
+                  style: boldTextStyle(color: state.stepIndex >= 1 ? col000000 : col333333.withAlpha(50)),
                 ),
                 10.horizontalSpace,
                 HorizontalLine(
-                    lineColor: state.stepIndex == 2
-                        ? col000000
-                        : col333333.withAlpha(50),
+                    lineColor: state.stepIndex == 2 ? col000000 : col333333.withAlpha(50),
                     width: 90.w,
                     height: 2.w,
                     strokeWidth: 2),
                 8.horizontalSpace,
                 Text(
                   'Done',
-                  style: boldTextStyle(
-                      color: state.stepIndex == 2
-                          ? col000000
-                          : col333333.withAlpha(50)),
+                  style: boldTextStyle(color: state.stepIndex == 2 ? col000000 : col333333.withAlpha(50)),
                 ),
               ],
             ),
@@ -208,12 +194,10 @@ class InformationPage extends CommonBaseView<InformationController> {
     Widget body = Column(children: [
       40.verticalSpaceFromWidth,
       Text(LanguageKey.loginInfoComplete.tr, style: boldTextStyle(size: 20)),
-      Text(LanguageKey.loginInfoRecommendPartner.tr,
-          style: boldTextStyle(size: 20)),
+      Text(LanguageKey.loginInfoRecommendPartner.tr, style: boldTextStyle(size: 20)),
       30.verticalSpaceFromWidth,
       UserAvatarView(
-        url:
-            'https://cdn.pixabay.com/photo/2024/01/25/10/50/mosque-8531576_1280.jpg',
+        url: 'https://cdn.pixabay.com/photo/2024/01/25/10/50/mosque-8531576_1280.jpg',
         width: 80.w,
         height: 80.w,
         type: ImageType.netWork,
@@ -246,8 +230,7 @@ class InformationPage extends CommonBaseView<InformationController> {
                 child: SettingItemWidget(
                   title: state.birthday ?? LanguageKey.loginInfoBirthday.tr,
                   decoration: BoxDecoration(borderRadius: radius()),
-                  trailing: const Icon(Icons.keyboard_arrow_right_rounded,
-                      color: col333333),
+                  trailing: const Icon(Icons.keyboard_arrow_right_rounded, color: col333333),
                   onTap: () {
                     showDatePikerDialog((dateTime, List<int> index) {
                       controller.onBirthdayCallback(dateTime, index);
@@ -264,52 +247,41 @@ class InformationPage extends CommonBaseView<InformationController> {
                 width: 1.sw,
                 height: 40.w,
                 margin: EdgeInsets.symmetric(horizontal: 30.w),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        height: 40.w,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color:
-                                state.ifFemale ?? false ? col89F1F5 : colF7F7F7,
-                            borderRadius: BorderRadius.circular(30.0)),
-                        child: Text(LanguageKey.loginInfoFeMale.tr,
-                            style: boldTextStyle(
-                                color: (state.ifFemale ?? false)
-                                    ? col333333
-                                    : col7f7f7f)),
-                      ).onTap(
-                        () {
-                          controller.selectSex(true);
-                        },
-                        borderRadius: BorderRadius.circular(30.0),
-                      ).expand(),
-                      10.horizontalSpace,
-                      Container(
-                        height: 40.w,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color:
-                                (state.ifMale ?? false) ? col89F1F5 : colF7F7F7,
-                            borderRadius: BorderRadius.circular(30.0)),
-                        child: Text(LanguageKey.loginInfoMale.tr,
-                            style: boldTextStyle(
-                                color: (state.ifMale ?? false)
-                                    ? col333333
-                                    : col7f7f7f)),
-                      ).onTap(
-                        () {
-                          controller.selectSex(false);
-                        },
-                        borderRadius: BorderRadius.circular(30.0),
-                      ).expand()
-                    ]));
+                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                  Container(
+                    height: 40.w,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                        color: state.ifFemale ?? false ? col89F1F5 : colF7F7F7,
+                        borderRadius: BorderRadius.circular(30.0)),
+                    child: Text(LanguageKey.loginInfoFeMale.tr,
+                        style: boldTextStyle(color: (state.ifFemale ?? false) ? col333333 : col7f7f7f)),
+                  ).onTap(
+                    () {
+                      controller.selectSex(true);
+                    },
+                    borderRadius: BorderRadius.circular(30.0),
+                  ).expand(),
+                  10.horizontalSpace,
+                  Container(
+                    height: 40.w,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                        color: (state.ifMale ?? false) ? col89F1F5 : colF7F7F7,
+                        borderRadius: BorderRadius.circular(30.0)),
+                    child: Text(LanguageKey.loginInfoMale.tr,
+                        style: boldTextStyle(color: (state.ifMale ?? false) ? col333333 : col7f7f7f)),
+                  ).onTap(
+                    () {
+                      controller.selectSex(false);
+                    },
+                    borderRadius: BorderRadius.circular(30.0),
+                  ).expand()
+                ]));
           }),
       Container(
           margin: EdgeInsets.symmetric(horizontal: 30.w).copyWith(top: 15.w),
-          child: Text(LanguageKey.loginInfoAgeAndSex.tr,
-              style: primaryTextStyle(color: col333333, size: 14)))
+          child: Text(LanguageKey.loginInfoAgeAndSex.tr, style: primaryTextStyle(color: col333333, size: 14)))
     ]);
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 16.w),
@@ -328,41 +300,38 @@ class InformationPage extends CommonBaseView<InformationController> {
             width: 1.sw,
             child: Column(children: [
               GestureDetector(
-                behavior: HitTestBehavior.opaque,
-                  onTap: (){
+                  behavior: HitTestBehavior.opaque,
+                  onTap: () {
                     controller.jumpToCountryPage();
                   },
                   child: columnText(
                       LanguageKey.iComeFrom.tr,
-                      (state.country == null)
-                          ? LanguageKey.choose.tr
-                          : state.country?.name ?? '',(state.country != null))),
+                      (state.country == null) ? LanguageKey.choose.tr : state.country?.name ?? '',
+                      (state.country != null))),
               20.verticalSpaceFromWidth,
               dividingLine(),
               20.verticalSpaceFromWidth,
               GestureDetector(
                   behavior: HitTestBehavior.opaque,
-                  onTap: (){
+                  onTap: () {
                     controller.jumpToNativeLanguagePage();
                   },
                   child: columnText(
                       LanguageKey.nativeLan.tr,
-                      (state.nativeLan == null)
-                          ? LanguageKey.choose.tr
-                          : state.nativeLan?.name ?? "",(state.nativeLan != null))),
+                      (state.nativeLan == null) ? LanguageKey.choose.tr : state.nativeLan?.name ?? "",
+                      (state.nativeLan != null))),
               20.verticalSpaceFromWidth,
               dividingLine(),
               20.verticalSpaceFromWidth,
               GestureDetector(
                   behavior: HitTestBehavior.opaque,
-                  onTap: (){
+                  onTap: () {
                     controller.jumpToLanguagePage();
                   },
                   child: columnText(
                       LanguageKey.learnLan.tr,
-                      (state.learnLan == null)
-                          ? LanguageKey.choose.tr
-                          : state.learnLan?.name ?? '',(state.learnLan != null))),
+                      (state.learnLan == null) ? LanguageKey.choose.tr : state.learnLan?.name ?? '',
+                      (state.learnLan != null))),
               20.verticalSpaceFromWidth,
               dividingLine(),
             ]));
@@ -370,7 +339,41 @@ class InformationPage extends CommonBaseView<InformationController> {
     );
   }
 
-  Widget columnText(String title, String subTitle,bool changeTextStyle) {
+  Widget _interestsPage() {
+    return GetBuilder(
+        init: controller,
+        id: 'interests',
+        builder: (controller) {
+          return Container(
+              padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 20.h),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(LanguageKey.whatAreYouInto.tr, style: boldTextStyle(size: 20, color: col000000)),
+                    10.verticalSpace,
+                    Wrap(
+                        spacing: 8.w,
+                        children: List.generate(state.interests.length, (index) {
+                          Interestss item = state.interests[index];
+                          return RawChip(
+                              selected: item.isChoose??false,
+                              onSelected: (isSelected) {
+                                controller.chooseInterestsTag(item, isSelected);
+                              },
+                              side: item.isChoose ?? false ? const BorderSide(color: cole3e3e3) :  const BorderSide(color: transparent),
+                              selectedColor: colffffff,
+                              selectedShadowColor: cole3e3e3,
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
+                              label: Text('${item.translatedName}',style: secondaryTextStyle(),));
+                        })),
+                  ],
+                ),
+              ));
+        });
+  }
+
+  Widget columnText(String title, String subTitle, bool changeTextStyle) {
     logD(subTitle);
     return Column(children: [
       Text(title, style: primaryTextStyle(color: col333333, size: 18)),

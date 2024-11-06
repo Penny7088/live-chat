@@ -283,6 +283,7 @@ class Assets {
   static const String fontsFonteditor = 'assets/fonts/fonteditor.ttf';
   static const String imagesNoDataStatus = 'assets/images/no_data_status.webp';
   static const String jsonCountry = 'assets/json/country.json';
+  static const String jsonInterests = 'assets/json/interests.json';
   static const String jsonLanguage = 'assets/json/language.json';
   static const String loadingListLoading = 'assets/loading/list_loading.json';
   static const String loadingSplashLoading = 'assets/loading/splash_loading.json';

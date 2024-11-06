@@ -1,13 +1,16 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:get/get_common/get_reset.dart';
+import 'package:live_chat/app/model/interests_model.dart';
 import 'package:live_chat/base/controller/common_controller.dart';
 import 'package:live_chat/base/utils/extensions/date_time_extensions.dart';
 import 'package:live_chat/base/utils/getx_util_tool.dart';
 import 'package:live_chat/base/utils/log_util.dart';
 
+import '../../../../generated/assets.dart';
 import '../../../local/local_key.dart';
-import '../../../model/country_entity.dart';
 import '../login_router.dart';
 import 'information_state.dart';
 
@@ -24,19 +27,18 @@ class InformationController extends CommonController<InformationState> {
   }
 
   @override
-  configWidgetRenderingCompleted() {}
+  configWidgetRenderingCompleted() {
+  }
 
   void onPageChanged(int value) {
     state.stepIndex = value;
+    if(value == state.stepLength - 1){
+      fetchInterestsData();
+    }
     update(['bt', 'step', 'back']);
   }
 
   clickStep() {
-    if (state.stepIndex == state.stepLength - 1) {
-      logD('跳转到主页');
-      return;
-    }
-
     if (state.stepIndex == 0) {
       if (!judgeFirstPageField()) {
         return;
@@ -44,11 +46,19 @@ class InformationController extends CommonController<InformationState> {
     }
 
     if(state.stepIndex == 1){
-
+      if (!judgeSecondPageField()) {
+        return;
+      }
     }
 
-    state.pageController.nextPage(
-        duration: const Duration(milliseconds: 200), curve: Curves.ease);
+    if(state.stepIndex == state.stepLength - 1){
+      ///todo 进入主页钱需要去更新用户信息
+      logD('进入主页。。。');
+    }else{
+      state.pageController.nextPage(
+          duration: const Duration(milliseconds: 200), curve: Curves.ease);
+    }
+
   }
 
   void preStep() {
@@ -146,4 +156,26 @@ class InformationController extends CommonController<InformationState> {
       }
     });
   }
+
+  Future<InterestsModel> loadInterests() async {
+    final String response = await rootBundle.loadString(Assets.jsonInterests);
+    final data = json.decode(response);
+    return InterestsModel.fromJson(data);
+  }
+
+  Future<void> fetchInterestsData() async {
+    var interestsModel = await loadInterests();
+    if(interestsModel.interestss != null){
+      state.interests.addAll(interestsModel.interestss!);
+    }
+    update(['interests']);
+  }
+
+  void chooseInterestsTag(Interestss item, bool isSelected) {
+    item.isChoose = isSelected;
+    update(['interests']);
+  }
+
 }
+
+

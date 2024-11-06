@@ -31,4 +31,5 @@ Map<String, String> hans = {
   LanguageKey.intermediate:'中级',
   LanguageKey.advanced:'高级',
   LanguageKey.master:'精通',
+  LanguageKey.whatAreYouInto:'您喜欢什么？',
 };

@@ -28,4 +28,5 @@ class LanguageKey {
   static const String intermediate = 'intermediate';
   static const String advanced = 'advanced';
   static const String master = 'master';
+  static const String whatAreYouInto = 'whatAreYouInto';
 }
