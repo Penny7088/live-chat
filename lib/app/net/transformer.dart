@@ -1,11 +1,4 @@
-/*
- * @Descripttion: 
- * @version: 
- * @Author: TT
- * @Date: 2022-11-08 10:50:41
- * @LastEditors: TT
- * @LastEditTime: 2022-11-28 22:23:25
- */
+
 import 'package:dio/dio.dart';
 
 import 'http_response.dart';
@@ -17,7 +10,7 @@ abstract class AbsTransformer {
 class HttpResponseConfig {
   /// constructor.
   HttpResponseConfig(
-      {this.status, this.code, this.msg, this.data, this.successcode});
+      {this.status, this.code, this.msg, this.data, this.successCode});
 
   /// BaseResp [String status]字段 key, 默认：status.
   String? status;
@@ -26,13 +19,13 @@ class HttpResponseConfig {
   String? code;
 
   /// BaseResp [String msg]字段 key, 默认：errorMsg.
-  String? msg;
+  dynamic msg;
 
   /// BaseResp [T data]字段 key, 默认：data.
   String? data;
 
   /// 判断请求成功的值
-  int? successcode;
+  int? successCode;
 }
 
 class NormalDefaultTransformer extends AbsTransformer {
@@ -85,7 +78,7 @@ class NormalDefaultTransformer extends AbsTransformer {
     _dataKey = config.data ?? _dataKey;
     _msgKey = config.msg ?? _msgKey;
     _codeKey = config.code ?? _codeKey;
-    _successCode = config.successcode ?? _successCode;
+    _successCode = config.successCode ?? _successCode;
   }
 
   /// 单例对象

@@ -28,14 +28,14 @@ class LoginController extends CommonController<LoginState> {
     loadingBtStatus(true);
     /// 需要购买域名
     try {
-      // await _authService.login(provider, (onUserData) {
-      //   logD(onUserData.toString());
-      //   if(onUserData.isNotEmpty){
-      //     /// todo 请求服务端接口
-      //     currentToPage(name: LoginRouter.LOGIN_INFORMATION,arguments: {'user':onUserData});
-      //   }
-      // });
-      await Future.delayed(Duration(seconds: 2));
+      await _authService.login(provider, (onUserData) {
+        logD(onUserData.toString());
+        if(onUserData.isNotEmpty){
+          /// todo 请求服务端接口
+          // currentToPage(name: LoginRouter.LOGIN_INFORMATION,arguments: {'user':onUserData});
+        }
+      });
+      // await Future.delayed(Duration(seconds: 2));
       loadingBtStatus(false);
       return true;
     } on FirebaseAuthException catch(e) {

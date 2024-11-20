@@ -1,12 +1,3 @@
-/*
- * @Descripttion: 
- * @version: 
- * @Author: TT
- * @Date: 2022-11-08 10:26:14
- * @LastEditors: TT
- * @LastEditTime: 2022-11-28 22:19:53
- */
-
 
 import 'exception.dart';
 

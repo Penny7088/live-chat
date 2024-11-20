@@ -1,11 +1,3 @@
-/*
- * @Descripttion: 
- * @version: 
- * @Author: TT
- * @Date: 2022-11-08 10:47:37
- * @LastEditors: TT
- * @LastEditTime: 2023-09-13 15:31:39
- */
 
 import 'dart:io';
 
@@ -25,7 +17,7 @@ ApiResponse handleResponse({
   if (response == null) {
     return ApiResponse.fail(
       data: response,
-      errorMsg: '请求的数据为空 练习',
+      errorMsg: '请求的数据为空',
       errorCode: -1,
     );
   }

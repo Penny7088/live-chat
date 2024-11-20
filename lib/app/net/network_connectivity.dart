@@ -13,7 +13,7 @@ class NetworkConnectivity {
   /// Checking if the device is connected to the internet.
   Future<bool> get connected async {
     var connectivityResult = await (Connectivity().checkConnectivity());
-    if (ConnectivityResult.none == connectivityResult) {
+    if (connectivityResult == ConnectivityResult.none) {
       return false;
     } else {
       return true;
