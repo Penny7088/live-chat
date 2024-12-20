@@ -99,7 +99,6 @@ class AppTextField extends StatefulWidget {
   final bool shortReplyChatGPT;
   final bool testWithoutKeyChatGPT;
 
-  @Deprecated('Use TextFieldType.PASSWORD instead')
   final bool? isPassword;
 
   AppTextField({
@@ -377,7 +376,7 @@ class _AppTextFieldState extends State<AppTextField> {
       },
       keyboardType: applyTextInputType(),
       decoration: widget.decoration != null
-          ? (widget.decoration!)
+          ? (widget.decoration!).copyWith(suffix: suffixIcon())
           : const InputDecoration(),
       focusNode: widget.focus,
       style: widget.textStyle ?? primaryTextStyle(),

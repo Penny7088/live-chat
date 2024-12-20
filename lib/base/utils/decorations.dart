@@ -8,31 +8,39 @@ double defaultRadius = 8.0;
 double defaultBlurRadius = 4.0;
 double defaultSpreadRadius = 1.0;
 double defaultAppBarElevation = 4.0;
+
+
+TextStyle editHintStyle() {
+  return primaryTextStyle(size: 12, color: col000000.withOpacity(0.5));
+}
+
 /// returns default InputDecoration for AppTextField widget
-InputDecoration defaultInputDecoration(
-    {String? hint,
-    String? label,
-    TextStyle? textStyle,
-    InputBorder? inputBorder,
-    InputBorder? enabledBorder,
-    InputBorder? focusedBorder,
-    }) {
+InputDecoration defaultInputDecoration({String? hint,
+  String? label,
+  TextStyle? textStyle,
+  InputBorder? inputBorder,
+  InputBorder? enabledBorder,
+  InputBorder? focusedBorder,
+  Widget? suffix,
+  double? borderRadius
+}) {
   return InputDecoration(
     labelText: label,
     hintText: hint,
     fillColor: colffffff,
+    suffix:suffix,
     hintStyle: textStyle ?? primaryTextStyle(),
     labelStyle: textStyle ?? secondaryTextStyle(),
-    border: inputBorder?? defaultInputBorder(),
+    border: inputBorder ?? defaultInputBorder(borderRadius: borderRadius),
     alignLabelWithHint: true,
-    enabledBorder: enabledBorder??defaultBorder(),
-    focusedBorder: focusedBorder??defaultBorder(),
+    enabledBorder: enabledBorder ?? defaultBorder(borderRadius: borderRadius),
+    focusedBorder: focusedBorder ?? defaultBorder(borderRadius: borderRadius),
   );
 }
 
-InputBorder defaultInputBorder(){
-  return  OutlineInputBorder(
-    borderRadius: BorderRadius.circular(20.0), // 设置圆角边框
+InputBorder defaultInputBorder({double? borderRadius}) {
+  return OutlineInputBorder(
+    borderRadius: BorderRadius.circular(borderRadius??20.0), // 设置圆角边框
     borderSide: BorderSide(
       color: colffffff, // 边框颜色
       width: 2.0.w,
@@ -40,12 +48,12 @@ InputBorder defaultInputBorder(){
   );
 }
 
-InputBorder defaultBorder(){
-  return  OutlineInputBorder(
-    borderRadius: BorderRadius.circular(30.0),
+InputBorder defaultBorder({double? borderRadius}) {
+  return OutlineInputBorder(
+    borderRadius: BorderRadius.circular(borderRadius??30.0),
     borderSide: BorderSide(
       color: col89F1F5, // 启用时的边框颜色
-      width: 2.0.w,
+      width: 1.0.w,
     ),
   );
 }
@@ -119,7 +127,7 @@ Decoration boxDecorationWithRoundedCorners({
   return BoxDecoration(
     color: backgroundColor,
     borderRadius:
-        boxShape == BoxShape.circle ? null : (borderRadius ?? radius()),
+    boxShape == BoxShape.circle ? null : (borderRadius ?? radius()),
     gradient: gradient,
     border: border,
     boxShadow: boxShadow,
@@ -160,8 +168,7 @@ Decoration boxDecorationWithShadow({
 }
 
 /// rounded box decoration with shadow
-Decoration boxDecorationRoundedWithShadow(
-  int radiusAll, {
+Decoration boxDecorationRoundedWithShadow(int radiusAll, {
   Color backgroundColor = colffffff,
   Color? shadowColor,
   double? blurRadius,

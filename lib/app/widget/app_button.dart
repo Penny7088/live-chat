@@ -179,7 +179,7 @@ class AppButtonState extends State<AppButton>
           shadowColor: widget.shadowColor,
           padding: widget.padding ?? dynamicAppButtonPadding(context),
           foregroundColor:  widget.color ?? appButtonBackgroundColorGlobal,
-           iconColor: widget.color,
+          iconColor: widget.color,
           // textStyle: widget.textStyle
         ),
         child: widget.child ??appButtonChild(),

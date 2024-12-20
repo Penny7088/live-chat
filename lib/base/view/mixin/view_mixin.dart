@@ -25,7 +25,7 @@ mixin ViewMixin {
         Scaffold(
             appBar: createAppBar(context: context),
             backgroundColor: configScaffoldBackgroundColor(),
-            resizeToAvoidBottomInset: configResizeToAvoidBottomInset(),
+            resizeToAvoidBottomInset: configResizeToAvoidBottomInset()??false,
             body: body,
             bottomNavigationBar: configIsNeedBottomNavigation() ? createScaffoldBottomNavigationBar(context: context): null,
           )

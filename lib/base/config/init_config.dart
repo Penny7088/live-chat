@@ -29,8 +29,8 @@ initThirdParty() async {
   await fromPlatform();
   await storageKV.init();
   await EnvConfig().init();
-  await initNetWork();
   await DioCacheTool.initCacheStore();
+  await initNetWork();
   Get.lazyPut<ThemeService>(() => ThemeService(), fenix: true);
 }
 

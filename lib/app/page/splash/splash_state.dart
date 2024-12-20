@@ -14,6 +14,7 @@ class SplashState extends BaseState {
   @override
   void init() {
     isShowAppBar = false;
+    safeAreaTop = false;
     themeValue = ThemeService.obtain().isDarkMode;
   }
 

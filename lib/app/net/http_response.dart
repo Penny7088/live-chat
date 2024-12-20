@@ -1,7 +1,7 @@
 
 import 'exception.dart';
 
-class ApiResponse {
+class ApiResponse<T> {
   late bool ok;
   dynamic data;
   String? msg;

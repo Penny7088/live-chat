@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:live_chat/app/page/common/country_page/country_page/country_page_view.dart';
 
 import '../config/normal_colors.dart';
 
@@ -50,7 +52,7 @@ TextStyle boldTextStyle({
 
 /// Returns a TextStyle with primary color and default settings.
 TextStyle primaryTextStyle({
-  int? size,
+  double? size,
   Color? color,
   FontWeight? weight,
   String? fontFamily,
@@ -65,7 +67,7 @@ TextStyle primaryTextStyle({
   double? height,
 }) {
   return TextStyle(
-      fontSize: size != null ? size.toDouble() : textPrimarySizeGlobal,
+      fontSize: size != null ? size.sp : textPrimarySizeGlobal,
       color: color ?? textPrimaryColorGlobal,
       fontWeight: weight ?? fontWeightPrimaryGlobal,
       fontFamily: fontFamily ?? fontFamilyPrimaryGlobal,

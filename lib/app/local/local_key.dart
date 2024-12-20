@@ -4,6 +4,7 @@ class LanguageKey {
   static const String loginButtonApple = 'loginButtonApple';
   static const String loginButtonGoogle = 'loginButtonGoogle';
   static const String loginButtonFb = 'loginButtonFb';
+  static const String loginButtonEmail = 'loginButtonEmail';
   static const String loginInfoNext = 'loginInfoNext';
   static const String loginInfoDone = 'loginInfoDone';
   static const String loginInfoComplete = 'loginInfoComplete';
@@ -29,4 +30,9 @@ class LanguageKey {
   static const String advanced = 'advanced';
   static const String master = 'master';
   static const String whatAreYouInto = 'whatAreYouInto';
+  static const String passwordHint = 'passwordHint';
+  static const String forgetPassword = 'forgetPassword';
+  static const String signUp = 'signUp';
+  static const String login = 'login';
+
 }

@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:live_chat/app/page/login/login_router.dart';
 import 'package:live_chat/base/controller/common_controller.dart';
 import 'package:live_chat/base/utils/getx_util_tool.dart';
 import 'package:live_chat/base/utils/log_util.dart';
 
 import '../../service/auth/auth_index.dart';
+import 'login_router.dart';
 import 'login_state.dart';
 
 class LoginController extends CommonController<LoginState> {

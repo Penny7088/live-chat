@@ -25,7 +25,7 @@ class SplashPage extends CommonBaseView<SplashController> {
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: themeBgImage(isDark: state.themeValue.value),
+                image: themeBgImage(),
                 fit: BoxFit.cover)),
         );
   }

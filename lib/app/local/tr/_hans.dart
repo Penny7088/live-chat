@@ -7,6 +7,8 @@ Map<String, String> hans = {
   LanguageKey.loginButtonApple:'苹果ID 登录',
   LanguageKey.loginButtonGoogle:'Google 登录',
   LanguageKey.loginButtonFb:'FaceBook 登录',
+  LanguageKey.login:'登 录',
+  LanguageKey.loginButtonEmail:'邮箱',
   LanguageKey.loginInfoNext:'下一步',
   LanguageKey.loginInfoDone:'完成',
   LanguageKey.loginInfoComplete:'完善个人信息',
@@ -32,4 +34,7 @@ Map<String, String> hans = {
   LanguageKey.advanced:'高级',
   LanguageKey.master:'精通',
   LanguageKey.whatAreYouInto:'您喜欢什么？',
+  LanguageKey.passwordHint:'请输入密码',
+  LanguageKey.forgetPassword:'忘记密码?',
+  LanguageKey.signUp:'注册',
 };

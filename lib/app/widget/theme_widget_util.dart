@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:live_chat/base/utils/text_styles.dart';
 import 'package:live_chat/base/config/normal_colors.dart';
 
+import '../../base/utils/getx_util_tool.dart';
 import '../../generated/assets.dart';
 
+
 AssetImage themeBgImage(
-    {required bool isDark, double? width, double? height, BoxFit? fit}) {
-  return isDark
+    {double? width, double? height, BoxFit? fit}) {
+  var controller = obtainThemeController();
+
+  return (controller.isDarkMode.value)
       ? const AssetImage(Assets.bgBgDarkDefault)
       : const AssetImage(Assets.bgBgLightDefault);
 }

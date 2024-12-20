@@ -47,7 +47,7 @@ class InformationPage extends CommonBaseView<InformationController> {
             width: 1.sw,
             height: 1.sh,
             decoration: BoxDecoration(
-                image: DecorationImage(image: themeBgImage(isDark: state.themeValue.value), fit: BoxFit.cover))),
+                image: DecorationImage(image: themeBgImage(), fit: BoxFit.cover))),
         body
       ],
     );

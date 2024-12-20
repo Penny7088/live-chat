@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../app/theme/theme_service.dart';
 
+
+
+ThemeService obtainThemeController(){
+  return Get.find<ThemeService>();
+}
 
 
 configNormalBottomSheet({
