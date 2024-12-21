@@ -59,7 +59,7 @@ class LoginController extends CommonController<LoginState> {
   }
 
   void jumpToDiffPage() {
-    currentToPage(name: LoginRouter.LOGIN_INFORMATION);
+    currentToPage(name: LoginRouter.loginInformation);
   }
 
 

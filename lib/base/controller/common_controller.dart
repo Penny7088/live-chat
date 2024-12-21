@@ -18,10 +18,11 @@ abstract class CommonController<S extends BaseState> extends GetxController
     with AbstractNetWork, WidgetsBindingObserver, AppLifeCycleAbs {
 
 
-  late S state = createState();
+  late S state;
 
   @override
   void onInit() {
+    state = createState();
     state.init();
     super.onInit();
     configUI();

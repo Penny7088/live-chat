@@ -3,6 +3,7 @@ import 'package:live_chat/app/router/app_router.dart';
 import 'package:live_chat/base/controller/common_controller.dart';
 import 'package:live_chat/base/utils/getx_util_tool.dart';
 
+import '../login_social/login_router.dart';
 import 'splash_state.dart';
 
 class SplashController extends CommonController<SplashState> {
@@ -24,7 +25,7 @@ class SplashController extends CommonController<SplashState> {
     var globalConfig = await globalFetch.fetchGlobalConfig();
     if(globalConfig.loginMethod != null){
       if('email' == globalConfig.loginMethod!.name){
-        currentOffName(name: RouterId.loginEmail);
+        currentOffName(name: LoginRouter.loginEmail);
       }else{
 
       }

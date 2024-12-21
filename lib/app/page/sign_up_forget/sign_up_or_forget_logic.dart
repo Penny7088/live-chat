@@ -9,4 +9,11 @@ class SignUpOrForgetController extends CommonController<SignUpOrForgetState> {
   SignUpOrForgetState createState() {
     return SignUpOrForgetState();
   }
+
+  void fetchVerificationCode() {
+      bool isForget = state.type == SignType.forget;
+
+  }
+
+
 }

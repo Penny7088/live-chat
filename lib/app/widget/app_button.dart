@@ -155,22 +155,23 @@ class AppButtonState extends State<AppButton>
       padding: widget.margin ?? EdgeInsets.zero,
       child: ElevatedButton(
         onPressed: () async {
-          if (!widget.enabled) {
-            return;
-          }
-          if (widget.onTap == null) {
-            return;
-          }
+                if (!widget.enabled) {
+                  return;
+                }
+                if (widget.onTap == null) {
+                  return;
+                }
 
-          if (widget.enabledLoading == true) {
-            setState(() {
-              loading = true;
-            });
-          }
-          widget.onTap!.call();
-        },
+                if (widget.enabledLoading == true) {
+                  setState(() {
+                    loading = true;
+                  });
+                }
+                widget.onTap!.call();
+              },
         style: ElevatedButton.styleFrom(
           minimumSize: widget.buttonSize??Size(50.w, 50.w),
+          maximumSize:  widget.buttonSize??Size(50.w, 50.w),
           backgroundColor: widget.color ?? appButtonBackgroundColorGlobal,
           shape: widget.shapeBorder,
           animationDuration: const Duration(milliseconds: 300),

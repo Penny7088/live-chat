@@ -35,6 +35,12 @@ Map<String, String> hans = {
   LanguageKey.master:'精通',
   LanguageKey.whatAreYouInto:'您喜欢什么？',
   LanguageKey.passwordHint:'请输入密码',
+  LanguageKey.newPasswordHint:'请输入新密码',
+  LanguageKey.confirmPasswordHint:'确认密码',
   LanguageKey.forgetPassword:'忘记密码?',
+  LanguageKey.resetPassword:'重置密码',
+  LanguageKey.password:'密码',
   LanguageKey.signUp:'注册',
+  LanguageKey.sendVerificationCode:'发送验证码',
+  LanguageKey.retrySendVerificationCode:'后重新获取',
 };

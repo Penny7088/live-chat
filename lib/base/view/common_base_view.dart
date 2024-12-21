@@ -16,7 +16,7 @@ abstract class CommonBaseView<C extends CommonController> extends GetView<C>
   String? get tag => controllerTag();
 
   @override
-  C get controller => Get.put<C>(createController(), tag: tag);
+  C get controller => Get.put<C>(createController(),tag: controllerTag());
 
   BaseState get state => controller.state;
 

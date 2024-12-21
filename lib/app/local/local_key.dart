@@ -31,8 +31,14 @@ class LanguageKey {
   static const String master = 'master';
   static const String whatAreYouInto = 'whatAreYouInto';
   static const String passwordHint = 'passwordHint';
+  static const String newPasswordHint = 'newPasswordHint';
+  static const String confirmPasswordHint = 'confirmPasswordHint';
   static const String forgetPassword = 'forgetPassword';
+  static const String resetPassword = 'resetPassword';
   static const String signUp = 'signUp';
   static const String login = 'login';
+  static const String password = 'password';
+  static const String sendVerificationCode = 'sendVerificationCode';
+  static const String retrySendVerificationCode = 'retrySendVerificationCode';
 
 }

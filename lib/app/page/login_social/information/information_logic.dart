@@ -125,7 +125,7 @@ class InformationController extends CommonController<InformationState> {
   }
 
   void jumpToCountryPage() {
-    currentToPage(name: LoginRouter.LOGIN_COUNTRY)?.then((value){
+    currentToPage(name: LoginRouter.loginCountry)?.then((value){
       if(value != null){
         state.country = value['countries'];
         update(['languagePage']);
@@ -135,7 +135,7 @@ class InformationController extends CommonController<InformationState> {
 
   void jumpToLanguagePage() {
     currentToPage(
-        name: LoginRouter.LOGIN_LANGUAGE,
+        name: LoginRouter.loginLanguage,
         arguments: state.learnLan,
         parameters: {'title': LanguageKey.languageChoose.tr})?.then((onValue) {
       if (onValue != null) {
@@ -147,7 +147,7 @@ class InformationController extends CommonController<InformationState> {
 
   void jumpToNativeLanguagePage() {
     currentToPage(
-        name: LoginRouter.LOGIN_LANGUAGE,
+        name: LoginRouter.loginLanguage,
         arguments: state.nativeLan,
         parameters: {'title': LanguageKey.nativeLan.tr,'isNative':'1'})?.then((onValue) {
       if (onValue != null) {

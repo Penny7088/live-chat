@@ -167,23 +167,7 @@ class InformationPage extends CommonBaseView<InformationController> {
       builder: (InformationController controller) {
         return Container(
           margin: EdgeInsets.only(left: 16.w, bottom: 20.w),
-          child: AppButton(
-            onTap: () {
-              controller.preStep();
-              return true;
-            },
-            shapeBorder: RoundedRectangleBorder(
-              borderRadius: radius(16),
-            ),
-            elevation: 8.0,
-            shadowColor: Colors.black.withOpacity(0.5),
-            buttonSize: Size(40.w, 40.w),
-            appButtonEnum: AppButtonEnum.onlyIcon,
-            iconUrl: Assets.svgAppBack,
-            color: colffffff,
-            disabledColor: colffffff,
-            iconSize: Size(17.w, 22.w),
-          ),
+          child: backWidget(),
         ).visible(state.stepIndex > 0, defaultWidget: SizedBox(height: 63.w));
       },
     );
