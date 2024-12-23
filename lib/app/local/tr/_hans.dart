@@ -41,6 +41,7 @@ Map<String, String> hans = {
   LanguageKey.resetPassword:'重置密码',
   LanguageKey.password:'密码',
   LanguageKey.signUp:'注册',
+  LanguageKey.email:'邮箱',
   LanguageKey.sendVerificationCode:'发送验证码',
   LanguageKey.retrySendVerificationCode:'后重新获取',
 };

@@ -5,13 +5,13 @@ import 'mixin_api_fetch.dart';
 class LoginFetch with ApiFetch {
   Future<ApiResponse> resetPasswordVerificationCode({required String email}) async {
     var apiResponse =
-        await request(path: '/v1/globalConfig/sendResetPasswordCode', data: {'email': email}, method: Method.post);
+        await request(path: '/v1/globalConfig/sendResetPasswordCode', data: {'email': email}, method: Method.post,isFormData: false);
     return apiResponse;
   }
 
   Future<ApiResponse> signUpPasswordVerificationCode({required String email}) async {
     var apiResponse =
-        await request(path: '/v1/globalConfig/sendSignUpVerifyCode', data: {'email': email}, method: Method.post);
+        await request(path: '/v1/globalConfig/sendSignUpVerifyCode', data: {'email': email}, method: Method.post,isFormData: false);
     return apiResponse;
   }
 

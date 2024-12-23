@@ -38,6 +38,7 @@ class LanguageKey {
   static const String signUp = 'signUp';
   static const String login = 'login';
   static const String password = 'password';
+  static const String email = 'email';
   static const String sendVerificationCode = 'sendVerificationCode';
   static const String retrySendVerificationCode = 'retrySendVerificationCode';
 

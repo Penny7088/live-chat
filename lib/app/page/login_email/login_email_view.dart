@@ -53,7 +53,7 @@ class LoginEmailPage extends CommonBaseView<LoginEmailController> {
                   child: AppTextField(
                     controller: state.emailController,
                     textFieldType: TextFieldType.EMAIL,
-                    title: '邮箱',
+                    title: LanguageKey.email.tr,
                     decoration:
                         defaultInputDecoration(hint: LanguageKey.loginButtonEmail.tr, textStyle: editHintStyle(),borderRadius: 15.r),
                     onChanged: (value) {
@@ -64,7 +64,7 @@ class LoginEmailPage extends CommonBaseView<LoginEmailController> {
               Container(
                   padding: EdgeInsets.symmetric(horizontal: 30.w),
                   child: AppTextField(
-                    title: '密码',
+                    title: LanguageKey.password.tr,
                     isPassword: true,
                     controller: state.passwordController,
                     textFieldType: TextFieldType.PASSWORD,

@@ -60,9 +60,6 @@ class SignUpOrForgetPage extends CommonBaseView<SignUpOrForgetController> {
                     title: LanguageKey.loginButtonEmail.tr,
                     decoration: defaultInputDecoration(
                         hint: LanguageKey.loginButtonEmail.tr, textStyle: editHintStyle(), borderRadius: 15.r),
-                    onChanged: (value) {
-                      // controller.setNickName(value);
-                    },
                   ),
                   15.verticalSpaceFromWidth,
                   AppTextField(
@@ -73,9 +70,6 @@ class SignUpOrForgetPage extends CommonBaseView<SignUpOrForgetController> {
                     suffixIconColor: col999999.withOpacity(0.5),
                     decoration: defaultInputDecoration(
                         hint: LanguageKey.newPasswordHint.tr, textStyle: editHintStyle(), borderRadius: 15.r),
-                    onChanged: (value) {
-                      // controller.setNickName(value);
-                    },
                   ),
                   15.verticalSpaceFromWidth,
                   AppTextField(
@@ -86,9 +80,6 @@ class SignUpOrForgetPage extends CommonBaseView<SignUpOrForgetController> {
                     suffixIconColor: col999999.withOpacity(0.5),
                     decoration: defaultInputDecoration(
                         hint: LanguageKey.confirmPasswordHint.tr, textStyle: editHintStyle(), borderRadius: 15.r),
-                    onChanged: (value) {
-                      // controller.setNickName(value);
-                    },
                   ),
                   15.verticalSpaceFromWidth,
                   Container(
@@ -110,7 +101,9 @@ class SignUpOrForgetPage extends CommonBaseView<SignUpOrForgetController> {
                     right: 0.w,
                     bottom: 30.h,
                     child: AppButton(
-                      onTap: () async {},
+                      onTap: () async {
+                        controller.signUpOrResetPassword();
+                      },
                       shapeBorder: RoundedRectangleBorder(
                         borderRadius: radius(15.r),
                       ),
