@@ -70,8 +70,6 @@ mixin class ApiFetch {
       );
     }
 
-    if (res.ok == false && res.data?["code"] == -1 && res.error?.msg == "Please login!") {
-    } else if (isShowError && res.ok == false) {}
     return res;
   }
 }

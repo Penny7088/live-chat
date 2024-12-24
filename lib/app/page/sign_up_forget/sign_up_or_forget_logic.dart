@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:live_chat/app/local/local_key.dart';
 import 'package:live_chat/base/controller/common_controller.dart';
+import 'package:live_chat/base/utils/getx_util_tool.dart';
 import 'package:live_chat/base/utils/log_util.dart';
 
 import '../../../base/utils/pattern.dart';
@@ -25,7 +26,7 @@ class SignUpOrForgetController extends CommonController<SignUpOrForgetState> {
     }
 
     var hasMatched = hasMatch(email, Patterns.emailEnhanced);
-    if(!hasMatched){
+    if (!hasMatched) {
       logD('邮箱格式不正确..');
       return;
     }
@@ -38,7 +39,7 @@ class SignUpOrForgetController extends CommonController<SignUpOrForgetState> {
     }
     if (rsp.ok) {
       logD('验证码发送成功');
-    }else{
+    } else {
       logD('验证码发送失败,稍后请重试');
     }
   }
@@ -46,43 +47,51 @@ class SignUpOrForgetController extends CommonController<SignUpOrForgetState> {
   void signUpOrResetPassword() {
     var email = state.emailController.text;
     var hasMatched = hasMatch(email, Patterns.emailEnhanced);
-    if(!hasMatched){
+    if (!hasMatched) {
       logD('邮箱格式不正确..');
+      showToast(LanguageKey.emailFormatIsIncorrect.tr);
       return;
     }
 
     var pwd = state.passwordController.text;
     var confirmPwd = state.confirmPasswordController.text;
-    if(pwd != confirmPwd){
+    if (pwd != confirmPwd) {
       logD('密码不一致..');
       showToast(LanguageKey.passwordsAreInconsistent.tr);
       return;
     }
 
     var code = state.codeController.text;
-    if(code.isEmpty && code.length != 6){
+    if (code.isEmpty && code.length != 6) {
       logD('验证码格式不正确..');
       showToast(LanguageKey.verificationCodeFormatIncorrect.tr);
       return;
     }
     bool isForget = state.type == SignType.forget;
-    var body = RegisterReqBody(code,email,pwd);
+    var body =
+        RegisterReqBody(code: code, email: email, password: !isForget ? pwd : '', newPassword: isForget ? pwd : '');
     if (isForget) {
       fetchResetPassword(body);
-    }else{
+    } else {
       fetchRegister(body);
     }
   }
 
   Future<void> fetchRegister(RegisterReqBody body) async {
-
-    var signUpForEmail = await state.fetch.signUpForEmail(body: body);
-
+    var user = await state.fetch.signUpForEmail(body: body);
+    if (user != null) {
+      showToast(LanguageKey.registrationSuccessful.tr);
+      currentGoBack(info: {'result':user});
+    }
   }
 
   Future<void> fetchResetPassword(RegisterReqBody body) async {
     var reset = await state.fetch.resetPassword(body: body);
-
+    if (reset.ok) {
+      showToast(LanguageKey.resetPasswordSuccessful.tr);
+      currentGoBack();
+    } else {
+      showToast(LanguageKey.resetPasswordFailed.tr);
+    }
   }
-
 }

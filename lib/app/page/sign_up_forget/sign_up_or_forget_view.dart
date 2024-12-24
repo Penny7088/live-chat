@@ -18,7 +18,7 @@ import 'sign_up_or_forget_state.dart';
 class SignUpOrForgetPage extends CommonBaseView<SignUpOrForgetController> {
   SignType? signType;
 
-  SignUpOrForgetPage({Key? key, this.signType}) : super(key: key);
+  SignUpOrForgetPage({super.key, this.signType});
 
   @override
   SignUpOrForgetState get state => controller.state;

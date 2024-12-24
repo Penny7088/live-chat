@@ -96,7 +96,9 @@ class LoginEmailPage extends CommonBaseView<LoginEmailController> {
             right: 40.w,
             bottom: 30.h,
             child: AppButton(
-              onTap: () async {},
+              onTap: () async {
+                controller.loginFromEmail();
+              },
               shapeBorder: RoundedRectangleBorder(
                 borderRadius: radius(15.r),
               ),

@@ -45,5 +45,12 @@ class LanguageKey {
   static const String emailFormatIsIncorrect = 'emailFormatIsIncorrect';
   static const String passwordsAreInconsistent = 'passwordsAreInconsistent';
   static const String verificationCode = 'verificationCode';
+  static const String registrationSuccessful = 'registrationSuccessful';
+  static const String registrationFailed = 'registrationFailed';
+  static const String verificationCodeExpiredPleaseTryAgain = 'verificationCodeExpiredPleaseTryAgain';
+  static const String emailIsRegistered = 'emailIsRegistered';
+  static const String resetPasswordSuccessful = 'resetPasswordSuccessful';
+  static const String resetPasswordFailed = 'resetPasswordFailed';
+  static const String pleaseEnterYourEmail = 'pleaseEnterYourEmail';
 
 }

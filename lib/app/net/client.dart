@@ -33,6 +33,7 @@ class HttpClient {
       contentType: 'application/json',
       sendTimeout: normalHttpConfig?.sendTimeout ?? const Duration(seconds:  30),
       receiveTimeout:  normalHttpConfig?.receiveTimeout ??const Duration(seconds: 30),
+      connectTimeout: normalHttpConfig?.connectTimeout??const Duration(seconds: 30),
       headers: normalHttpConfig?.headers,
     );
     Dio dio = Dio(options);
