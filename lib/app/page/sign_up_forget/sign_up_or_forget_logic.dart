@@ -1,12 +1,14 @@
 import 'package:get/get.dart';
-import 'package:live_chat/app/widget/app_text_field.dart';
+import 'package:live_chat/app/local/local_key.dart';
 import 'package:live_chat/base/controller/common_controller.dart';
 import 'package:live_chat/base/utils/log_util.dart';
 
 import '../../../base/utils/pattern.dart';
 import '../../../base/utils/util.dart';
+import '../../api/body/req_body.dart';
 import '../../net/http_response.dart';
 import 'sign_up_or_forget_state.dart';
+import '../../widget/widget_util.dart';
 
 class SignUpOrForgetController extends CommonController<SignUpOrForgetState> {
   @override
@@ -53,16 +55,33 @@ class SignUpOrForgetController extends CommonController<SignUpOrForgetState> {
     var confirmPwd = state.confirmPasswordController.text;
     if(pwd != confirmPwd){
       logD('密码不一致..');
+      showToast(LanguageKey.passwordsAreInconsistent.tr);
       return;
     }
 
     var code = state.codeController.text;
     if(code.isEmpty && code.length != 6){
       logD('验证码格式不正确..');
+      showToast(LanguageKey.verificationCodeFormatIncorrect.tr);
       return;
     }
+    bool isForget = state.type == SignType.forget;
+    var body = RegisterReqBody(code,email,pwd);
+    if (isForget) {
+      fetchResetPassword(body);
+    }else{
+      fetchRegister(body);
+    }
+  }
 
-    ///todo 开始注册，请求接口
+  Future<void> fetchRegister(RegisterReqBody body) async {
+
+    var signUpForEmail = await state.fetch.signUpForEmail(body: body);
+
+  }
+
+  Future<void> fetchResetPassword(RegisterReqBody body) async {
+    var reset = await state.fetch.resetPassword(body: body);
 
   }
 

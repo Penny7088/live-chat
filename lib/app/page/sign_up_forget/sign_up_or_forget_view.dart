@@ -45,7 +45,7 @@ class SignUpOrForgetPage extends CommonBaseView<SignUpOrForgetController> {
                     margin: EdgeInsets.only(top: 45.h),
                     child: backWidget(),
                   ),
-                  60.verticalSpaceFromWidth,
+                  20.verticalSpaceFromWidth,
                   Container(
                       width: 1.sw,
                       alignment: Alignment.topLeft,
@@ -53,7 +53,7 @@ class SignUpOrForgetPage extends CommonBaseView<SignUpOrForgetController> {
                         state.type == SignType.forget ? LanguageKey.resetPassword.tr : LanguageKey.signUp.tr,
                         style: boldTextStyle(size: 36, color: col333333),
                       )),
-                  30.verticalSpaceFromWidth,
+                  10.verticalSpaceFromWidth,
                   AppTextField(
                     controller: state.emailController,
                     textFieldType: TextFieldType.EMAIL,
@@ -61,7 +61,7 @@ class SignUpOrForgetPage extends CommonBaseView<SignUpOrForgetController> {
                     decoration: defaultInputDecoration(
                         hint: LanguageKey.loginButtonEmail.tr, textStyle: editHintStyle(), borderRadius: 15.r),
                   ),
-                  15.verticalSpaceFromWidth,
+                  10.verticalSpaceFromWidth,
                   AppTextField(
                     title: LanguageKey.password.tr,
                     isPassword: true,
@@ -71,12 +71,21 @@ class SignUpOrForgetPage extends CommonBaseView<SignUpOrForgetController> {
                     decoration: defaultInputDecoration(
                         hint: LanguageKey.newPasswordHint.tr, textStyle: editHintStyle(), borderRadius: 15.r),
                   ),
-                  15.verticalSpaceFromWidth,
+                  10.verticalSpaceFromWidth,
                   AppTextField(
                     title: LanguageKey.confirmPasswordHint.tr,
                     isPassword: true,
-                    controller: state.passwordController,
+                    controller: state.confirmPasswordController,
                     textFieldType: TextFieldType.PASSWORD,
+                    suffixIconColor: col999999.withOpacity(0.5),
+                    decoration: defaultInputDecoration(
+                        hint: LanguageKey.confirmPasswordHint.tr, textStyle: editHintStyle(), borderRadius: 15.r),
+                  ),
+                  10.verticalSpaceFromWidth,
+                  AppTextField(
+                    title: LanguageKey.verificationCode.tr,
+                    controller: state.codeController,
+                    textFieldType: TextFieldType.NUMBER,
                     suffixIconColor: col999999.withOpacity(0.5),
                     decoration: defaultInputDecoration(
                         hint: LanguageKey.confirmPasswordHint.tr, textStyle: editHintStyle(), borderRadius: 15.r),

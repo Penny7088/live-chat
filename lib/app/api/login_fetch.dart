@@ -1,5 +1,6 @@
 import 'package:live_chat/app/net/http_response.dart';
 
+import 'body/req_body.dart';
 import 'mixin_api_fetch.dart';
 
 class LoginFetch with ApiFetch {
@@ -15,10 +16,21 @@ class LoginFetch with ApiFetch {
     return apiResponse;
   }
 
-  Future<ApiResponse> signUpForEmail({required String email, required String password, required String code}) async {
+  Future<ApiResponse> resetPassword({required RegisterReqBody body}) async {
+    var apiResponse = await request(
+        path: '/v1/users/resetPassword',
+        data: body.toJson(),
+        isFormData: false,
+        method: Method.post);
+    return apiResponse;
+  }
+
+
+  Future<ApiResponse> signUpForEmail({required RegisterReqBody body}) async {
     var apiResponse = await request(
         path: '/v1/users/signUpFromEmail',
-        data: {'email': email, 'password': password, 'code': code},
+        data: body.toJson(),
+        isFormData: false,
         method: Method.post);
     return apiResponse;
   }

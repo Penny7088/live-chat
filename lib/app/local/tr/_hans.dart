@@ -43,5 +43,9 @@ Map<String, String> hans = {
   LanguageKey.signUp:'注册',
   LanguageKey.email:'邮箱',
   LanguageKey.sendVerificationCode:'发送验证码',
+  LanguageKey.verificationCode:'验证码',
   LanguageKey.retrySendVerificationCode:'后重新获取',
+  LanguageKey.verificationCodeFormatIncorrect:'验证码格式不正确',
+  LanguageKey.passwordsAreInconsistent:'密码不一致',
+  LanguageKey.emailFormatIsIncorrect:'邮箱格式不正确',
 };

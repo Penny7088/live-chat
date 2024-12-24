@@ -41,5 +41,9 @@ class LanguageKey {
   static const String email = 'email';
   static const String sendVerificationCode = 'sendVerificationCode';
   static const String retrySendVerificationCode = 'retrySendVerificationCode';
+  static const String verificationCodeFormatIncorrect = 'verificationCodeFormatIncorrect';
+  static const String emailFormatIsIncorrect = 'emailFormatIsIncorrect';
+  static const String passwordsAreInconsistent = 'passwordsAreInconsistent';
+  static const String verificationCode = 'verificationCode';
 
 }

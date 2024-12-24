@@ -294,5 +294,11 @@ class Assets {
   static const String svgFbLogo = 'assets/images/svg/fb_logo.svg';
   static const String svgGoogleLogo = 'assets/images/svg/google_logo.svg';
   static const String svgTakePhoto = 'assets/images/svg/take_photo.svg';
+  static const String typesBack = 'assets/types/back.svg';
+  static const String typesBubbles = 'assets/types/bubbles.svg';
+  static const String typesFailure = 'assets/types/failure.svg';
+  static const String typesHelp = 'assets/types/help.svg';
+  static const String typesSuccess = 'assets/types/success.svg';
+  static const String typesWarning = 'assets/types/warning.svg';
 
 }
