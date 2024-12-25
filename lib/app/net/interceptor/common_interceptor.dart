@@ -11,7 +11,7 @@ class CommonInterceptor extends Interceptor {
   ) async {
     var deviceId = await DeviceUtils.getDeviceId();
     var token = await DeviceUtils.getToken();
-    options.headers['token'] = token;
+    options.headers['Authorization'] = token;
     options.headers['platform'] = Platform.isIOS ? 'ios' : 'android';
     options.headers['deviceToken'] = deviceId;
     handler.next(options);

@@ -56,9 +56,6 @@ class LoginEmailPage extends CommonBaseView<LoginEmailController> {
                     title: LanguageKey.email.tr,
                     decoration:
                         defaultInputDecoration(hint: LanguageKey.loginButtonEmail.tr, textStyle: editHintStyle(),borderRadius: 15.r),
-                    onChanged: (value) {
-                      // controller.setNickName(value);
-                    },
                   )),
               15.verticalSpaceFromWidth,
               Container(
@@ -70,9 +67,6 @@ class LoginEmailPage extends CommonBaseView<LoginEmailController> {
                     textFieldType: TextFieldType.PASSWORD,
                     suffixIconColor: col999999.withOpacity(0.5),
                     decoration: defaultInputDecoration(hint: LanguageKey.passwordHint.tr, textStyle: editHintStyle(),borderRadius: 15.r),
-                    onChanged: (value) {
-                      // controller.setNickName(value);
-                    },
                   )),
               10.verticalSpaceFromWidth,
               Container(

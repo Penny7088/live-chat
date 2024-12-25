@@ -30,10 +30,14 @@ Text themeText({required bool isDark, required String text, int? size}) {
         );
 }
 
-Widget backWidget({Size? buttonSize}){
+Widget backWidget({Size? buttonSize,Function()? backCallback}){
   return AppButton(
     onTap: () {
-      currentGoBack();
+      if(backCallback != null){
+        backCallback.call();
+      }else{
+        currentGoBack();
+      }
     },
     shapeBorder: RoundedRectangleBorder(
       borderRadius: radius(12.r),

@@ -1,5 +1,20 @@
 
+import 'dart:ui';
+
+import 'package:get/get.dart';
 import 'package:live_chat/app/model/country_entity.dart';
+
+
+String? obtainSystemLanguage(){
+  Locale? locale = Get.deviceLocale;
+  if(locale != null){
+   if(locale.languageCode.contains('zh')){
+     return 'zh-CN';
+   }
+   return locale.languageCode;
+  }
+  return null;
+}
 
 /// 获取国家图标，并返回list
 List<Countries> mappingCountryFlag(List<Countries> list){

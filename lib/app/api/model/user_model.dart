@@ -97,6 +97,11 @@ class UserModel {
   String? username;
   String? verificationToken;
 
+
+  bool avatarNullOrFile(){
+    return profilePicture == null || profilePicture?.isEmpty == true || (profilePicture?.startsWith('https//')??false);
+  }
+
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['age'] = age;

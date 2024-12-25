@@ -50,6 +50,7 @@ withHeroNetImageWidget(
     String? assetPath,
     File? imageFile,
     int index = -1,
+    BoxFit? fit,
     double? radius}) {
   String heroStr = index != -1 ? "ImageHero$index" : (url ?? "tag");
   Widget body = createImage(
@@ -151,16 +152,15 @@ showDatePikerDialog(DateValueCallback onConfirm) {
 /// [context]
 /// [title]. 标题
 /// [contentType]. [contentType.ContentType]
-showSnackBar({
-  required BuildContext context,
-  required String title,
-  required content.ContentType contentType,
-  String? content,
-  Color? backgroundColor,
-  bool? forceActionsBelow,
-  bool? inMaterialBanner,
-  SnackBarBehavior? behavior
-}) {
+showSnackBar(
+    {required BuildContext context,
+    required String title,
+    required content.ContentType contentType,
+    String? content,
+    Color? backgroundColor,
+    bool? forceActionsBelow,
+    bool? inMaterialBanner,
+    SnackBarBehavior? behavior}) {
   var awesomeSnackBarContent = AwesomeSnackBarContent(
     title: title,
     message: content ?? "",
@@ -169,28 +169,26 @@ showSnackBar({
   );
 
   if (inMaterialBanner ?? false) {
-    var materialBanner =MaterialBanner(
+    var materialBanner = MaterialBanner(
         elevation: 0,
         backgroundColor: backgroundColor,
-        forceActionsBelow: forceActionsBelow??true,
-        content: awesomeSnackBarContent, actions: const [SizedBox.shrink()]);
+        forceActionsBelow: forceActionsBelow ?? true,
+        content: awesomeSnackBarContent,
+        actions: const [SizedBox.shrink()]);
     ScaffoldMessenger.of(context)
       ..hideCurrentMaterialBanner()
       ..showMaterialBanner(materialBanner);
   } else {
     var snackBar = SnackBar(
         elevation: 0,
-        behavior: behavior??SnackBarBehavior.floating,
+        behavior: behavior ?? SnackBarBehavior.floating,
         backgroundColor: backgroundColor ?? Colors.transparent,
         content: awesomeSnackBarContent);
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
       ..showSnackBar(snackBar);
   }
-
 }
-
-
 
 /// showToast
 showToast(String message, {ToastGravity? gravity, Toast? toastLength}) {

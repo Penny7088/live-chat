@@ -1,7 +1,11 @@
 import 'package:get/get.dart';
+import 'package:live_chat/app/const/storage_key.dart';
 import 'package:live_chat/app/local/local_key.dart';
+import 'package:live_chat/app/page/login_social/login_router.dart';
+import 'package:live_chat/app/router/app_router.dart';
 import 'package:live_chat/base/controller/common_controller.dart';
 import 'package:live_chat/base/utils/getx_util_tool.dart';
+import 'package:live_chat/base/utils/light_model.dart';
 import 'package:live_chat/base/utils/log_util.dart';
 
 import '../../../base/utils/pattern.dart';
@@ -81,7 +85,9 @@ class SignUpOrForgetController extends CommonController<SignUpOrForgetState> {
     var user = await state.fetch.signUpForEmail(body: body);
     if (user != null) {
       showToast(LanguageKey.registrationSuccessful.tr);
-      currentGoBack(info: {'result':user});
+      storageKV.setString(StorageKey.token, user.token);
+      storageKV.setString(StorageKey.refreshToken, user.refreshToken);
+      currentOffName(name: LoginRouter.loginInformation, arguments: {'user': user});
     }
   }
 

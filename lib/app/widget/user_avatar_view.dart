@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:live_chat/app/page/login_email/login_email_view.dart';
 import 'package:live_chat/base/config/normal_colors.dart';
+import 'package:live_chat/base/utils/extensions/widget_extensions.dart';
 
 import '../../generated/assets.dart';
 import 'widget_util.dart';
@@ -19,28 +21,29 @@ class UserAvatarView extends StatelessWidget {
   final bool? ifEdit;
   final String? nationality;
   final Function(bool)? clickAvatar;
-
+  final Function()? choosePhoto;
 
   const UserAvatarView(
       {super.key,
       required this.url,
+      required this.type,
       this.width,
       this.height,
       this.radius,
-      required this.type,
       this.ifEdit,
       this.nationality,
+      this.choosePhoto,
       this.clickAvatar});
 
   @override
   Widget build(BuildContext context) {
     Widget avatar;
     if (type == ImageType.netWork) {
-      avatar = withHeroNetImageWidget(url: url, width: width ?? 50.w, height: height ?? 50.w,radius: 50.w);
-    } else if (type == ImageType.asset) {
-      avatar = withHeroNetImageWidget(imageFile: File(url), width: width ?? 50.w, height: height ?? 50.w,radius: 50.w);
+      avatar = withHeroNetImageWidget(url: url, width: width ?? 50.w, height: height ?? 50.w, radius: 50.w);
+    } else if (type == ImageType.file) {
+      avatar = withHeroNetImageWidget(imageFile: File(url), width: width ?? 50.w, height: height ?? 50.w, radius: 50.w,fit: BoxFit.fill);
     } else {
-      avatar = withHeroNetImageWidget(assetPath: url, width: width ?? 50.w, height: height ?? 50.w,radius: 50.w);
+      avatar = withHeroNetImageWidget(assetPath: url, width: width ?? 50.w, height: height ?? 50.w, radius: 50.w);
     }
     avatar = ClipOval(child: avatar);
 
@@ -68,9 +71,14 @@ class UserAvatarView extends StatelessWidget {
                     ),
                   ),
                   child: SvgPicture.asset(
-                      Assets.svgTakePhoto,
-                      color: colffffff,
-                      ))),
+                    Assets.svgTakePhoto,
+                    color: colffffff,
+                  )).onTap(() {
+                    if(type == ImageType.file){
+                      choosePhoto?.call();
+                    }
+
+              })),
         ],
         if (nationality?.isNotEmpty == true) ...[
           Positioned(
@@ -82,9 +90,9 @@ class UserAvatarView extends StatelessWidget {
     }
 
     return GestureDetector(
-      behavior:HitTestBehavior.opaque,
-      onTap: (){
-        clickAvatar?.call(ifEdit??false);
+      behavior: HitTestBehavior.opaque,
+      onTap: () {
+        clickAvatar?.call(ifEdit ?? false);
       },
       child: body,
     );

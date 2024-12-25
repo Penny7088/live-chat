@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:live_chat/app/model/interests_model.dart';
+import 'package:live_chat/app/tool/image_tool.dart';
+import 'package:live_chat/app/tool/tool.dart';
 import 'package:live_chat/base/controller/common_controller.dart';
 import 'package:live_chat/base/utils/extensions/date_time_extensions.dart';
 import 'package:live_chat/base/utils/getx_util_tool.dart';
@@ -28,6 +30,7 @@ class InformationController extends CommonController<InformationState> {
 
   @override
   configWidgetRenderingCompleted() {
+
   }
 
   void onPageChanged(int value) {
@@ -164,16 +167,32 @@ class InformationController extends CommonController<InformationState> {
   }
 
   Future<void> fetchInterestsData() async {
-    var interestsModel = await loadInterests();
-    if(interestsModel.interestss != null){
-      state.interests.addAll(interestsModel.interestss!);
+    List<Interestss>? interests =  await state.loginFetch.fetchInterestList(lanCode: obtainSystemLanguage()??'zh-CN');
+    if(interests == null && interests?.isEmpty == true){
+      var interestsModel = await loadInterests();
+      if(interestsModel.interestss != null){
+        state.interests.addAll(interestsModel.interestss!);
+      }
+    }else{
+        state.interests.addAll(interests!);
     }
+
     update(['interests']);
   }
 
   void chooseInterestsTag(Interestss item, bool isSelected) {
     item.isChoose = isSelected;
     update(['interests']);
+  }
+
+  Future<void> openGallery() async {
+    var xFile = await choosePhoto();
+    if(xFile != null){
+      logD(xFile.path);
+      logD(xFile.name);
+      state.avatar = xFile.path;
+      update(['avatar']);
+    }
   }
 
 }

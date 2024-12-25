@@ -46,8 +46,7 @@ class InformationPage extends CommonBaseView<InformationController> {
         Container(
             width: 1.sw,
             height: 1.sh,
-            decoration: BoxDecoration(
-                image: DecorationImage(image: themeBgImage(), fit: BoxFit.cover))),
+            decoration: BoxDecoration(image: DecorationImage(image: themeBgImage(), fit: BoxFit.cover))),
         body
       ],
     );
@@ -98,13 +97,13 @@ class InformationPage extends CommonBaseView<InformationController> {
             onTap: () {
               controller.clickStep();
             },
-            margin: EdgeInsets.only(bottom: 50.w),
+            margin: EdgeInsets.only(bottom: 50.w, left: 30.w, right: 30.w),
             shapeBorder: RoundedRectangleBorder(
               borderRadius: radius(20),
             ),
             elevation: 8.0,
             shadowColor: Colors.black.withOpacity(0.5),
-            buttonSize: Size(354.w, 44.w),
+            buttonSize: Size(1.sw, 50.w),
             appButtonEnum: AppButtonEnum.onlyText,
             text: state.stepIndex == 2 ? LanguageKey.loginInfoDone.tr : LanguageKey.loginInfoNext.tr,
             iconUrl: Assets.svgGoogleLogo,
@@ -167,7 +166,9 @@ class InformationPage extends CommonBaseView<InformationController> {
       builder: (InformationController controller) {
         return Container(
           margin: EdgeInsets.only(left: 16.w, bottom: 20.w),
-          child: backWidget(),
+          child: backWidget(backCallback: (){
+            controller.preStep();
+          }),
         ).visible(state.stepIndex > 0, defaultWidget: SizedBox(height: 63.w));
       },
     );
@@ -180,13 +181,21 @@ class InformationPage extends CommonBaseView<InformationController> {
       Text(LanguageKey.loginInfoComplete.tr, style: boldTextStyle(size: 20)),
       Text(LanguageKey.loginInfoRecommendPartner.tr, style: boldTextStyle(size: 20)),
       30.verticalSpaceFromWidth,
-      UserAvatarView(
-        url: 'https://cdn.pixabay.com/photo/2024/01/25/10/50/mosque-8531576_1280.jpg',
-        width: 80.w,
-        height: 80.w,
-        type: ImageType.netWork,
-        ifEdit: true,
-      ),
+      GetBuilder(
+          init: controller,
+          id: 'avatar',
+          builder: (controller) {
+            return UserAvatarView(
+              url: '${state.avatar}',
+              width: 80.w,
+              height: 80.w,
+              type: (state.user?.avatarNullOrFile() ?? false) ? ImageType.file : ImageType.netWork,
+              ifEdit: true,
+              choosePhoto: (){
+                controller.openGallery();
+              },
+            );
+          }),
       28.verticalSpaceFromWidth,
       Container(
           padding: EdgeInsets.symmetric(horizontal: 30.w),
@@ -329,7 +338,7 @@ class InformationPage extends CommonBaseView<InformationController> {
         id: 'interests',
         builder: (controller) {
           return Container(
-              padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 20.h),
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -341,15 +350,20 @@ class InformationPage extends CommonBaseView<InformationController> {
                         children: List.generate(state.interests.length, (index) {
                           Interestss item = state.interests[index];
                           return RawChip(
-                              selected: item.isChoose??false,
+                              selected: item.isChoose ?? false,
                               onSelected: (isSelected) {
                                 controller.chooseInterestsTag(item, isSelected);
                               },
-                              side: item.isChoose ?? false ? const BorderSide(color: cole3e3e3) :  const BorderSide(color: transparent),
+                              side: item.isChoose ?? false
+                                  ? const BorderSide(color: cole3e3e3)
+                                  : const BorderSide(color: transparent),
                               selectedColor: colffffff,
                               selectedShadowColor: cole3e3e3,
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
-                              label: Text('${item.translatedName}',style: secondaryTextStyle(),));
+                              label: Text(
+                                '${item.translatedName}',
+                                style: secondaryTextStyle(),
+                              ));
                         })),
                   ],
                 ),
