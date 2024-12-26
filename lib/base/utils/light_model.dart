@@ -91,8 +91,22 @@ class _LightModel {
   }
 
 
+  Future<bool> putModel<M>({required M model, required String key}) async {
+    if(model == null){
+      return false;
+    }
+    String m = json.encode(model);
+    return await storageKV.setString(key,  m)??false;
+  }
 
-   Future<bool> putModels<M>({required M model, required String key}) async {
+  Future<String?> getModel({required String key}) async {
+    if (key.isEmpty) {
+      return null;
+    }
+    return await storageKV.getString(key: key);
+  }
+
+  Future<bool> putModels<M>({required M model, required String key}) async {
     List<String>? cache = await storageKV.getStringList(key);
     if(model == null){
       return false;

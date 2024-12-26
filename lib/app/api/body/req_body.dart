@@ -21,3 +21,4 @@ class RegisterReqBody{
         'newPassword': newPassword,
       };
 }
+

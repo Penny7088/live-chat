@@ -15,7 +15,7 @@ HttpClient defaultClient() {
   );
 }
 
-enum Method { get, post, delete }
+enum Method { get, post, delete ,put}
 
 mixin class ApiFetch {
 
@@ -61,8 +61,15 @@ mixin class ApiFetch {
         httpTransformer: httpTransformer,
         options: options,
       );
-    } else {
+    } else if(method == Method.delete){
       res = await defaultClient().delete(
+        path,
+        data: isFormData ? fdata.FormData.fromMap(data ?? {}) : params,
+        httpTransformer: httpTransformer,
+        options: options,
+      );
+    }else{
+      res = await defaultClient().put(
         path,
         data: isFormData ? fdata.FormData.fromMap(data ?? {}) : params,
         httpTransformer: httpTransformer,

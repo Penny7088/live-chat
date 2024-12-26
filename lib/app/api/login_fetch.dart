@@ -52,7 +52,8 @@ class LoginFetch with ApiFetch {
         method: Method.post,
         isFormData: false);
     if (apiResponse.ok) {
-      var userModel = UserModel.fromJson(apiResponse.data);
+      var data = apiResponse.data['user'];
+      var userModel = UserModel.fromJson(data);
       return userModel;
     } else {
       showToast(LanguageKey.loginFailed.tr);
@@ -63,10 +64,22 @@ class LoginFetch with ApiFetch {
   Future<List<Interestss>?> fetchInterestList({required String lanCode}) async {
     var apiResponse = await request(path: '/v1/interests/allList/$lanCode', method: Method.get);
     if (apiResponse.ok) {
-      var objectList = JsonUtils.getObjectList<Interestss>(apiResponse.data, (v) => Interestss.fromJson(v));
+      var data = apiResponse.data['interestss'];
+      var objectList = JsonUtils.getObjectList<Interestss>(data, (v) => Interestss.fromJson(v));
       return objectList;
     } else {
       return null;
     }
+  }
+
+  Future<UserModel?> fetchUpdateUserInfo({required int userID}) async {
+    var apiResponse = await request(path: '/v1/users/updateUserInfo/$userID', method: Method.put);
+    if(apiResponse.ok){
+      var data = apiResponse.data['user'];
+      var userModel = UserModel.fromJson(data);
+      return userModel;
+    }
+
+    return null;
   }
 }

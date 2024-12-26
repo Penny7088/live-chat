@@ -14,7 +14,7 @@ import '../../../base/utils/decorations.dart';
 import '../../local/local_key.dart';
 import '../../widget/app_text_field.dart';
 import '../../widget/theme_widget_util.dart';
-import '../login_social/login_router.dart';
+import '../../router/login_router.dart';
 import 'login_email_logic.dart';
 import 'login_email_state.dart';
 

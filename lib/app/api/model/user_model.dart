@@ -79,7 +79,7 @@ class UserModel {
   String? email;
   num? emailVerified;
   String? gender;
-  num? id;
+  int? id;
   String? interests;
   bool? isNewUser;
   String? languageLevel;

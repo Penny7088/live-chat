@@ -1,12 +1,12 @@
 import 'package:get/get.dart';
 import 'package:live_chat/app/page/common/country_page/country_page/country_page_view.dart';
 
-import '../common/language_page/language_page_view.dart';
-import '../login_email/login_email_view.dart';
-import '../sign_up_forget/sign_up_or_forget_state.dart';
-import '../sign_up_forget/sign_up_or_forget_view.dart';
-import 'information/information_view.dart';
-import 'login_view.dart';
+import '../page/common/language_page/language_page_view.dart';
+import '../page/login_email/login_email_view.dart';
+import '../page/sign_up_forget/sign_up_or_forget_state.dart';
+import '../page/sign_up_forget/sign_up_or_forget_view.dart';
+import '../page/login_social/information/information_view.dart';
+import '../page/login_social/login_view.dart';
 
 class LoginRouter {
   static const String loginInformation = '/login/information';

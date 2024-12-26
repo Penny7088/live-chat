@@ -2,8 +2,9 @@ import 'package:get/get.dart';
 import 'package:live_chat/app/page/sign_up_forget/sign_up_or_forget_state.dart';
 import 'package:live_chat/app/page/sign_up_forget/sign_up_or_forget_view.dart';
 import 'package:live_chat/app/page/splash/splash_view.dart';
+import 'package:live_chat/app/router/main_router.dart';
 import '../page/login_email/login_email_view.dart';
-import '../page/login_social/login_router.dart';
+import 'login_router.dart';
 import '../page/login_social/login_view.dart';
 
 /// FileName app_router
@@ -12,16 +13,15 @@ import '../page/login_social/login_view.dart';
 /// @Date 2024/5/29 10:41
 /// @Description
 
-class AppRouter{
-
+class AppRouter {
   static List<GetPage> getAllRoutS() {
     return [
       GetPage(
         name: RouterId.splash,
         page: () => const SplashPage(),
       ),
-
-     ...LoginRouter.routers()
+      ...LoginRouter.routers(),
+      ...MainRouter.routers()
     ];
   }
 
