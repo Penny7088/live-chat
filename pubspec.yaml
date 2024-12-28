@@ -45,7 +45,7 @@ dependencies:
   # 加密算法
   crypto: ^3.0.5
   # 图片选择
-  image_picker: ^1.1.1
+  image_picker: ^1.1.2
   # web加载器
   webview_flutter: ^4.8.0
   webview_flutter_android: ^3.16.2
