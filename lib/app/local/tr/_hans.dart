@@ -55,5 +55,6 @@ Map<String, String> hans = {
   LanguageKey.verificationCodeExpiredPleaseTryAgain:'验证码过期,请重新再试',
   LanguageKey.emailIsRegistered:'邮箱已注册',
   LanguageKey.resetPasswordSuccessful:'密码重置成功',
+  LanguageKey.hintPassword:'请输入密码',
   LanguageKey.resetPasswordFailed:'密码重置失败',
 };

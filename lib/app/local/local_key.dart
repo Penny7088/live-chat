@@ -53,5 +53,6 @@ class LanguageKey {
   static const String resetPasswordFailed = 'resetPasswordFailed';
   static const String pleaseEnterYourEmail = 'pleaseEnterYourEmail';
   static const String loginFailed = 'loginFailed';
+  static const String hintPassword = 'hintPassword';
 
 }
