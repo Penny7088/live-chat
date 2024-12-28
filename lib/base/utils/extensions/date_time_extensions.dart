@@ -37,6 +37,16 @@ extension DateTimeExt on DateTime {
   }
 }
 
+/// return age
+int calculateAge({required DateTime birthDate}) {
+  final today = DateTime.now();
+  int age = today.year - birthDate.year;
+  if (today.month < birthDate.month || (today.month == birthDate.month && today.day < birthDate.day)) {
+    age--;
+  }
+  return age;
+}
+
 /// return current time in milliseconds
 int currentMillisecondsTimeStamp() => DateTime.now().millisecondsSinceEpoch;
 

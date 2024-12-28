@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:live_chat/app/api/body/user_req_body.dart';
 import 'package:live_chat/app/const/storage_key.dart';
 import 'package:live_chat/app/model/interests_model.dart';
 import 'package:live_chat/app/router/main_router.dart';
@@ -10,6 +11,7 @@ import 'package:live_chat/app/tool/image_tool.dart';
 import 'package:live_chat/app/tool/tool.dart';
 import 'package:live_chat/base/controller/common_controller.dart';
 import 'package:live_chat/base/utils/extensions/date_time_extensions.dart';
+import 'package:live_chat/base/utils/extensions/string_extensions.dart';
 import 'package:live_chat/base/utils/getx_util_tool.dart';
 import 'package:live_chat/base/utils/light_model.dart';
 import 'package:live_chat/base/utils/log_util.dart';
@@ -59,6 +61,8 @@ class InformationController extends CommonController<InformationState> {
     }
 
     if(state.stepIndex == state.stepLength - 1){
+      state.btLoading = true;
+      update(['bt']);
       fetchUpdateUserInfo();
     }else{
       state.pageController.nextPage(
@@ -203,13 +207,45 @@ class InformationController extends CommonController<InformationState> {
 
       return;
     }
-    var userModel = await state.loginFetch.fetchUpdateUserInfo(userID:state.user!.id!);
+    /// todo 这里需要组装数据
+    var birthdayDate = (state.birthday??'').convertDateTime();
+    var userModel2 = UserReqBody();
+    userModel2.profilePicture = 'https://cdn.pixabay.com/photo/2024/01/25/10/50/mosque-8531576_1280.jpg';
+    userModel2.username = state.nickName;
+    userModel2.birthDate = state.birthday?.convertDateTime().toUtc().toIso8601String();
+    userModel2.gender = filterGender();
+    userModel2.countryID = state.country?.id;
+    userModel2.learningLanguageID = state.learnLan?.id;
+    userModel2.languageLevel = '${state.learnLan?.learnLevel}';
+    userModel2.nativeLanguageID = state.nativeLan?.id;
+    userModel2.interests = filterChooseInterests();
+    userModel2.age = calculateAge(birthDate: birthdayDate);
+    var userModel = await state.loginFetch.fetchUpdateUserInfo(userID:state.user!.id!, body: userModel2);
     if(userModel != null){
       storageKV.putModel<UserModel>(key: StorageKey.userJson, model: userModel);
       currentTo(name: MainRouter.mainContainer);
     }
   }
 
+  List<int>? filterChooseInterests() {
+    List<int> choose = [];
+    for (var e in state.interests) {
+      if((e.isChoose??false)){
+        choose.add(e.tagID??0);
+      }
+    }
+    return choose;
+  }
+
+  String filterGender() {
+    if (state.ifFemale ?? false) {
+      return 'female';
+    } else if (state.ifMale ?? false) {
+      return 'male';
+    } else {
+      return 'other';
+    }
+  }
 }
 
 

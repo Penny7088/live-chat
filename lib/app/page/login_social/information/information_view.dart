@@ -104,6 +104,7 @@ class InformationPage extends CommonBaseView<InformationController> {
             elevation: 8.0,
             shadowColor: Colors.black.withOpacity(0.5),
             buttonSize: Size(1.sw, 50.w),
+            enabledLoading: state.stepIndex == 2 ? state.btLoading : false,
             appButtonEnum: AppButtonEnum.onlyText,
             text: state.stepIndex == 2 ? LanguageKey.loginInfoDone.tr : LanguageKey.loginInfoNext.tr,
             iconUrl: Assets.svgGoogleLogo,

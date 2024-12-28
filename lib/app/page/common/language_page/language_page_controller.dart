@@ -1,9 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
+import 'package:live_chat/app/const/storage_key.dart';
 import 'package:live_chat/base/controller/common_controller.dart';
 import 'package:live_chat/base/state/page_state.dart';
 import 'package:live_chat/base/utils/getx_util_tool.dart';
+import 'package:live_chat/base/utils/light_model.dart';
 import 'package:live_chat/base/utils/log_util.dart';
 
 import '../../../../generated/assets.dart';
@@ -25,12 +27,10 @@ class LanguageController extends CommonController<LanguageState> {
   }
 
   void fetchData() async {
-
-    ///todo 先请求接口/失败才加载本地资源
-    LanguageModel rsp =  await loadLanguages();
+    List<Languages>? rsp =  await loadLanguages();
     state.isShowLoadWidget.value = false;
-    if (rsp.languagess?.isNotEmpty == true) {
-      state.languages.addAll(filterLanguageList(rsp.languagess!));
+    if (rsp?.isNotEmpty == true) {
+      state.languages.addAll(filterLanguageList(rsp!));
       state.pageState.value = PageState.dataFetchState;
     }
 
@@ -62,10 +62,15 @@ class LanguageController extends CommonController<LanguageState> {
 
 
   ///load assets
-  Future<LanguageModel> loadLanguages() async {
-    final String response = await rootBundle.loadString(Assets.jsonLanguage);
-    final data = json.decode(response);
-    return LanguageModel.fromJson(data);
+  Future<List<Languages>?> loadLanguages() async {
+    var loadModels = await storageKV.loadModels(StorageKey.languagesList);
+    if(loadModels.isEmpty){
+      final String response = await rootBundle.loadString(Assets.jsonCountry);
+      final data = json.decode(response);
+      var lan = LanguageModel.fromJson(data);
+      return lan.languagess;
+    }
+    return loadModels.where((language) => language != null).cast<Languages>().toList();
   }
 
   void callbackResult(Languages languages) {

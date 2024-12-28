@@ -42,7 +42,7 @@ class Countries {
     name = json['name'];
     isoCode = json['isoCode'];
   }
-  num? id;
+  int? id;
   String? name;
   String? flagIcon;
   String? isoCode;

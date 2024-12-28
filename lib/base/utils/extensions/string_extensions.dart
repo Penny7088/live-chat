@@ -300,4 +300,11 @@ extension StringExtension on String? {
 
   /// Returns true if the validate() method returns 'true', otherwise returns false.
   bool toBool() => validate() == 'true';
+
+  DateTime convertDateTime() {
+    if (this?.isEmpty == true) {
+      return DateTime.now();
+    }
+    return DateTime.parse(this!);
+  }
 }

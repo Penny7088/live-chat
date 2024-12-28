@@ -49,7 +49,7 @@ class UserReqBody {
   String? email;
   String? gender;
   num? id;
-  List<num>? interests;
+  List<int>? interests;
   String? languageLevel;
   num? learningLanguageID;
   num? nativeLanguageID;

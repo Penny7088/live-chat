@@ -36,7 +36,7 @@ class Interestss {
     translatedName = json['translatedName'];
   }
 
-  num? tagID;
+  int? tagID;
   String? translatedName;
   bool? isChoose;
 

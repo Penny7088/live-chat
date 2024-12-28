@@ -26,6 +26,7 @@ class InformationState extends BaseState {
   Languages? nativeLan;
   Languages? learnLan;
   UserModel? user;
+  bool? btLoading;
 
   late TextEditingController textEditingController = TextEditingController();
 

@@ -1,8 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
+import 'package:live_chat/app/const/storage_key.dart';
 import 'package:live_chat/app/tool/tool.dart';
 import 'package:live_chat/base/state/page_state.dart';
+import 'package:live_chat/base/utils/light_model.dart';
 import 'package:live_chat/generated/assets.dart';
 
 import '../../../../../base/controller/common_controller.dart';
@@ -26,11 +28,10 @@ class CountryPageController extends CommonController<CountryPageState> {
 
   fetchData() async {
 
-    ///todo 先请求接口/失败才加载本地资源
-    CountryEntity rsp =  await loadCountries();
+    List<Countries>? rsp =  await loadCountries();
     state.isShowLoadWidget.value = false;
-    if (rsp.countriess?.isNotEmpty == true) {
-      List<Countries> mapping = mappingCountryFlag(rsp.countriess!);
+    if (rsp?.isNotEmpty == true) {
+      List<Countries> mapping = mappingCountryFlag(rsp!);
       state.countries.addAll(filterCountryList(mapping));
       state.pageState.value = PageState.dataFetchState;
     }
@@ -58,10 +59,15 @@ class CountryPageController extends CommonController<CountryPageState> {
   }
 
   ///load assets
-  Future<CountryEntity> loadCountries() async {
-    final String response = await rootBundle.loadString(Assets.jsonCountry);
-    final data = json.decode(response);
-    return CountryEntity.fromJson(data);
+  Future<List<Countries>?> loadCountries() async {
+    var loadModels = await storageKV.loadModels(StorageKey.countriesList);
+    if(loadModels.isEmpty){
+      final String response = await rootBundle.loadString(Assets.jsonCountry);
+      final data = json.decode(response);
+       var countryEntity = CountryEntity.fromJson(data);
+      return countryEntity.countriess;
+    }
+    return loadModels.where((country) => country != null).cast<Countries>().toList();
   }
 
 }

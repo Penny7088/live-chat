@@ -6,6 +6,7 @@ import 'package:live_chat/app/widget/widget_util.dart';
 
 import '../model/interests_model.dart';
 import 'body/req_body.dart';
+import 'body/user_req_body.dart';
 import 'mixin_api_fetch.dart';
 import 'model/user_model.dart';
 
@@ -72,9 +73,9 @@ class LoginFetch with ApiFetch {
     }
   }
 
-  Future<UserModel?> fetchUpdateUserInfo({required int userID}) async {
-    var apiResponse = await request(path: '/v1/users/updateUserInfo/$userID', method: Method.put);
-    if(apiResponse.ok){
+  Future<UserModel?> fetchUpdateUserInfo({required int userID, required UserReqBody body}) async {
+    var apiResponse = await request(path: '/v1/users/updateUserInfo/$userID', method: Method.put, data: body.toJson(),isFormData:false);
+    if (apiResponse.ok) {
       var data = apiResponse.data['user'];
       var userModel = UserModel.fromJson(data);
       return userModel;
@@ -82,4 +83,6 @@ class LoginFetch with ApiFetch {
 
     return null;
   }
+
+
 }

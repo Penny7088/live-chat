@@ -1,5 +1,8 @@
 import 'dart:convert';
 
+import 'package:live_chat/app/const/storage_key.dart';
+import 'package:live_chat/app/model/country_entity.dart';
+import 'package:live_chat/app/model/language_model.dart';
 import 'package:live_chat/base/utils/extensions/list_extensions.dart';
 import 'package:mmkv/mmkv.dart';
 
@@ -106,23 +109,37 @@ class _LightModel {
     return await storageKV.getString(key: key);
   }
 
-  Future<bool> putModels<M>({required M model, required String key}) async {
-    List<String>? cache = await storageKV.getStringList(key);
-    if(model == null){
-      return false;
+// 保存 List<Model>
+  Future<void> saveModels<M>(List<M> models, String key) async {
+    var list = models.map((e) {
+      return encode(e);
+    }).toList();
+    await storageKV.setStringList(key,list);
+  }
+
+  String encode(e) {
+    if (e is Countries) {
+      return jsonEncode(e.toJson());
+    }else if(e is Languages){
+      return jsonEncode(e.toJson());
     }
-    cache ??= <String>[];
-    String m = json.encode(model);
-    cache.add(m);
-    return await storageKV.setStringList(key,  cache.removeDuplicates()) ?? false;
+    return '';
   }
 
 
-  Future<List<String>?> getModels({required String key}) async {
-    List<String>? cache = await storageKV.getStringList(key);
-    if(cache == null || cache.isEmpty == true ){
-      return null;
+  // 读取 List<Model>
+  Future<List<dynamic>> loadModels(String key) async {
+    List<String>? jsonString = await storageKV.getStringList(key);
+    if (jsonString == null) {
+      return [];
     }
-    return cache;
+    return jsonString.map((json) {
+      Map<String, dynamic> jsonData = jsonDecode(json);
+     if(key == StorageKey.countriesList){
+       return Countries.fromJson(jsonData);
+     }else if(key == StorageKey.languagesList){
+       return Languages.fromJson(jsonData);
+     }
+    }).toList();
   }
 }
