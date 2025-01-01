@@ -9,6 +9,12 @@ class Assets {
   static const String bgBgLightDefault = 'assets/images/bg/bg_light_default.webp';
   static const String bgBgLightFemale = 'assets/images/bg/bg_light_female.webp';
   static const String bgBgLightMale = 'assets/images/bg/bg_light_male.webp';
+  static const String bottomBottomLiveSelect = 'assets/images/svg/bottom/bottom_live_select.svg';
+  static const String bottomBottomMineSelect = 'assets/images/svg/bottom/bottom_mine_select.svg';
+  static const String bottomBottomMineUnselect = 'assets/images/svg/bottom/bottom_mine_unselect.svg';
+  static const String bottomBottomSelectMsg = 'assets/images/svg/bottom/bottom_select_msg.svg';
+  static const String bottomBottomUnselectMsg = 'assets/images/svg/bottom/bottom_unselect_msg.svg';
+  static const String bottomLiveUnselect = 'assets/images/svg/bottom/bottom_live_unselect.svg';
   static const String flagsAd = 'assets/images/svg/flags/ad.svg';
   static const String flagsAe = 'assets/images/svg/flags/ae.svg';
   static const String flagsAf = 'assets/images/svg/flags/af.svg';

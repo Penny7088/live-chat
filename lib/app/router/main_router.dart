@@ -9,7 +9,7 @@ class MainRouter{
     return [
       GetPage(
         name: mainContainer,
-        page: () => const MainContainerPage(),
+        page: () =>  MainContainerPage(),
       ),
 
     ];

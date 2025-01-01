@@ -16,13 +16,17 @@ abstract class CommonBaseView<C extends CommonController> extends GetView<C>
   String? get tag => controllerTag();
 
   @override
-  C get controller => Get.put<C>(createController(),tag: controllerTag());
+  C get controller => Get.put<C>(createController(), tag: controllerTag(),permanent: isPermanent());
 
   BaseState get state => controller.state;
 
   String controllerTag();
 
   C createController();
+
+  bool isPermanent(){
+    return false;
+  }
 
   @override
   Widget build(BuildContext context) {

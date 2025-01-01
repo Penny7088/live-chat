@@ -59,7 +59,7 @@ class LanguageView extends StatelessWidget {
 
   factory LanguageView.advanced({bool? isChoose}){
     return LanguageView(
-        circleColor: cole25477,
+        circleColor: colf9518f,
         defaultColor: cole6e6e6,
         text: LanguageKey.advanced.tr,
         circleSize: Size(8.w, 8.w),

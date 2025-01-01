@@ -11,7 +11,7 @@ class LoadingWidget extends StatelessWidget {
 
   final double? height;
 
-  const LoadingWidget({super.key, this.width = 40, this.height = 20});
+  const LoadingWidget({super.key, this.width = 80, this.height = 80});
 
   @override
   Widget build(BuildContext context) {
@@ -25,34 +25,5 @@ class LoadingWidget extends StatelessWidget {
         width: 88.w,
         alignment: Alignment.center,
       ));
-  }
-}
-
-class LoadingCenterWidget extends StatelessWidget {
-  final double? width;
-  final double? height;
-  static int showCount = 0;
-  const LoadingCenterWidget({super.key, this.width = 40, this.height = 20});
-
-  static show() async{
-    showCount++;
-    await Get.dialog(const LoadingCenterWidget());
-    showCount--;
-  }
-
-  static cancel() {
-    if(showCount > 0) {
-      Get.back();
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: LoadingWidget(
-        width: width,
-        height: height,
-      ),
-    );
   }
 }
