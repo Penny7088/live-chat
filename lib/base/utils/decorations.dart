@@ -58,6 +58,14 @@ InputBorder defaultBorder({double? borderRadius}) {
   );
 }
 
+LinearGradient defaultLinearGradient({Color? start,Color? end,}){
+  return LinearGradient(
+    begin: const Alignment(0.71, -0.71),
+    end: const Alignment(-0.71, 0.71),
+    colors: [start??colF7F7F7, end??col8E999A],
+  );
+}
+
 /// returns Radius
 BorderRadius radius([double? radius]) {
   return BorderRadius.all(radiusCircular(radius ?? defaultRadius));
