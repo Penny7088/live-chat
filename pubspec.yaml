@@ -74,6 +74,9 @@ dependencies:
   # UUID
   uuid: ^4.5.1
   fluttertoast: ^8.2.10
+  stylish_bottom_bar: ^1.1.0
+  web_socket_channel: ^3.0.1
+  equatable: ^2.0.7
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -87,6 +90,7 @@ flutter:
     - assets/images/bg/
     - assets/images/svg/
     - assets/images/svg/flags/
+    - assets/images/svg/bottom/
     - assets/images/login/
     - assets/images/svg/
     - assets/loading/

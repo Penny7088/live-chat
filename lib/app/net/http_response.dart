@@ -9,6 +9,13 @@ class ApiResponse<T> {
   NetException? error;
   Map<String, dynamic>? response;
 
+
+  ApiResponse.fromJson(dynamic json) {
+    data = json['data'];
+    msg = json['msg'];
+    code = json['code'];
+  }
+
   ApiResponse.success({
     required dynamic netData,
     Map<String, dynamic>? response,

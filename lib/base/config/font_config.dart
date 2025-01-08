@@ -106,18 +106,6 @@ class FontConfig {
       decoration: TextDecoration.none
   );
 
-  ////0xFFF25477
-  static TextStyle get fontMedium14LightPink => fontMedium(
-    size: 14.sp,
-    color: cole25477,
-      decoration: TextDecoration.none
-  );
-  static TextStyle get fontMedium12LightPink => fontMedium(
-      size: 12.sp,
-      color: cole25477,
-      decoration: TextDecoration.none
-  );
-
   ///white
   static TextStyle get fontMedium14LightWhite => fontMedium(
     size: 14.sp,
