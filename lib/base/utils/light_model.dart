@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:live_chat/app/api/model/user_model.dart';
 import 'package:live_chat/app/const/storage_key.dart';
 import 'package:live_chat/app/model/country_entity.dart';
 import 'package:live_chat/app/model/language_model.dart';
@@ -141,5 +142,15 @@ class _LightModel {
        return Languages.fromJson(jsonData);
      }
     }).toList();
+  }
+
+
+  Future<UserModel?> obtainUser() async {
+    var model = await getModel(key: StorageKey.userJson);
+    if(model != null){
+      Map<String, dynamic> jsonData = jsonDecode(model);
+     return UserModel.fromJson(jsonData);
+    }
+    return null;
   }
 }

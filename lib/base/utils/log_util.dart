@@ -2,6 +2,12 @@ import 'package:logger/logger.dart';
 
 const String _tag = "live_chat";
 
+Logger detachedLogger() => Logger(
+  printer: PrettyPrinter(
+    methodCount: 0,
+  ),
+);
+
 var _logger = Logger(
   printer: PrettyPrinter(
     methodCount: 0,

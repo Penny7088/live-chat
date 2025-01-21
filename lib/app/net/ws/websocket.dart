@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:math' as math;
 
+import 'package:live_chat/app/local/env/EnvConfig.dart';
 import 'package:logger/logger.dart';
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
@@ -87,26 +88,22 @@ class WebSocket with TimerHelper {
   ///
   String? get connectionId => _connectionId;
 
-  final _connectionStatusController =
-      BehaviorSubject.seeded(ConnectionStatus.disconnected);
+  final _connectionStatusController = BehaviorSubject.seeded(ConnectionStatus.disconnected);
 
-  set _connectionStatus(ConnectionStatus status) =>
-      _connectionStatusController.add(status);
+  set _connectionStatus(ConnectionStatus status) => _connectionStatusController.add(status);
 
   /// The current connection status value
   ConnectionStatus get connectionStatus => _connectionStatusController.value;
 
   /// This notifies of connection status changes
-  Stream<ConnectionStatus> get connectionStatusStream =>
-      _connectionStatusController.stream.distinct();
+  Stream<ConnectionStatus> get connectionStatusStream => _connectionStatusController.stream.distinct();
 
   void _initWebSocketChannel(Uri uri) {
     _logger?.i('Initiating connection with $baseUrl');
     if (_webSocketChannel != null) {
       _closeWebSocketChannel();
     }
-    _webSocketChannel =
-        webSocketChannelProvider?.call(uri) ?? WebSocketChannel.connect(uri);
+    _webSocketChannel = webSocketChannelProvider?.call(uri) ?? WebSocketChannel.connect(uri);
     _subscribeToWebSocketChannel();
   }
 
@@ -114,8 +111,7 @@ class WebSocket with TimerHelper {
     _logger?.i('Closing connection with $baseUrl');
     if (_webSocketChannel != null) {
       _unsubscribeFromWebSocketChannel();
-      _webSocketChannel?.sink
-          .close(_manuallyClosed ? status.normalClosure : status.goingAway);
+      _webSocketChannel?.sink.close(_manuallyClosed ? status.normalClosure : status.goingAway);
       _webSocketChannel = null;
     }
   }
@@ -145,15 +141,16 @@ class WebSocket with TimerHelper {
     bool includeUserDetails = true,
   }) async {
     final qs = {
-      'authorization': token,
+      'Authorization': token,
       ...queryParameters,
     };
-    final scheme = baseUrl.startsWith('https') ? 'wss' : 'ws';
-    final host = baseUrl.replaceAll(RegExp(r'(^\w+:|^)\/\/'), '');
+    final isWsUrl = baseUrl.startsWith('ws') || baseUrl.startsWith('wss');
+    if (!isWsUrl) {
+      const StreamWebSocketError('url is error,pls update');
+    }
+
     return Uri(
-      scheme: scheme,
-      host: host,
-      pathSegments: ['connect'],
+      path: baseUrl,
       queryParameters: qs,
     );
   }
@@ -180,6 +177,7 @@ class WebSocket with TimerHelper {
       final uri = await _buildUri(
         includeUserDetails: includeUserDetails,
       );
+      // var uri2 = Uri(path: 'ws://192.168.2.62:9504/ws/chat.io');
       _initWebSocketChannel(uri);
     } catch (e, stk) {
       _onConnectionError(e, stk);
@@ -284,7 +282,7 @@ class WebSocket with TimerHelper {
       return _reconnect(refreshToken: true);
     }
 
-    _logger?.e('Connection failed = ${ error.toString()}');
+    _logger?.e('Connection failed = ${error.toString()}');
 
     final completer = connectionCompleter;
     // complete with error if not yet completed
@@ -300,6 +298,7 @@ class WebSocket with TimerHelper {
 
   void _onDataReceived(dynamic data) {
     final jsonData = json.decode(data) as Map<String, Object?>;
+    _logger?.i('Event received: $jsonData');
     final error = jsonData['error'] as Map<String, Object?>?;
     if (error != null) return _handleStreamError(error);
 
@@ -317,7 +316,6 @@ class WebSocket with TimerHelper {
     if (event == null) return;
 
     _lastEventAt = DateTime.now();
-    _logger?.i('Event received: ${event.type}');
 
     if (event.type == EventType.healthCheck) {
       if (event.uid != null) {
